@@ -66,7 +66,7 @@ export default function FixedCTA({ show }: { show: boolean }) {
               onClick={() => setState('form')}
               style={{
                 display: 'flex', alignItems: 'center', gap: '0.75rem',
-                padding: '1rem 2rem', background: 'var(--navy)', color: '#fff',
+                padding: '1rem calc(2rem + 1.5vw)', background: 'var(--navy)', color: '#fff',
                 border: 'none', cursor: 'pointer', borderRadius: 100,
                 fontFamily: 'var(--font-eyebrow)', fontSize: '0.75rem',
                 letterSpacing: '0.15em', textTransform: 'uppercase',
