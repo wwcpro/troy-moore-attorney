@@ -185,7 +185,7 @@ export default function Navbar() {
               fontFamily: '"kepler-std", serif',
               fontWeight: 300,
               fontStyle: "italic",
-              fontSize: "clamp(2.2rem, 10vw, 3.5rem)",
+              fontSize: "clamp(1.87rem, 8.5vw, 2.975rem)",
               color: "var(--navy)",
               transition: "color 0.2s ease",
             }}
@@ -200,7 +200,7 @@ export default function Navbar() {
             fontFamily: '"kepler-std", serif',
             fontWeight: 300,
             fontStyle: "italic",
-            fontSize: "clamp(1.5rem, 7vw, 2.5rem)",
+            fontSize: "clamp(1.275rem, 5.95vw, 2.125rem)",
             backgroundColor: "var(--gold)",
             color: "#fff",
           }}
