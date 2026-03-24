@@ -56,15 +56,25 @@ export default function Footer() {
     <footer>
       {/* Upper Footer — Locations / People */}
       <div style={{ backgroundColor: "var(--navy)", paddingTop: "5vw", paddingBottom: "5vw" }}>
+        <style>{`
+          @media (max-width: 767px) {
+            .footer-upper { padding-left: 1.5rem !important; padding-right: 1.5rem !important; gap: 1rem; }
+            .footer-upper-link {
+              border: 1px solid rgba(255,255,255,0.25) !important;
+              border-right: 1px solid rgba(255,255,255,0.25) !important;
+              padding: 2rem 1.5rem !important;
+            }
+          }
+        `}</style>
         <div
-          className="flex flex-col md:flex-row items-stretch"
+          className="footer-upper flex flex-col md:flex-row items-stretch"
           style={{ paddingLeft: "5vw", paddingRight: "5vw" }}
         >
           {footerData.upperLinks.map((link, i) => (
             <Link
               key={i}
               href={link.href}
-              className="group flex-1 flex items-center justify-center"
+              className="footer-upper-link group flex-1 flex items-center justify-center"
               style={{
                 borderRight: i < footerData.upperLinks.length - 1 ? "1px solid rgba(255,255,255,0.12)" : "none",
                 padding: "clamp(1.5rem, 2vw, 3rem) clamp(1rem, 4vw, 5rem)",
