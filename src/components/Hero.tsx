@@ -99,8 +99,8 @@ export default function Hero({ loaderDone }: { loaderDone: boolean }) {
 
           {/* Right: Content */}
           <div
-            className="lg:w-[52%] flex flex-col justify-center"
-            style={{ paddingBottom: "2vw" }}
+            className="lg:w-[52%] flex flex-col justify-start"
+            style={{ paddingBottom: "2vw", paddingTop: "2vw" }}
           >
             {/* Eyebrow */}
             <p
@@ -163,7 +163,7 @@ export default function Hero({ loaderDone }: { loaderDone: boolean }) {
                 <img
                   src="/assets/signature.svg"
                   alt="Troy M. Moore Signature"
-                  style={{ width: "10.6vw", minWidth: 133, opacity: 0.7 }}
+                  style={{ width: "14.1vw", minWidth: 177, opacity: 0.7 }}
                 />
               </div>
             </ScrollReveal>
