@@ -147,7 +147,7 @@ export default function Navbar() {
         <a
           href={navData.phone.href}
           className="lg:hidden nav-link font-semibold"
-          style={{ position: "absolute", right: "4rem", top: "50%", transform: "translateY(-50%)", color: "var(--navy)", fontSize: "13px" }}
+          style={{ position: "absolute", right: "4rem", top: "50%", transform: "translateY(-50%)", color: "var(--navy)", fontSize: "16px" }}
         >
           {navData.phone.label}
         </a>
