@@ -90,7 +90,7 @@ export default function Footer() {
 
       {/* Lower Footer */}
       <div style={{ backgroundColor: "#061e36", paddingTop: "2vw", paddingBottom: "2vw" }}>
-        <div style={{ paddingLeft: "3vw", paddingRight: "3vw" }}>
+        <div style={{ paddingLeft: "clamp(1.5rem, 3vw, 4rem)", paddingRight: "clamp(1.5rem, 3vw, 4rem)" }}>
           <div className="flex flex-col lg:flex-row gap-10 lg:gap-6">
             {/* Left: Logo + Badges */}
             <div className="lg:w-[22%] flex flex-col items-center">
