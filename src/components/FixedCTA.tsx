@@ -22,6 +22,7 @@ export default function FixedCTA({ show }: { show: boolean }) {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [selected, setSelected] = useState<string[]>([]);
+  const [smsConsent, setSmsConsent] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const toggleService = (id: string) => {
@@ -37,7 +38,7 @@ export default function FixedCTA({ show }: { show: boolean }) {
     setState('success');
     setTimeout(() => {
       setState('button');
-      setName(''); setEmail(''); setPhone(''); setSelected([]);
+      setName(''); setEmail(''); setPhone(''); setSelected([]); setSmsConsent(false);
     }, 4000);
   };
 
@@ -226,10 +227,31 @@ export default function FixedCTA({ show }: { show: boolean }) {
                   </div>
                 </motion.div>
 
+                {/* SMS Consent — A2P 10DLC / CallRail compliance */}
+                <motion.label
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.65 }}
+                  style={{ display: 'flex', alignItems: 'flex-start', gap: '0.6rem', cursor: 'pointer' }}
+                >
+                  <input
+                    type="checkbox"
+                    checked={smsConsent}
+                    onChange={(e) => setSmsConsent(e.target.checked)}
+                    required
+                    style={{ marginTop: 3, flexShrink: 0, accentColor: 'var(--navy)', width: 15, height: 15 }}
+                  />
+                  <span style={{ fontFamily: 'var(--font-body)', fontSize: '0.72rem', color: 'rgba(11,55,93,0.55)', lineHeight: 1.5 }}>
+                    By checking this box, I consent to receive text messages from the Law Office of Troy M. Moore regarding my inquiry. Message frequency may vary. Message and data rates may apply.{' '}
+                    <strong style={{ color: 'rgba(11,55,93,0.7)' }}>Reply STOP to opt out.</strong>{' '}
+                    This consent is not required to obtain legal services.
+                  </span>
+                </motion.label>
+
                 {/* Submit */}
                 <motion.button
                   type="submit"
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || !smsConsent}
                   initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.7 }}
@@ -239,10 +261,10 @@ export default function FixedCTA({ show }: { show: boolean }) {
                     width: '100%', padding: '1rem', background: 'var(--navy)', color: '#fff',
                     border: 'none', borderRadius: 14, fontFamily: 'var(--font-eyebrow)',
                     fontSize: '0.8rem', letterSpacing: '0.15em', textTransform: 'uppercase',
-                    cursor: isSubmitting ? 'not-allowed' : 'pointer', minHeight: 52,
+                    cursor: (isSubmitting || !smsConsent) ? 'not-allowed' : 'pointer', minHeight: 52,
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                     boxShadow: '0 4px 20px rgba(11,55,93,0.2)',
-                    opacity: isSubmitting ? 0.7 : 1,
+                    opacity: (isSubmitting || !smsConsent) ? 0.5 : 1,
                   }}
                 >
                   {isSubmitting ? (
