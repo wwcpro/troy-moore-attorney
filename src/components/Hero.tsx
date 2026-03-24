@@ -79,13 +79,13 @@ export default function Hero({ loaderDone }: { loaderDone: boolean }) {
         {/* Container with 15vw padding */}
         <div
           className="mx-auto flex flex-col lg:flex-row items-stretch"
-          style={{ paddingLeft: "5vw", paddingRight: "10vw", minWidth: 0 }}
+          style={{ paddingLeft: "5vw", paddingRight: "5vw", minWidth: 0 }}
         >
           {/* Left: Hero Image */}
           <div
             ref={imageRef}
             className="lg:w-[48%] relative flex items-end justify-center"
-            style={{ opacity: 0, paddingLeft: "5vw", paddingRight: "3vw" }}
+            style={{ opacity: 0, paddingLeft: "2vw", paddingRight: "2vw" }}
           >
             <Image
               src={heroData.heroImage}
@@ -154,7 +154,7 @@ export default function Hero({ loaderDone }: { loaderDone: boolean }) {
             <ScrollReveal style={{ marginTop: "1vw" }}>
               <blockquote
                 className="italic"
-                style={{ color: "var(--navy)", marginBottom: "1vw", fontSize: "1.27vw", lineHeight: "1.7em", width: "92%" }}
+                style={{ color: "var(--navy)", marginBottom: "1vw", fontSize: "clamp(0.9rem, 1.27vw, 1.4rem)", lineHeight: "1.7em", width: "92%" }}
               >
                 &ldquo;{heroData.quote}&rdquo;
               </blockquote>
@@ -183,7 +183,7 @@ export default function Hero({ loaderDone }: { loaderDone: boolean }) {
         }}
       >
         <div style={{ maxWidth: 1600, margin: "0 auto", paddingLeft: "5vw", paddingRight: "5vw" }}>
-          <div style={{ display: "flex", justifyContent: "space-around", alignItems: "center", flexWrap: "wrap", gap: "3vw" }}>
+          <div style={{ display: "flex", justifyContent: "space-around", alignItems: "center", flexWrap: "wrap", gap: "clamp(1.5rem, 3vw, 4rem)" }}>
             {STATS.map((stat) => (
               <StatCounter key={stat.label} {...stat} />
             ))}

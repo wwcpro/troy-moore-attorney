@@ -54,8 +54,13 @@ export default function LatestCarousel() {
       <div ref={carouselRef} style={{ opacity: 0 }}>
         <style>{`
           .latest-swiper .swiper-wrapper {
-            padding-left: 20vw;
+            padding-left: 5vw;
             align-items: center;
+          }
+          @media (min-width: 768px) {
+            .latest-swiper .swiper-wrapper {
+              padding-left: 20vw;
+            }
           }
           .latest-swiper .swiper-slide {
             transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
@@ -123,12 +128,12 @@ export default function LatestCarousel() {
                         height: "52%",
                         backgroundColor: isActive ? "#0c375d" : "#c3a05b",
                         color: "#ffffff",
-                        padding: "2vw",
+                        padding: "clamp(0.75rem, 2vw, 2rem)",
                         zIndex: 2,
                       }}
                     >
                       <div>
-                        <h3 style={{ color: "#ffffff", fontSize: "1.3vw", lineHeight: 1.25, marginBottom: "0.8vw" }}>
+                        <h3 style={{ color: "#ffffff", fontSize: "clamp(0.8rem, 1.3vw, 1.5rem)", lineHeight: 1.25, marginBottom: "0.8vw" }}>
                           {post.title}
                         </h3>
                         {post.description && (
@@ -139,7 +144,7 @@ export default function LatestCarousel() {
                       </div>
                       <p
                         className="eyebrow"
-                        style={{ color: "#ffffff", opacity: 0.8, fontSize: "0.65vw" }}
+                        style={{ color: "#ffffff", opacity: 0.8, fontSize: "clamp(0.55rem, 0.65vw, 0.8rem)" }}
                       >
                         {post.category}
                       </p>
@@ -154,7 +159,7 @@ export default function LatestCarousel() {
         </Swiper>
 
         {/* Pagination */}
-        <div className="flex items-center justify-between" style={{ marginTop: "2vw", paddingLeft: "10vw", paddingRight: "10vw" }}>
+        <div className="flex items-center justify-between" style={{ marginTop: "2vw", paddingLeft: "5vw", paddingRight: "5vw" }}>
           <div className="flex items-center">
             {postsData.map((_, i) => (
               <div key={i} className="flex items-center">
@@ -162,9 +167,9 @@ export default function LatestCarousel() {
                   onClick={() => swiperInstance?.slideToLoop(i)}
                   className="font-bold rounded-full flex items-center justify-center transition-all duration-300"
                   style={{
-                    width: "2vw",
-                    height: "2vw",
-                    fontSize: "0.7vw",
+                    width: "clamp(28px, 2vw, 36px)",
+                    height: "clamp(28px, 2vw, 36px)",
+                    fontSize: "clamp(0.6rem, 0.7vw, 0.85rem)",
                     backgroundColor: activeIndex === i ? "var(--navy)" : "transparent",
                     color: activeIndex === i ? "#fff" : "var(--navy)",
                   }}
@@ -175,7 +180,7 @@ export default function LatestCarousel() {
                   <div
                     className="transition-all duration-500"
                     style={{
-                      width: "1.5vw",
+                      width: "clamp(12px, 1.5vw, 24px)",
                       height: 2,
                       backgroundColor: i < activeIndex ? "var(--gold)" : "#ccc",
                     }}
@@ -184,24 +189,24 @@ export default function LatestCarousel() {
               </div>
             ))}
           </div>
-          <div className="flex items-center" style={{ gap: "0.5vw" }}>
+          <div className="flex items-center" style={{ gap: "0.5rem" }}>
             <button
               onClick={() => swiperInstance?.slidePrev()}
               className="rounded-full border flex items-center justify-center transition-all duration-300 hover:bg-[var(--navy)] hover:border-[var(--navy)] hover:text-white"
-              style={{ width: "2.5vw", height: "2.5vw", borderColor: "#c0c0c0", color: "var(--navy)" }}
+              style={{ width: "clamp(32px, 2.5vw, 44px)", height: "clamp(32px, 2.5vw, 44px)", borderColor: "#c0c0c0", color: "var(--navy)" }}
               aria-label="Previous"
             >
-              <svg width="0.8vw" height="0.8vw" fill="none" viewBox="0 0 16 16">
+              <svg width="10" height="10" fill="none" viewBox="0 0 16 16">
                 <path d="M10 3L5 8L10 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </button>
             <button
               onClick={() => swiperInstance?.slideNext()}
               className="rounded-full border flex items-center justify-center transition-all duration-300 hover:bg-[var(--navy)] hover:border-[var(--navy)] hover:text-white"
-              style={{ width: "2.5vw", height: "2.5vw", borderColor: "#c0c0c0", color: "var(--navy)" }}
+              style={{ width: "clamp(32px, 2.5vw, 44px)", height: "clamp(32px, 2.5vw, 44px)", borderColor: "#c0c0c0", color: "var(--navy)" }}
               aria-label="Next"
             >
-              <svg width="0.8vw" height="0.8vw" fill="none" viewBox="0 0 16 16">
+              <svg width="10" height="10" fill="none" viewBox="0 0 16 16">
                 <path d="M6 3L11 8L6 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </button>

@@ -117,7 +117,7 @@ export default function Footer() {
                   key={i}
                   href={link.href}
                   className="text-white/60 hover:text-[var(--gold)] transition-colors"
-                  style={{ fontSize: "0.75vw" }}
+                  style={{ fontSize: "clamp(0.75rem, 0.75vw, 1rem)" }}
                 >
                   {link.label}
                 </Link>
@@ -129,8 +129,8 @@ export default function Footer() {
               <p className="eyebrow text-white/40 mb-2">Locations</p>
               {footerData.locations.map((loc, i) => (
                 <div key={i}>
-                  <p className="text-white/80 font-semibold" style={{ fontSize: "0.75vw" }}>{loc.name}</p>
-                  <p className="text-white/45" style={{ fontSize: "0.7vw", lineHeight: 1.7 }}>{loc.address}<br />{loc.city}</p>
+                  <p className="text-white/80 font-semibold" style={{ fontSize: "clamp(0.75rem, 0.75vw, 1rem)" }}>{loc.name}</p>
+                  <p className="text-white/45" style={{ fontSize: "clamp(0.7rem, 0.7vw, 0.9rem)", lineHeight: 1.7 }}>{loc.address}<br />{loc.city}</p>
                 </div>
               ))}
             </div>
@@ -138,13 +138,13 @@ export default function Footer() {
             {/* Contact */}
             <div className="lg:w-[28%] flex flex-col gap-2">
               <p className="eyebrow text-white/40 mb-2">Contact</p>
-              <p className="text-white/60" style={{ fontSize: "0.75vw" }}>
+              <p className="text-white/60" style={{ fontSize: "clamp(0.75rem, 0.75vw, 1rem)" }}>
                 Call or Text: <a href={`tel:${footerData.contact.phone}`} className="text-[var(--gold)] hover:text-white transition-colors">{footerData.contact.phone}</a>
               </p>
-              <p className="text-white/60" style={{ fontSize: "0.75vw" }}>
+              <p className="text-white/60" style={{ fontSize: "clamp(0.75rem, 0.75vw, 1rem)" }}>
                 <a href={`mailto:${footerData.contact.email}`} className="text-[var(--gold)] hover:text-white transition-colors">{footerData.contact.email}</a>
               </p>
-              <p className="text-white/45" style={{ fontSize: "0.7vw", marginTop: "0.5vw" }}>{footerData.contact.hours}</p>
+              <p className="text-white/45" style={{ fontSize: "clamp(0.7rem, 0.7vw, 0.9rem)", marginTop: "0.5vw" }}>{footerData.contact.hours}</p>
               {/* Social icons */}
               <p className="text-[12px] text-white/50 mt-4 mb-2">Stay Connected</p>
               <div ref={iconsRef} className="flex gap-2.5">

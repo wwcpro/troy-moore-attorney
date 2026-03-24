@@ -65,47 +65,49 @@ export default function Navbar() {
           transform: hidden && !mobileOpen ? "translateY(-100%)" : "translateY(0)",
         }}
       >
-        {/* Left: Logo + left links */}
-        <div className="flex items-center gap-6" style={{ marginLeft: scrolled ? 120 : 160 }}>
-          <Link
-            href="/"
-            className="flex-shrink-0"
-            style={{
-              position: "absolute",
-              top: scrolled ? -3 : 0,
-              left: "3vw",
-              transition: "all 0.35s ease",
-            }}
-          >
-            <object
-              ref={logoRef}
-              data="/assets/logo.svg"
-              type="image/svg+xml"
-              aria-label="Troy M. Moore"
-              onLoad={() => {
-                const svg = logoRef.current?.contentDocument;
-                if (!svg) return;
-                ["TYPE", "BADGE"].forEach((id) => {
-                  const el = svg.getElementById(id);
-                  if (el) el.style.transition = "opacity 0.35s ease";
+        {/* Logo — always visible */}
+        <Link
+          href="/"
+          className="flex-shrink-0"
+          style={{
+            position: "absolute",
+            top: scrolled ? -3 : 0,
+            left: "3vw",
+            transition: "all 0.35s ease",
+          }}
+        >
+          <object
+            ref={logoRef}
+            data="/assets/logo.svg"
+            type="image/svg+xml"
+            aria-label="Troy M. Moore"
+            onLoad={() => {
+              const svg = logoRef.current?.contentDocument;
+              if (!svg) return;
+              ["TYPE", "BADGE"].forEach((id) => {
+                const el = svg.getElementById(id);
+                if (el) el.style.transition = "opacity 0.35s ease";
+              });
+              const mark = svg.getElementById("MARK");
+              if (mark) {
+                Array.from(mark.querySelectorAll("path, ellipse")).slice(1).forEach((el) => {
+                  (el as SVGElement).style.transition = "fill 0.35s ease";
                 });
-                const mark = svg.getElementById("MARK");
-                if (mark) {
-                  Array.from(mark.querySelectorAll("path, ellipse")).slice(1).forEach((el) => {
-                    (el as SVGElement).style.transition = "fill 0.35s ease";
-                  });
-                }
-              }}
-              style={{
-                height: scrolled ? 80 : 143,
-                width: "auto",
-                transition: "height 0.35s ease",
-                filter: "drop-shadow(0 4px 8px rgba(11,55,93,0.1))",
-                pointerEvents: "none",
-              }}
-            />
-          </Link>
-          <div className="hidden lg:flex items-center gap-5">
+              }
+            }}
+            style={{
+              height: scrolled ? 80 : 143,
+              width: "auto",
+              transition: "height 0.35s ease",
+              filter: "drop-shadow(0 4px 8px rgba(11,55,93,0.1))",
+              pointerEvents: "none",
+            }}
+          />
+        </Link>
+
+        {/* Left links — desktop only */}
+        <div className="hidden lg:flex items-center gap-6" style={{ marginLeft: scrolled ? 120 : 160 }}>
+          <div className="flex items-center gap-5">
             {navData.leftLinks.map((link) => (
               <Link
                 key={link.href}

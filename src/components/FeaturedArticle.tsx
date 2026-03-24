@@ -85,7 +85,7 @@ export default function FeaturedArticle() {
         <div
           ref={cardRef}
           className="lg:w-[50%]"
-          style={{ opacity: 0, paddingLeft: "3vw", paddingRight: "5vw" }}
+          style={{ opacity: 0, paddingLeft: "clamp(1.5rem, 3vw, 4rem)", paddingRight: "clamp(1.5rem, 5vw, 6rem)" }}
         >
           <p
             className="eyebrow font-semibold"

@@ -70,12 +70,12 @@ export default function StayingInformed() {
               <Link
                 href={item.href}
                 className="info-row group flex flex-col md:flex-row md:items-center transition-all duration-300 hover:pl-3"
-                style={{ padding: "3vw 0", opacity: 0 }}
+                style={{ padding: "clamp(1.25rem, 3vw, 3rem) 0", opacity: 0 }}
               >
                 {/* Left label */}
                 <span
                   className="eyebrow font-semibold"
-                  style={{ color: "var(--gold)", flex: 2 }}
+                  style={{ color: "var(--gold)", flex: "0 0 auto", minWidth: 120, marginBottom: "0.5rem" }}
                 >
                   {item.label}
                 </span>

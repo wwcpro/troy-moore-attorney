@@ -14,7 +14,7 @@ const SERVICE_OPTIONS = [
 
 type FormState = 'button' | 'form' | 'success';
 
-const easing = [0.25, 0.1, 0.25, 1];
+const easing = [0.25, 0.1, 0.25, 1] as [number, number, number, number];
 
 export default function FixedCTA({ show }: { show: boolean }) {
   const [state, setState] = useState<FormState>('button');
@@ -192,7 +192,7 @@ export default function FixedCTA({ show }: { show: boolean }) {
                   }}>
                     How can we help?
                   </p>
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.5rem' }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(120px, 1fr))', gap: '0.5rem' }}>
                     {SERVICE_OPTIONS.map((svc, i) => (
                       <motion.button
                         key={svc.id}
