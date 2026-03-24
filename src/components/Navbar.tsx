@@ -163,14 +163,14 @@ export default function Navbar() {
             className="block w-6 h-[2px] transition-all duration-300"
             style={{
               backgroundColor: "var(--navy)",
-              transform: mobileOpen ? "rotate(45deg) translateY(3.5px)" : "none",
+              transform: mobileOpen ? "translateY(3.5px) rotate(45deg)" : "none",
             }}
           />
           <span
             className="block w-6 h-[2px] transition-all duration-300"
             style={{
               backgroundColor: "var(--navy)",
-              transform: mobileOpen ? "rotate(-45deg) translateY(-3.5px)" : "none",
+              transform: mobileOpen ? "translateY(-3.5px) rotate(-45deg)" : "none",
             }}
           />
         </button>
