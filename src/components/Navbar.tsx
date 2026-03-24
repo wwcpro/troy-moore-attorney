@@ -169,9 +169,9 @@ export default function Navbar() {
 
       {/* Mobile overlay */}
       <div
-        className="fixed inset-0 z-40 flex flex-col items-center justify-center gap-8 transition-all duration-500"
+        className="fixed inset-0 z-40 flex flex-col items-center justify-center gap-6 transition-all duration-500"
         style={{
-          backgroundColor: "var(--navy)",
+          backgroundColor: "#ffffff",
           opacity: mobileOpen ? 1 : 0,
           pointerEvents: mobileOpen ? "auto" : "none",
         }}
@@ -181,15 +181,29 @@ export default function Navbar() {
             key={link.href}
             href={link.href}
             onClick={() => setMobileOpen(false)}
-            className="text-white text-2xl tracking-wide hover:text-[var(--gold)] transition-colors"
+            style={{
+              fontFamily: '"kepler-std", serif',
+              fontWeight: 300,
+              fontStyle: "italic",
+              fontSize: "clamp(2.2rem, 10vw, 3.5rem)",
+              color: "var(--navy)",
+              transition: "color 0.2s ease",
+            }}
           >
             {link.label}
           </Link>
         ))}
         <a
           href={navData.phone.href}
-          className="mt-4 px-8 py-3 rounded-full text-lg font-semibold"
-          style={{ backgroundColor: "var(--gold)", color: "#fff" }}
+          className="mt-4 px-8 py-3 rounded-full"
+          style={{
+            fontFamily: '"kepler-std", serif',
+            fontWeight: 300,
+            fontStyle: "italic",
+            fontSize: "clamp(1.5rem, 7vw, 2.5rem)",
+            backgroundColor: "var(--gold)",
+            color: "#fff",
+          }}
         >
           {navData.phone.label}
         </a>
