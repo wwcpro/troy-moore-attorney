@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "title": "Navigate Texas Probate Courts",
+    "description": "Efficiently guide you through the complex Texas probate system with expert knowledge and proven strategies that save time and reduce stress, with the support of our trusted Texas probate attorney.",
+    "category": "PROBATE",
+    "image": "/assets/s1.png",
+    "href": "/probate",
+    "overlayColor": "#6B3A5E",
+    "overlayTextColor": "#ffffff"
+  },
+  {
+    "id": 2,
+    "title": "Create Customized Wills & Trusts",
+    "description": "Develop personalized estate planning documents that reflect your wishes and protect your family's future for generations to come.",
+    "category": "ESTATE PLANNING",
+    "image": "/assets/s2.png",
+    "href": "/estate-planning",
+    "overlayColor": "#D4D95E",
+    "overlayTextColor": "#0b375d"
+  },
+  {
+    "id": 3,
+    "title": "Protect Assets & Avoid Probate Court",
+    "description": "Shield your assets from costly litigation, unnecessary antiquated probate court procedures, and family disputes with strategic legal planning designed to preserve family wealth.",
+    "category": "ASSET PROTECTION",
+    "image": "/assets/s3.png",
+    "href": "/asset-protection",
+    "overlayColor": "#6B3A5E",
+    "overlayTextColor": "#ffffff"
+  },
+  {
+    "id": 4,
+    "title": "Challenge Invalid Wills",
+    "description": "Protect your inheritance rights by contesting wills affected by undue influence, fraud, forgery, or lack of mental capacity, with experienced representation focused on honoring your loved one's true intentions.",
+    "category": "WILL CONTESTS",
+    "image": "/assets/s4.png",
+    "href": "/will-contests",
+    "overlayColor": "#D4D95E",
+    "overlayTextColor": "#0b375d"
+  },
+  {
+    "id": 5,
+    "title": "Resolve Trust & Title Disputes",
+    "description": "Take swift action against trustee misconduct, misused assets, and fraudulent property transfers with strategic legal support designed to protect beneficiaries and restore rightful ownership.",
+    "category": "TRUST DISPUTES",
+    "image": "/assets/s5.png",
+    "href": "/trust-disputes",
+    "overlayColor": "#6B3A5E",
+    "overlayTextColor": "#ffffff"
+  }
+]

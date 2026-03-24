@@ -1,0 +1,13 @@
+{
+  "leftLinks": [
+    { "label": "Probate", "href": "/probate" },
+    { "label": "Estate Planning", "href": "/estate-planning" }
+  ],
+  "rightLinks": [
+    { "label": "About", "href": "/about" },
+    { "label": "Blog", "href": "/blog" },
+    { "label": "Videos", "href": "/videos" },
+    { "label": "Contact Us", "href": "/contact" }
+  ],
+  "phone": { "label": "(281) 609-0303", "href": "tel:2816090303" }
+}

@@ -1,0 +1,26 @@
+[
+  {
+    "label": "LISTEN",
+    "title": "Sidley Podcast Network",
+    "description": "Join us as we bring compelling perspectives on complex, noteworthy topics at the intersection of business and law.",
+    "href": "/podcasts"
+  },
+  {
+    "label": "EXPERIENCE",
+    "title": "Cross-Border Capabilities",
+    "description": "We collaborate across disciplines and borders to help clients in more than 70 countries achieve their business objectives.",
+    "href": "/cross-border"
+  },
+  {
+    "label": "RESOURCES",
+    "title": "Sidley Resources on Trending Topics",
+    "description": "Stay up-to-date on a wide range of regulatory, transactional, and litigation issues facing global businesses.",
+    "href": "/resources"
+  },
+  {
+    "label": "RESOURCES",
+    "title": "Sidley AI Monitor",
+    "description": "A centralized resource of content related to AI, including Sidley thought leadership, the latest laws and regulations, and access to our AI lawyers.",
+    "href": "/ai-monitor"
+  }
+]

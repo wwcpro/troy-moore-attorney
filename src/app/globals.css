@@ -1,26 +1,193 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --navy: #0b375d;
+  --gold: #C3A05B;
+  --white: #FFFFFF;
+  --light-gray: #F5F5F5;
+  --font-heading: "kepler-std", serif;
+  --font-eyebrow: "avenir-lt-pro", sans-serif;
+  --font-body: "poppins", sans-serif;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-navy: var(--navy);
+  --color-gold: var(--gold);
+  --color-light-gray: var(--light-gray);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-style: normal;
+  color: var(--navy);
+  background: var(--white);
+  overflow-x: hidden;
+  font-size: 16px;
+}
+
+/* H1 / H2 — Kepler Std Light Italic */
+h1, h2 {
+  font-family: "kepler-std", serif;
+  font-weight: 300;
+  font-style: italic;
+}
+
+/* H3 */
+h3 {
+  font-family: var(--font-heading);
+  font-weight: 300;
+  font-style: italic;
+}
+
+/* Body / Paragraphs — Poppins Regular */
+p, a, span, li, label, input, textarea, button {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Eyebrow utility class */
+.eyebrow {
+  font-family: var(--font-eyebrow);
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+}
+
+/* ─── vw-based typography for screens > 1000px ─── */
+@media (min-width: 1001px) {
+  h1 {
+    font-size: 3vw;
+    line-height: 1.1;
+  }
+  h2 {
+    font-size: 4vw;
+    line-height: 1.05;
+  }
+  h3 {
+    font-size: 2vw;
+    line-height: 1.15;
+  }
+  .eyebrow {
+    font-size: 1vw;
+    letter-spacing: 0.3em;
+  }
+  body {
+    font-size: 0.8vw;
+  }
+  p, a, span, li {
+    font-size: 0.8vw;
+    line-height: 1.8;
+  }
+}
+
+/* Swiper */
+.swiper-slide {
+  transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    opacity 0.7s ease;
+}
+
+.swiper-slide-active {
+  z-index: 2;
+}
+
+/* Letter animation spans */
+.letter-span {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
+.letter-span.space {
+  width: 0.25em;
+}
+
+/* Navbar transitions */
+.navbar {
+  transition: height 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    background-color 0.35s ease,
+    box-shadow 0.35s ease,
+    transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Gold underline hover */
+.nav-link {
+  position: relative;
+  text-decoration: none;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--gold);
+  transition: width 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.nav-link:hover {
+  color: var(--gold) !important;
+}
+
+/* Button shimmer */
+.btn-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: left 0.6s ease;
+}
+
+.btn-shimmer:hover::after {
+  left: 100%;
+}
+
+/* Divider line */
+.divider-line {
+  height: 1px;
+  background: #e5e7eb;
+  transform-origin: left;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(11, 55, 93, 0.2);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold);
+}
+
+::selection {
+  background: rgba(195, 160, 91, 0.25);
+  color: var(--navy);
 }

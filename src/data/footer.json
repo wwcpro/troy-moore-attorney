@@ -1,0 +1,34 @@
+{
+  "upperLinks": [
+    { "label": "Locations", "href": "/locations" },
+    { "label": "People", "href": "/people" }
+  ],
+  "socialLinks": [
+    { "label": "LinkedIn", "href": "https://linkedin.com", "icon": "linkedin" },
+    { "label": "Twitter", "href": "https://twitter.com", "icon": "twitter" },
+    { "label": "Facebook", "href": "https://facebook.com", "icon": "facebook" },
+    { "label": "Instagram", "href": "https://instagram.com", "icon": "instagram" }
+  ],
+  "keepUpToDate": {
+    "label": "KEEP UP TO DATE WITH SIDLEY",
+    "href": "/subscribe"
+  },
+  "columns": [
+    [
+      { "label": "Client Login", "href": "/client-login" },
+      { "label": "Sitemap", "href": "/sitemap" },
+      { "label": "Attorney Advertising", "href": "/attorney-advertising" }
+    ],
+    [
+      { "label": "Privacy Policy", "href": "/privacy" },
+      { "label": "Terms and Conditions", "href": "/terms" },
+      { "label": "Social Media Directory", "href": "/social-media" }
+    ],
+    [
+      { "label": "Contact", "href": "/contact" },
+      { "label": "Award Methodologies", "href": "/awards" },
+      { "label": "Medical Plan Transparency", "href": "/medical-plan" },
+      { "label": "Cookie Settings", "href": "#cookie-settings" }
+    ]
+  ]
+}
