@@ -199,7 +199,7 @@ export default function Navbar() {
               animate={{ clipPath: `circle(170vmax at ${origin})`, transition: { duration: 0.65, ease: [0.76, 0, 0.24, 1] } }}
               exit={{ clipPath: `circle(0px at ${origin})`, transition: { duration: 0.45, ease: [0.76, 0, 0.24, 1] } }}
               className="fixed inset-0 z-40 flex flex-col justify-center"
-              style={{ backgroundColor: "#ffffff", paddingLeft: "10vw", gap: "1.25rem" }}
+              style={{ backgroundColor: "#ffffff", paddingLeft: "10vw", paddingBottom: "50vh", gap: "1.25rem" }}
             >
               {/* Primary links */}
               {navData.leftLinks.map((link, i) => (
