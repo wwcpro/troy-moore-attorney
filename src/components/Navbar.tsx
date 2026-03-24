@@ -145,8 +145,8 @@ export default function Navbar() {
 
         {/* Mobile hamburger — 2 bars, right-aligned */}
         <button
-          className="lg:hidden flex flex-col gap-[5px] p-2 ml-auto"
-          style={{ marginRight: "1.5rem" }}
+          className="lg:hidden flex flex-col gap-[5px] p-2"
+          style={{ position: "absolute", right: "1.5rem", top: "50%", transform: "translateY(-50%)" }}
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
         >
