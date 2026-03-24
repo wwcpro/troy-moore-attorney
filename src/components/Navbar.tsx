@@ -51,6 +51,11 @@ export default function Navbar() {
 
   return (
     <>
+      <style>{`
+        @media (max-width: 1023px) {
+          #navbar-logo { transform: scale(0.8); transform-origin: left top; }
+        }
+      `}</style>
       <nav
         className="navbar fixed top-0 left-0 right-0 z-50 flex items-center justify-between overflow-visible"
         style={{
@@ -67,6 +72,7 @@ export default function Navbar() {
       >
         {/* Logo — always visible */}
         <Link
+          id="navbar-logo"
           href="/"
           className="flex-shrink-0"
           style={{

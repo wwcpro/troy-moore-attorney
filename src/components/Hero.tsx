@@ -118,14 +118,25 @@ export default function Hero({ loaderDone }: { loaderDone: boolean }) {
 
   return (
     <>
-      <section id="hero" className="relative" style={{ paddingTop: "calc(72px + 3.5vw)", backgroundColor: "#f9f9f9" }}>
-        {/* Container with 15vw padding */}
+      <style>{`
+        #hero { padding-top: calc(72px + 3.5vw); }
+        @media (max-width: 1023px) {
+          #hero { padding-top: 0 !important; }
+          #hero-inner { padding-left: 0 !important; padding-right: 0 !important; }
+          #hero-img-wrap { height: 100svh; padding: 0 !important; }
+          #hero-img-wrap img { object-position: right top !important; }
+        }
+      `}</style>
+      <section id="hero" className="relative" style={{ backgroundColor: "#f9f9f9" }}>
+        {/* Container */}
         <div
+          id="hero-inner"
           className="mx-auto flex flex-col lg:flex-row items-stretch"
           style={{ paddingLeft: "5vw", paddingRight: "5vw", minWidth: 0 }}
         >
           {/* Left: Hero Image */}
           <div
+            id="hero-img-wrap"
             ref={imageRef}
             className="lg:w-[48%] relative flex items-end justify-center"
             style={{ opacity: 0, paddingLeft: "2vw", paddingRight: "2vw" }}
@@ -149,24 +160,24 @@ export default function Hero({ loaderDone }: { loaderDone: boolean }) {
             <p
               ref={eyebrowRef}
               className="eyebrow font-medium"
-              style={{ color: "var(--gold)", opacity: 0, marginBottom: "1vw" }}
+              style={{ color: "var(--gold)", opacity: 0, marginBottom: "clamp(1rem, 1vw, 2rem)" }}
             >
               {heroData.eyebrow}
             </p>
 
             {/* Headline */}
-            <h1 style={{ marginBottom: "1vw" }}>{heroData.headline}</h1>
+            <h1 style={{ marginBottom: "clamp(1rem, 1vw, 2rem)" }}>{heroData.headline}</h1>
 
             {/* Paragraph */}
             <ScrollReveal>
-              <p style={{ color: "#5a6a7a", marginBottom: "1vw" }}>
+              <p style={{ color: "#5a6a7a", marginBottom: "clamp(1rem, 1vw, 2rem)" }}>
                 {heroData.paragraph}
               </p>
             </ScrollReveal>
 
             {/* Why Clients Choose Troy */}
             <ScrollReveal>
-              <p className="font-bold" style={{ color: "var(--navy)", marginBottom: "1vw" }}>
+              <p className="font-bold" style={{ color: "var(--navy)", marginBottom: "clamp(1rem, 1vw, 2rem)" }}>
                 {heroData.bulletHeading}
               </p>
             </ScrollReveal>
@@ -174,7 +185,7 @@ export default function Hero({ loaderDone }: { loaderDone: boolean }) {
             {/* Bullets */}
             <ScrollReveal stagger={0.1}>
               {heroData.bullets.map((bullet, i) => (
-                <div key={i} className="flex items-start gap-3" style={{ marginBottom: "1vw" }}>
+                <div key={i} className="flex items-start gap-3" style={{ marginBottom: "clamp(1rem, 1vw, 2rem)" }}>
                   <div
                     className="flex-shrink-0 w-[1.4vw] h-[1.4vw] rounded-full flex items-center justify-center"
                     style={{ backgroundColor: "var(--gold)", marginTop: "0.2vw", minWidth: 18, minHeight: 18 }}
@@ -194,10 +205,10 @@ export default function Hero({ loaderDone }: { loaderDone: boolean }) {
             </ScrollReveal>
 
             {/* Quote */}
-            <ScrollReveal style={{ marginTop: "1vw" }}>
+            <ScrollReveal style={{ marginTop: "clamp(1rem, 1vw, 2rem)" }}>
               <blockquote
                 className="italic"
-                style={{ color: "var(--navy)", marginBottom: "1vw", fontSize: "clamp(0.9rem, 1.27vw, 1.4rem)", lineHeight: "1.7em", width: "92%" }}
+                style={{ color: "var(--navy)", marginBottom: "clamp(1rem, 1vw, 2rem)", fontSize: "clamp(0.9rem, 1.27vw, 1.4rem)", lineHeight: "1.7em", width: "92%" }}
               >
                 &ldquo;{heroData.quote}&rdquo;
               </blockquote>
