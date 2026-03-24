@@ -123,8 +123,8 @@ export default function Hero({ loaderDone }: { loaderDone: boolean }) {
         @media (max-width: 1023px) {
           #hero { padding-top: 0 !important; }
           #hero-inner { padding-left: 0 !important; padding-right: 0 !important; }
-          #hero-img-wrap { height: 100svh; padding: 0 !important; }
-          #hero-img-wrap img { object-position: right top !important; }
+          #hero-img-wrap { height: 71svh; padding: 0 !important; }
+          #hero-img-wrap img { object-position: right top !important; max-width: 80%; }
         }
       `}</style>
       <section id="hero" className="relative" style={{ backgroundColor: "#f9f9f9" }}>
