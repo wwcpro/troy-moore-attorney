@@ -44,9 +44,11 @@ export default function Navbar() {
     if (mark) {
       const els = Array.from(mark.querySelectorAll("path, ellipse"));
       els.slice(1).forEach((el) => {
-        if ((el as SVGElement).classList.contains("gold")) return;
-        (el as SVGElement).style.transition = "fill 0.35s ease";
-        (el as SVGElement).style.fill = scrolled ? "#0b375d" : "";
+        const svgEl = el as SVGElement;
+        const isGold = svgEl.classList.contains("gold") || svgEl.getAttribute("fill") === "#ccaf6e";
+        if (isGold) return;
+        svgEl.style.transition = "fill 0.35s ease";
+        svgEl.style.fill = scrolled ? "#0b375d" : "";
       });
     }
   }, [scrolled]);
@@ -99,8 +101,10 @@ export default function Navbar() {
               const mark = svg.getElementById("MARK");
               if (mark) {
                 Array.from(mark.querySelectorAll("path, ellipse")).slice(1).forEach((el) => {
-                  if ((el as SVGElement).classList.contains("gold")) return;
-                  (el as SVGElement).style.transition = "fill 0.35s ease";
+                  const svgEl = el as SVGElement;
+                  const isGold = svgEl.classList.contains("gold") || svgEl.getAttribute("fill") === "#ccaf6e";
+                  if (isGold) return;
+                  svgEl.style.transition = "fill 0.35s ease";
                 });
               }
             }}
