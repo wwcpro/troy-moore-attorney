@@ -89,6 +89,9 @@ export default function LatestCarousel() {
             opacity: 0.6;
             filter: brightness(0.85) blur(2px);
           }
+          @media (min-width: 768px) {
+            .carousel-card-wrap { position: relative; padding-top: 4vw; padding-right: 4vw; }
+          }
           @media (max-width: 767px) {
             .latest-spacer { width: 0 !important; min-width: 0 !important; overflow: hidden; }
             .latest-card-title { font-size: 1.6rem !important; margin-bottom: 1rem !important; }
@@ -114,7 +117,7 @@ export default function LatestCarousel() {
             <SwiperSlide key={post.id}>
               {({ isActive }) => (
                 <Link href={post.href} className="block group">
-                  <div className="md:relative md:pt-[4vw] md:pr-[4vw]" style={{ marginBottom: "2vw" }}>
+                  <div className="carousel-card-wrap" style={{ marginBottom: "2vw" }}>
                     {/* Background image */}
                     <div className="relative overflow-hidden" style={{ aspectRatio: "4/3" }}>
                       <Image

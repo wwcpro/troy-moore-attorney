@@ -154,7 +154,7 @@ export default function Footer() {
               <p className="text-white/60" style={{ fontSize: "clamp(0.75rem, 0.75vw, 1rem)" }}>
                 <a href={`mailto:${footerData.contact.email}`} className="text-[var(--gold)] hover:text-white transition-colors">{footerData.contact.email}</a>
               </p>
-              <p className="text-white/45" style={{ fontSize: "clamp(0.7rem, 0.7vw, 0.9rem)", marginTop: "0.5vw" }}>{footerData.contact.hours}</p>
+              <p className="text-white" style={{ fontSize: "clamp(0.8rem, 0.85vw, 1rem)", marginTop: "0.5vw" }}>{footerData.contact.hours}</p>
               {/* Social icons */}
               <p className="text-[12px] text-white/50 mt-4 mb-2">Stay Connected</p>
               <div ref={iconsRef} className="flex gap-2.5">
