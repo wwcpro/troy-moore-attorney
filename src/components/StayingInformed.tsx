@@ -4,8 +4,13 @@ import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { gsap } from "@/lib/gsap";
 import items from "@/data/staying-informed.json";
+import type { PanelItem } from "@/components/SidePanel";
 
-export default function StayingInformed() {
+interface Props {
+  onOpen?: (item: PanelItem) => void;
+}
+
+export default function StayingInformed({ onOpen }: Props) {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -123,6 +128,12 @@ export default function StayingInformed() {
                 href={item.href}
                 className="info-row group flex flex-col md:flex-row md:items-center transition-[padding,color] duration-300 hover:pl-3"
                 style={{ padding: "clamp(1.25rem, 3vw, 3rem) 0", opacity: 0 }}
+                onClick={(e) => {
+                  if (item.panel && onOpen) {
+                    e.preventDefault();
+                    onOpen(item as PanelItem);
+                  }
+                }}
               >
                 {/* Left label */}
                 <span

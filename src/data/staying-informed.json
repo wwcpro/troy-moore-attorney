@@ -3,31 +3,156 @@
     "label": "PROBATE",
     "title": "Probate Avoidance Package™",
     "description": "Our unique Probate Avoidance Package™ helps you plan ahead to minimize or eliminate the need for probate court, saving your family time, money, and stress.",
-    "href": "/probate-avoidance"
+    "href": "/probate-avoidance",
+    "panel": {
+      "headline": "Avoiding Probate in Court with Expert Strategies and Legal Advice",
+      "sections": [
+        {
+          "heading": "Probate is Expensive",
+          "body": "Nowadays, everything is more expensive. That includes probate court and the lawyers that work in them. The most effective estate planning strategies today involve a comprehensive plan that avoids the probate court process altogether. In my probate office, I find that my clients, oftentimes, are surprised that they even have to \"probate the Will.\" Most lay people do not understand that a Last Will & Testament is not self-enacting. A Last Will & Testament is, simply put, just a list of instructions and orders that have yet to be carried out by, hopefully, a living and willing personal representative (i.e. Executor) of the Estate. This whole process is an administrative lawsuit that involves filing a new case, putting the public on notice, and also notifying all beneficiaries or heirs of the Estate. This process is largely impossible without the assistance of a lawyer, and even more so if there was no Will for the Decedent (i.e. the person who has passed away)."
+        },
+        {
+          "heading": "Probate Can Be Avoided",
+          "body": "The good news is that if you situate your assets correctly, you can avoid the probate process entirely. Downsides to probate court include the following: 1). the time it takes to do probate, 2). the expense of lawyer fees and court costs; and 3). public nature of a probate. In any probate case, the Will is a public record and can be viewed by anyone. The same applies for the Inventory of the Estate that gets filed — the Inventory itemizes all the property of the estate. Some families prefer their estates to be heard in a more private manner. Not to mention, if your estate is handled outside of the courthouse, there is no existing case for any creditor (or family member) to file a lawsuit into."
+        },
+        {
+          "heading": "Probate Avoidance Package™",
+          "body": "At the Law Office of Troy M. Moore, PLLC, we have coined a name for one of our estate planning packages we offer. The Probate Avoidance Package™ does just what its name says — AVOIDS PROBATE COURT. A few years back, Texas passed a law that allowed owners of real estate to designate beneficiaries of real estate through a specialized deed known as a Transfer on Death Deed. Additionally, did you know that you can even designate beneficiaries for your automobiles? Well — you can.\n\nCall us today to discuss hiring our office to assemble your comprehensive estate planning package that allows your loved ones to avoid the probate process after you have passed away (that is a savings of $5k or more per person!).",
+          "list": [
+            "Basic Last Will & Testament",
+            "Transfer on Death Deed",
+            "Medical Power of Attorney & Directive to Physicians",
+            "Financial Power of Attorney",
+            "Directive to Physicians (i.e. \"Living Will\")",
+            "Vehicle Beneficiary Designations",
+            "30-Minute Attorney Consultation on Setting up Financial Accounts"
+          ],
+          "closing": "We can make it easy for you to avoid probate court and a potential guardianship over you and your estate. Call us today and get the process started."
+        }
+      ]
+    }
   },
   {
     "label": "PROBATE",
     "title": "Texas Probate Administration",
     "description": "We guide you through the full probate administration process in Texas, handling everything from filing paperwork to distributing assets efficiently and correctly.",
-    "href": "/probate-administration"
+    "href": "/probate-administration",
+    "panel": {
+      "headline": "Texas Probate Administration Attorney",
+      "sections": [
+        {
+          "heading": "Probate Administration of Will",
+          "body": "When you have a probate estate of your loved-one's property, you should consult with an experienced probate lawyer in Northwest Houston | Cypress | Spring | Tomball, Texas.\n\nProbate is the legal process of proving the validity of the Last Will & Testament of the deceased. If the intentions of the Will are clear and not ambiguous, the terms of the Will are ordered to be carried out by the Executor. The general procedure is as follows:",
+          "list": [
+            "File Application to Probate Will in Harris County, or whichever county where the deceased resided",
+            "Attend the Court hearing to \"prove up\" the Will — the Judge examines whether it is valid under Texas law",
+            "Sign the Oath and return it to the Court; obtain Letters Testamentary from the Clerk",
+            "Publish a Notice to Creditors in a local, legal newspaper for the County where probate is filed",
+            "Notify all beneficiaries of the Will by certified mail, return receipt requested",
+            "File a Certificate of Compliance with the probate Court",
+            "File an Inventory of the probate estate, or an Affidavit in Lieu of Inventory",
+            "Acquire certified copies of the Last Will & Testament and the Order Admitting Will signed by the Court",
+            "Record the certified copies with each county in Texas where the deceased owned real property"
+          ]
+        },
+        {
+          "heading": "Probate of Will as a Muniment of Title",
+          "body": "Probate as a Muniment of Title is unique to Texas law. It is an option when the four-year statute of limitations for filing to probate a Will with an Administration has expired. If you find yourself outside the four-year window from the date of death, you simply have to notify all heirs with a special Notice to Heirs, or obtain consent from each heir to allow the process to move forward.",
+          "closing": "Contact the Law Office of Troy M. Moore, PLLC for a free phone consultation. In most cases we offer a flat-fee quote covering all expenses and fees for your probate Court in Northwest Houston/Cypress, Texas."
+        }
+      ]
+    }
   },
   {
     "label": "PROBATE",
     "title": "Houston Contested Will Attorney",
     "description": "If a will is challenged, we provide strong legal representation to protect your rights and help resolve disputes fairly and quickly.",
-    "href": "/contested-will"
+    "href": "/contested-will",
+    "panel": {
+      "headline": "Houston Will Contest & Fiduciary Litigation Attorney",
+      "sections": [
+        {
+          "heading": "Contesting a Will in Texas",
+          "body": "Disputes over a loved one's will or trust can be painful, complex, and emotionally charged. If you believe a will was signed under undue influence, the executor is mismanaging estate assets, or you were unfairly left out of an inheritance, you need an experienced fiduciary litigation attorney who knows how to fight — and win.\n\nWe represent heirs, beneficiaries, and excluded family members in will contest cases involving:",
+          "list": [
+            "Claims of undue influence by a caregiver or family member",
+            "Allegations that the decedent lacked mental capacity",
+            "Concerns over forgery or fraud in the drafting or execution of the will",
+            "Questions about whether the will meets Texas legal requirements"
+          ]
+        },
+        {
+          "heading": "Fiduciary Litigation & Breach of Duty",
+          "body": "Fiduciaries such as executors, administrators, and trustees have a legal duty to act in the best interests of the estate and its beneficiaries. We represent clients in lawsuits involving:",
+          "list": [
+            "Executor fraud or mismanagement of estate funds",
+            "Self-dealing or embezzlement by a trustee or power of attorney",
+            "Failure to account for estate assets or provide full disclosure",
+            "Disputes over investment decisions, asset sales, or conflicts of interest"
+          ],
+          "closing": "We bring over two decades of probate experience to the courtroom, offering clear strategic guidance and aggressive litigation in Harris County, Fort Bend, Montgomery, and beyond."
+        }
+      ]
+    }
   },
   {
     "label": "PROBATE",
     "title": "Inheritance & Intestacy Issues",
     "description": "When someone passes without a will, we help navigate the complex intestacy laws to ensure rightful heirs receive their inheritance.",
-    "href": "/intestacy"
+    "href": "/intestacy",
+    "panel": {
+      "headline": "Top Attorney Probate Services in Texas",
+      "sections": [
+        {
+          "heading": "Inheritance Attorney",
+          "body": "Navigating the intricacies of Texas probate laws can be a daunting task, especially during a challenging time. At the Law Office of Troy M. Moore, PLLC, we specialize in simplifying the probate process for our clients, ensuring that inheritance and intestacy matters are handled swiftly and efficiently. Our dedicated, experienced probate lawyer and paralegals are here to guide you every step of the way."
+        },
+        {
+          "heading": "What is Heirship?",
+          "body": "Heirship is defined as \"the quality or condition of being heir, or the relation between the heir and his ancestor.\" An \"Heir\" is someone who inherits property from someone who dies without a Will."
+        },
+        {
+          "heading": "Representing Rightful Heirs",
+          "body": "When a family member or loved one dies without leaving a will or legal documentation of his or her wishes, the process of dividing up the remaining property and belongings is usually complicated and can result in disputes among family members. At the Law Office of Troy M. Moore, PLLC, we are available to provide representation to individuals who are the direct heirs to property in the absence of a will. We are here to help your problems and are conveniently located on the Northwest side of Houston for all your probate and heirship attorney needs."
+        }
+      ]
+    }
   },
   {
     "label": "PROBATE",
     "title": "Small Estate Affidavit",
     "description": "For estates that qualify as small, we assist in using the simplified affidavit process to settle affairs without lengthy court involvement.",
-    "href": "/small-estate-affidavit"
+    "href": "/small-estate-affidavit",
+    "panel": {
+      "headline": "Small Estate Affidavit Lawyer in Houston, TX",
+      "sections": [
+        {
+          "heading": "What is a Small Estate Affidavit in Texas?",
+          "body": "Often, people die without a Will and own very little in terms of assets. In Texas, a small estate affidavit is available when a decedent dies without a Will (also referred to as dying intestate), and the value of the estate property is worth less than $75,000 (not counting the value of the house). In this case, your estate attorney in Houston will likely recommend this alternative to avoid a full probate.\n\nA small estate affidavit form transfers property owned by the deceased person to the rightful heirs — more specifically known as Distributees. The affidavit form is signed by the Distributees and itemizes the estate property to be transferred. The affidavit form includes:",
+          "list": [
+            "The signatures of the two disinterested witnesses",
+            "The signatures of all Distributees/Heirs",
+            "Relationship to the person who died",
+            "Date of death of the deceased person",
+            "The deceased person's marital history",
+            "Decedent's family history (children, grandchildren, parents, siblings, nieces/nephews)"
+          ]
+        },
+        {
+          "heading": "Does a Small Estate Affidavit cost anything to file?",
+          "body": "Yes. There is a filing fee that differs by county. Our law firm will determine the fee from the clerk's office in the county where the deceased person resided and take care of payment for you in connection with our services."
+        },
+        {
+          "heading": "How do I get a Small Estate Affidavit in Texas?",
+          "body": "The heirs (a/k/a Distributees) must sign the estate affidavit form in the presence of a notary. Once complete, our office will file them with the clerk's office. The Small Estate Affidavit will be reviewed and then signed by the Judge of the probate court. Once approved, our office will order a certified copy along with the accompanying signed order by the Judge."
+        },
+        {
+          "heading": "Experienced Estate Attorney — Northwest Houston",
+          "body": "At the Law Office of Troy M. Moore, PLLC, our probate attorney in Cypress, Tomball, and Northwest Houston has over 20 years of experience guiding clients through the probate process. We understand the emotional and financial stress family members feel in losing a loved one. It is our utmost goal to solve your legal issues in the most efficient, cost-effective manner possible.",
+          "closing": "Do you need help near Cypress, Tomball, or the Houston-metro area? Reach out today. We offer a free consultation to all prospective probate clients."
+        }
+      ]
+    }
   },
   {
     "label": "PROBATE",
@@ -39,24 +164,131 @@
     "label": "ESTATE PLANNING",
     "title": "Estate Planning & Wills",
     "description": "Our team helps you create clear, personalized wills and estate plans to protect your assets and provide peace of mind for your family's future.",
-    "href": "/estate-planning"
+    "href": "/estate-planning",
+    "panel": {
+      "headline": "Houston Estate Planning Lawyer",
+      "sections": [
+        {
+          "heading": "Representation That Prepares For The Future",
+          "body": "It can be difficult for some individuals to consider hiring an estate planning lawyer because it forces them to consider their own mortality. It is the job of our experienced estate planning attorney to guide clients through these difficult questions to arrive at a comprehensive estate plan.\n\nAt the Law Office of Troy M. Moore, PLLC, we apply legal understanding and experienced perspective to your situation to help you create an estate plan that comprehensively protects and provides for your loved ones. We have more than a decade of experience assisting clients through a broad array of difficulties."
+        },
+        {
+          "heading": "Probate Avoidance Package™",
+          "body": "If you have not checked the price lately, the legal fees for hiring a probate attorney have gotten to be rather expensive. The filing fees go up every year, and so do the attorney's fees. The key to estate planning in Texas is to avoid Probate Court entirely.\n\nAt the Law Office of Troy M. Moore, PLLC, we utilize a collection of documents that allows you to avoid probate court in its entirety — a combination of beneficiary designations, TODD deeds, powers of attorney, and a basic Last Will & Testament.\n\nDid you know that probate for an individual costs $5,000.00? For a married couple that is $10,000.00. Not to mention, probate is a public record — anyone can look up your information. Stop doing things the old way and come see the new way to plan your estate."
+        },
+        {
+          "heading": "Estate Planning Services",
+          "body": "Our estate planning and administration services span the full spectrum of vehicles and directives to ensure our clients' interests are fully protected. Services include:",
+          "list": [
+            "Last Will & Testament",
+            "Revocable Living Trust",
+            "Medical Power of Attorney",
+            "Financial Power of Attorney (Statutory Durable Power of Attorney)",
+            "Living Will / Directive to Physicians",
+            "Self-Directed IRAs",
+            "Special Needs Trust (Supplemental Needs Trust)",
+            "Transfer on Death Deeds"
+          ],
+          "closing": "Together with you, we anticipate any future issues and provide solutions tailored to your situation. Call us today to set up your initial consultation."
+        }
+      ]
+    }
   },
   {
     "label": "ESTATE PLANNING",
     "title": "Trust Administrations",
     "description": "We manage trust administration to make sure trustees fulfill their duties and beneficiaries receive their rightful shares according to the trust terms.",
-    "href": "/trust-administration"
+    "href": "/trust-administration",
+    "panel": {
+      "headline": "Special Needs Trust Attorney in Houston",
+      "sections": [
+        {
+          "heading": "Providing for a Loved One with Special Needs",
+          "body": "A special needs trust, or supplemental needs trust, allows you to put aside money for a loved one with special needs to provide for that individual should you pass or become incapacitated. Often these individuals require great care and costly treatment, which they may or may not be currently accepting assistance to cover. These trusts allow funds to be disbursed over time to help cover living expenses and other care."
+        },
+        {
+          "heading": "Protecting Government Benefits",
+          "body": "Government programs, including Medicaid or Social Security Disability, can be complex and can be compromised should the individual come into money, such as an inheritance. For instance, Medicaid requires that the individual have few assets and little money. Should a family member leave a lump sum of money, Medicaid would probably quit providing assistance. This is also true for children who turn 18 — they must be considered poor when coming of age to qualify for Medicaid and assistance for medical costs.\n\nCare must be taken to not run afoul of government limits on assets for the benefit recipient disabled person. You can trust our Houston supplemental needs trust attorney to help you safely and legally accomplish your objectives."
+        },
+        {
+          "heading": "How We Help",
+          "body": "At Law Office of Troy M. Moore, PLLC, we will help you understand these complexities and create a trust that still provides for the individual without disqualifying him or her from assistance. A special needs trust will allow money to be disbursed slowly to help cover living expenses and other costs without putting the individual over the required asset limit.",
+          "closing": "Attorney Troy Moore will guide you through this process, taking the time to understand the needs of your loved one. Our lawyers will also help you explore guardianship arrangements."
+        }
+      ]
+    }
   },
   {
     "label": "PERSONAL INJURY",
     "title": "Car Accidents",
     "description": "If you've been injured in a car accident, we fight to get you the compensation you deserve for medical bills, lost wages, and pain and suffering.",
-    "href": "/car-accidents"
+    "href": "/car-accidents",
+    "panel": {
+      "headline": "Car Accident Lawyer Near You",
+      "sections": [
+        {
+          "heading": "Experienced Personal Injury Lawyer",
+          "body": "The aftermath of a car accident can be difficult. Recovering from physical and emotional injuries can take time, but the challenges are far greater when you're facing missed time on the job, expensive medical bills, and the cost of repairing or replacing your damaged vehicle.\n\nTroy M. Moore personally reviews his clients' injury claim cases and ensures that you receive the best possible outcome and compensation for your pain and suffering."
+        },
+        {
+          "heading": "Common Car Accident Injuries",
+          "body": "Due to the speeds involved, the injuries sustained in a motor vehicle accident are varied and can often be serious. Impact force on the body can lead to:",
+          "list": [
+            "Spinal cord injuries",
+            "Fractures, whiplash, and dislocations",
+            "Internal injuries",
+            "Head injuries and traumatic brain injury",
+            "Neck and back pain with debilitating long-term effects",
+            "Psychological injuries"
+          ]
+        },
+        {
+          "heading": "Protecting Your Rights Under Texas Law",
+          "body": "Texas law only affords victims a limited time to seek damages after an accident takes place. If you or a loved one was injured in a car accident because of another person's distracted or negligent driving, you may be eligible to receive compensation for medical care, lost wages, or property damage.",
+          "closing": "Contact Mr. Moore today to learn more about how to seek justice for your damages or injuries."
+        }
+      ]
+    }
   },
   {
     "label": "PERSONAL INJURY",
     "title": "Trucking Accidents",
     "description": "Trucking accidents often involve complex liability issues—our experienced attorneys handle these cases aggressively to protect your rights and maximize your recovery.",
-    "href": "/trucking-accidents"
+    "href": "/trucking-accidents",
+    "panel": {
+      "headline": "Houston Truck Accident Attorney",
+      "sections": [
+        {
+          "heading": "Fighting for Maximum Compensation",
+          "body": "Houston truck accidents involve preventable negligence by the truck driver or trucking company. If you have been seriously injured in a truck crash in Houston, or anywhere else in Texas, you are entitled to maximum compensation for your damages.\n\nInsurance companies aren't on your side — they aggressively oppose truck collision claims. An experienced Houston truck accident attorney can help you gather evidence, assess damages, and fight for every dollar you deserve."
+        },
+        {
+          "heading": "Types of Truck Accidents We Handle",
+          "body": "Our trucking accident attorney has decades of experience representing families following:",
+          "list": [
+            "Semi-truck and 18-Wheeler Truck Accidents",
+            "Unsecured, Spilled Load and Overload Accidents",
+            "Head-On and T-Bone Collisions",
+            "Jackknife Accidents",
+            "Rollover Accidents",
+            "Tire Blowout and Brake Failure Accidents",
+            "Truck Drivers Driving Under the Influence (DUI)",
+            "Trucking Blind Spot Accidents"
+          ]
+        },
+        {
+          "heading": "What to Do After a Truck Accident",
+          "body": "After a tragic truck accident, take the following steps:",
+          "list": [
+            "Dial 911 to notify the police or emergency services",
+            "Help anyone in need",
+            "Get insurance information and contact details from all other drivers",
+            "Obtain the names and contact information of any witnesses",
+            "Document the scene with pictures and video on your mobile phone"
+          ],
+          "closing": "We have over 20 years of experience and take every case personally. Don't be a victim twice — contact us today for a free consultation."
+        }
+      ]
+    }
   }
 ]
