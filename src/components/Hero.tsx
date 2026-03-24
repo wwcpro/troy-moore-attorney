@@ -125,6 +125,7 @@ export default function Hero({ loaderDone }: { loaderDone: boolean }) {
           #hero-inner { padding-left: 0 !important; padding-right: 0 !important; }
           #hero-img-wrap { height: 71svh; padding: 0 !important; }
           #hero-img-wrap img { object-position: right top !important; max-width: 80%; }
+          #hero-text { padding: 1.5rem; }
         }
       `}</style>
       <section id="hero" className="relative" style={{ backgroundColor: "#f9f9f9" }}>
@@ -153,6 +154,7 @@ export default function Hero({ loaderDone }: { loaderDone: boolean }) {
 
           {/* Right: Content */}
           <div
+            id="hero-text"
             className="lg:w-[52%] flex flex-col justify-start"
             style={{ paddingBottom: "2vw", paddingTop: "2vw", paddingRight: "4vw" }}
           >
