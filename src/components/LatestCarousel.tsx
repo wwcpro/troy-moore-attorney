@@ -108,7 +108,7 @@ export default function LatestCarousel() {
             <SwiperSlide key={post.id}>
               {({ isActive }) => (
                 <Link href={post.href} className="block group">
-                  <div className="relative" style={{ paddingTop: "4vw", paddingRight: "4vw", marginBottom: "2vw" }}>
+                  <div className="md:relative md:pt-[4vw] md:pr-[4vw]" style={{ marginBottom: "2vw" }}>
                     {/* Background image */}
                     <div className="relative overflow-hidden" style={{ aspectRatio: "4/3" }}>
                       <Image
@@ -120,12 +120,10 @@ export default function LatestCarousel() {
                       />
                     </div>
 
-                    {/* Overlay info card */}
+                    {/* Info card — stacked below on mobile, overlaid top-right on desktop */}
                     <div
-                      className="absolute top-0 right-0 flex flex-col justify-between transition-all duration-700 ease-out group-hover:translate-y-[-6px] group-hover:translate-x-[6px] group-hover:shadow-[0_20px_40px_rgba(0,0,0,0.2)]"
+                      className="flex flex-col justify-between transition-all duration-700 ease-out md:absolute md:top-0 md:right-0 md:w-[48%] md:h-[52%] md:group-hover:translate-y-[-6px] md:group-hover:translate-x-[6px] md:group-hover:shadow-[0_20px_40px_rgba(0,0,0,0.2)]"
                       style={{
-                        width: "48%",
-                        height: "52%",
                         backgroundColor: isActive ? "#0c375d" : "#c3a05b",
                         color: "#ffffff",
                         padding: "clamp(0.75rem, 2vw, 2rem)",
@@ -167,9 +165,9 @@ export default function LatestCarousel() {
                   onClick={() => swiperInstance?.slideToLoop(i)}
                   className="font-bold rounded-full flex items-center justify-center transition-all duration-300"
                   style={{
-                    width: "clamp(28px, 2vw, 36px)",
-                    height: "clamp(28px, 2vw, 36px)",
-                    fontSize: "clamp(0.6rem, 0.7vw, 0.85rem)",
+                    width: "clamp(22px, 2vw, 36px)",
+                    height: "clamp(22px, 2vw, 36px)",
+                    fontSize: "clamp(0.5rem, 0.7vw, 0.85rem)",
                     backgroundColor: activeIndex === i ? "var(--navy)" : "transparent",
                     color: activeIndex === i ? "#fff" : "var(--navy)",
                   }}
@@ -180,7 +178,7 @@ export default function LatestCarousel() {
                   <div
                     className="transition-all duration-500"
                     style={{
-                      width: "clamp(12px, 1.5vw, 24px)",
+                      width: "clamp(8px, 1.5vw, 24px)",
                       height: 2,
                       backgroundColor: i < activeIndex ? "var(--gold)" : "#ccc",
                     }}
@@ -189,7 +187,8 @@ export default function LatestCarousel() {
               </div>
             ))}
           </div>
-          <div className="flex items-center" style={{ gap: "0.5rem" }}>
+          {/* Arrow buttons — hidden on mobile */}
+          <div className="hidden md:flex items-center" style={{ gap: "0.5rem" }}>
             <button
               onClick={() => swiperInstance?.slidePrev()}
               className="rounded-full border flex items-center justify-center transition-all duration-300 hover:bg-[var(--navy)] hover:border-[var(--navy)] hover:text-white"

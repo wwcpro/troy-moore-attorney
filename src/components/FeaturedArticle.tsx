@@ -64,7 +64,7 @@ export default function FeaturedArticle() {
         <div
           ref={imageRef}
           className="lg:w-[50%] relative"
-          style={{ opacity: 0, padding: "15px", borderTop: "2px solid var(--navy)", borderRight: "2px solid var(--navy)", borderBottom: "2px solid var(--navy)" }}
+          style={{ opacity: 0, padding: "15px", borderTop: "1px solid var(--navy)", borderRight: "1px solid var(--navy)", borderBottom: "1px solid var(--navy)" }}
         >
           <div
             style={{
