@@ -89,6 +89,12 @@ export default function LatestCarousel() {
             opacity: 0.6;
             filter: brightness(0.85) blur(2px);
           }
+          @media (max-width: 767px) {
+            .latest-spacer { width: 0 !important; min-width: 0 !important; overflow: hidden; }
+            .latest-card-title { font-size: 1.6rem !important; margin-bottom: 1rem !important; }
+            .latest-pagination-btn { width: 36px !important; height: 36px !important; font-size: 0.8rem !important; }
+            .latest-pagination-line { width: 16px !important; }
+          }
         `}</style>
         <Swiper
           className="latest-swiper"
@@ -131,7 +137,7 @@ export default function LatestCarousel() {
                       }}
                     >
                       <div>
-                        <h3 style={{ color: "#ffffff", fontSize: "clamp(0.8rem, 1.3vw, 1.5rem)", lineHeight: 1.25, marginBottom: "0.8vw" }}>
+                        <h3 className="latest-card-title" style={{ color: "#ffffff", fontSize: "clamp(0.8rem, 1.3vw, 1.5rem)", lineHeight: 1.25, marginBottom: "0.8vw" }}>
                           {post.title}
                         </h3>
                         {post.description && (
@@ -152,8 +158,8 @@ export default function LatestCarousel() {
               )}
             </SwiperSlide>
           ))}
-          {/* Spacer slide so last real card can scroll to center */}
-          <SwiperSlide style={{ width: "20vw", flexShrink: 0, pointerEvents: "none" }} />
+          {/* Spacer slide so last real card can scroll to center — hidden on mobile */}
+          <SwiperSlide className="latest-spacer" style={{ width: "20vw", flexShrink: 0, pointerEvents: "none" }} />
         </Swiper>
 
         {/* Pagination */}
@@ -163,7 +169,7 @@ export default function LatestCarousel() {
               <div key={i} className="flex items-center">
                 <button
                   onClick={() => swiperInstance?.slideToLoop(i)}
-                  className="font-bold rounded-full flex items-center justify-center transition-all duration-300"
+                  className="latest-pagination-btn font-bold rounded-full flex items-center justify-center transition-all duration-300"
                   style={{
                     width: "clamp(22px, 2vw, 36px)",
                     height: "clamp(22px, 2vw, 36px)",
@@ -176,7 +182,7 @@ export default function LatestCarousel() {
                 </button>
                 {i < postsData.length - 1 && (
                   <div
-                    className="transition-all duration-500"
+                    className="latest-pagination-line transition-all duration-500"
                     style={{
                       width: "clamp(8px, 1.5vw, 24px)",
                       height: 2,
