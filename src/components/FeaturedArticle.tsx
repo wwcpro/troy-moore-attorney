@@ -18,13 +18,18 @@ export default function FeaturedArticle() {
       if (imageRef.current) {
         gsap.fromTo(
           imageRef.current,
-          { opacity: 0, x: -40 },
+          { opacity: 0, x: -140, scale: 0.92 },
           {
             opacity: 1,
             x: 0,
-            duration: 0.8,
-            ease: "power2.out",
-            scrollTrigger: { trigger: sectionRef.current, start: "top 72%", once: true },
+            scale: 1,
+            ease: "none",
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top 95%",
+              end: "top 10%",
+              scrub: 1.4,
+            },
           }
         );
       }

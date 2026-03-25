@@ -18,7 +18,7 @@ export default function Home() {
   const contentRef = useRef<HTMLDivElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
 
-  // Set panel off-screen on mount
+  // Set initial states on mount
   useEffect(() => {
     if (panelRef.current) gsap.set(panelRef.current, { x: "100%" });
   }, []);
@@ -62,7 +62,6 @@ export default function Home() {
         ref={contentRef}
         style={{
           opacity: loaderDone ? 1 : 0,
-          transition: "opacity 0.4s ease",
           cursor: panelItem ? "pointer" : "auto",
         }}
         onClick={panelItem ? closePanel : undefined}
@@ -79,31 +78,43 @@ export default function Home() {
 
       {/* Close button — fixed, centered in the 15vw exposed strip */}
       {panelItem && (
-        <button
-          onClick={closePanel}
-          aria-label="Close panel"
+        <div
           style={{
             position: "fixed",
             top: "1.5rem",
             left: "7.5vw",
             transform: "translateX(-50%)",
             zIndex: 600,
-            width: 44,
-            height: 44,
+            padding: 8,
             borderRadius: "50%",
-            border: "none",
-            background: "var(--navy)",
-            color: "#ffffff",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            fontSize: "0.85rem",
-            lineHeight: 1,
-            cursor: "pointer",
+            background: "rgba(255,255,255,0.15)",
+            backdropFilter: "blur(20px)",
+            border: "1px solid rgba(255,255,255,0.3)",
+            boxShadow: "0 8px 32px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.35)",
           }}
         >
-          ✕
-        </button>
+          <button
+            onClick={closePanel}
+            aria-label="Close panel"
+            style={{
+              width: 54,
+              height: 54,
+              borderRadius: "50%",
+              border: "none",
+              background: "var(--navy)",
+              color: "#ffffff",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: "1rem",
+              lineHeight: 1,
+              cursor: "pointer",
+              boxShadow: "0 4px 20px rgba(11,55,93,0.4)",
+            }}
+          >
+            ✕
+          </button>
+        </div>
       )}
 
       {/* Side panel — always mounted, GSAP controls position */}

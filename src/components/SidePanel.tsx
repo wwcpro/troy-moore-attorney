@@ -45,7 +45,7 @@ const SidePanel = forwardRef<HTMLDivElement, Props>(({ item, onClose }, ref) => 
           radial-gradient(ellipse 70% 45% at 100% 0%, rgba(11,55,93,0.55) 0%, transparent 65%),
           radial-gradient(ellipse 55% 40% at 0% 100%, rgba(195,160,91,0.07) 0%, transparent 60%),
           radial-gradient(ellipse 40% 60% at 50% 50%, rgba(11,55,93,0.12) 0%, transparent 70%),
-          #14151c
+          #0d1f30
         `,
       }}
       onClick={(e) => e.stopPropagation()}

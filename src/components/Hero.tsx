@@ -23,7 +23,7 @@ function StatCounter({ value, suffix, label }: { value: number; suffix: string; 
       val: value,
       duration: 2,
       ease: "power2.out",
-      scrollTrigger: { trigger: numRef.current, start: "top 85%", once: true },
+      scrollTrigger: { trigger: numRef.current, start: "top 40%", once: true },
       onUpdate() {
         if (numRef.current) numRef.current.textContent = Math.round(obj.val).toLocaleString();
       },
@@ -31,7 +31,7 @@ function StatCounter({ value, suffix, label }: { value: number; suffix: string; 
   }, [value]);
 
   return (
-    <div style={{ textAlign: "center" }}>
+    <div className="stat-item" style={{ textAlign: "center" }}>
       <div style={{ lineHeight: 1, marginBottom: "0.5vw" }}>
         <span
           ref={numRef}
@@ -54,6 +54,7 @@ export default function Hero({ loaderDone }: { loaderDone: boolean }) {
   const imageRef = useRef<HTMLDivElement>(null);
   const eyebrowRef = useRef<HTMLParagraphElement>(null);
   const signatureRef = useRef<HTMLDivElement>(null);
+  const statsBarRef = useRef<HTMLDivElement>(null);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const lottieInstance = useRef<any>(null);
 
@@ -75,6 +76,31 @@ export default function Hero({ loaderDone }: { loaderDone: boolean }) {
 
     return () => ctx.revert();
   }, [loaderDone]);
+
+  // Stats: scroll-scrubbed scale with 3D perspective entrance, staggered from center
+  useEffect(() => {
+    if (!statsBarRef.current) return;
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        ".stat-item",
+        { transformPerspective: 900, scale: 0.3, opacity: 0, y: 100, rotationX: 28 },
+        {
+          scale: 1,
+          opacity: 1,
+          y: 0,
+          rotationX: 0,
+          stagger: { amount: 0.65, from: "start" },
+          scrollTrigger: {
+            trigger: statsBarRef.current,
+            start: "top 90%",
+            end: "top 18%",
+            scrub: 2,
+          },
+        }
+      );
+    }, statsBarRef);
+    return () => ctx.revert();
+  }, []);
 
   // Load Lottie signature via CDN to avoid SSR/bundler issues
   useEffect(() => {
@@ -230,6 +256,7 @@ export default function Hero({ loaderDone }: { loaderDone: boolean }) {
 
       {/* Blue bar with stats */}
       <div
+        ref={statsBarRef}
         style={{
           width: "100%",
           backgroundImage: "url(/assets/blue-bg2.png)",
