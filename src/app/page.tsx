@@ -21,7 +21,24 @@ export default function Home() {
   // Set initial states on mount
   useEffect(() => {
     if (panelRef.current) gsap.set(panelRef.current, { x: "100%" });
+    // Page starts below viewport — slides up in sync with gold panel exit
+    if (contentRef.current) gsap.set(contentRef.current, { y: "100vh" });
   }, []);
+
+  // Slide page up in sync with the gold panel exiting upward.
+  // Gold starts 0.08 s after stableOnComplete, same duration + ease → tops track perfectly.
+  useEffect(() => {
+    if (!loaderDone || !contentRef.current) return;
+    gsap.to(contentRef.current, {
+      y: 0,
+      duration: 0.4,
+      ease: "power2.inOut",
+      delay: 0.08,
+      onComplete: () => {
+        if (contentRef.current) gsap.set(contentRef.current, { clearProps: "y" });
+      },
+    });
+  }, [loaderDone]);
 
   const openPanel = useCallback((item: PanelItem) => {
     setPanelItem(item);
@@ -61,7 +78,7 @@ export default function Home() {
       <div
         ref={contentRef}
         style={{
-          opacity: loaderDone ? 1 : 0,
+          opacity: 1,
           cursor: panelItem ? "pointer" : "auto",
         }}
         onClick={panelItem ? closePanel : undefined}

@@ -19,6 +19,23 @@ export default function Loader({ onComplete }: { onComplete: () => void }) {
     hasRun.current = true;
     document.body.style.overflow = "hidden";
 
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+    const bump = 60; // arch height in px
+
+    // Returns a clip-path path() string: bottom-aligned shape with a convex arch on top
+    const makePath = (ty: number): string =>
+      `path('M 0 ${ty + bump} C ${vw * 0.25} ${ty} ${vw * 0.75} ${ty} ${vw} ${ty + bump} L ${vw} ${vh} L 0 ${vh} Z')`;
+
+    // Prepare panels: full height, clipped to nothing initially
+    gsap.set([blueRef.current, whiteRef.current, goldRef.current], {
+      height: "100vh",
+      clipPath: makePath(vh),
+    });
+
+    // JS driver objects for each panel's arch position
+    const blueY = { ty: vh }, whiteY = { ty: vh }, goldY = { ty: vh };
+
     const tl = gsap.timeline();
 
     tl
@@ -45,21 +62,22 @@ export default function Loader({ onComplete }: { onComplete: () => void }) {
       .to(iconRef.current,
         { opacity: 0, y: -24, duration: 0.3, ease: "power2.in" }
       )
-      .fromTo(blueRef.current,
-        { height: 0 },
-        { height: "100vh", duration: 0.35, ease: "power2.inOut" },
+      // ── Blue pops up — bezier arch on leading edge ────────────────────
+      .to(blueY,
+        { ty: -bump, duration: 0.42, ease: "power3.out",
+          onUpdate: () => { if (blueRef.current) blueRef.current.style.clipPath = makePath(blueY.ty); } },
         "<0.08"
       )
-      // ── White starts 0.10 s after blue ───────────────────────────────
-      .fromTo(whiteRef.current,
-        { height: 0 },
-        { height: "100vh", duration: 0.35, ease: "power2.inOut" },
+      // ── White pops up 0.10 s after blue ───────────────────────────────
+      .to(whiteY,
+        { ty: -bump, duration: 0.42, ease: "power3.out",
+          onUpdate: () => { if (whiteRef.current) whiteRef.current.style.clipPath = makePath(whiteY.ty); } },
         "<0.10"
       )
-      // ── Gold starts 0.10 s after white ───────────────────────────────
-      .fromTo(goldRef.current,
-        { height: 0 },
-        { height: "100vh", duration: 0.35, ease: "power2.inOut" },
+      // ── Gold pops up 0.10 s after white ───────────────────────────────
+      .to(goldY,
+        { ty: -bump, duration: 0.42, ease: "power3.out",
+          onUpdate: () => { if (goldRef.current) goldRef.current.style.clipPath = makePath(goldY.ty); } },
         "<0.10"
       )
 
@@ -67,6 +85,10 @@ export default function Loader({ onComplete }: { onComplete: () => void }) {
       .add(() => {
         stableOnComplete();
         gsap.set(coverRef.current, { autoAlpha: 0 });
+        // Clear arch clip-paths so panels exit as flat rectangles
+        if (blueRef.current)  blueRef.current.style.clipPath  = "none";
+        if (whiteRef.current) whiteRef.current.style.clipPath = "none";
+        if (goldRef.current)  goldRef.current.style.clipPath  = "none";
       })
       .to(blueRef.current,
         { y: "-100vh", duration: 0.4, ease: "power2.inOut" }
