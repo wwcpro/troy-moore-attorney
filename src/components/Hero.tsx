@@ -114,15 +114,17 @@ function TestimonialCarousel() {
         }}>
           &ldquo;{t.body}&rdquo;
         </blockquote>
-        <span ref={attrRef} style={{ display: "block", marginTop: "1.1rem", fontFamily: "avenir-lt-pro, sans-serif", fontStyle: "normal", fontSize: "clamp(1rem, 1.2vw, 1.25rem)", color: "rgba(255,255,255,0.65)", letterSpacing: "0.02em" }}>
-          — {t.author}
-        </span>
       </div>
 
-      {/* Accent quote — sits right above footer line, 2vw from right edge */}
+      {/* Accent quote — large decorative mark, 2vw from right edge */}
       <div aria-hidden="true" style={{ textAlign: "right", paddingRight: "2vw", lineHeight: 0.8, fontFamily: "var(--font-heading)", fontStyle: "italic", fontSize: "clamp(15rem, 25vw, 27.5rem)", color: "#098afc", opacity: 0.21, userSelect: "none", pointerEvents: "none", overflow: "hidden", marginBottom: "-0.15em" }}>
         &rdquo;
       </div>
+
+      {/* Byline — just above footer line */}
+      <span ref={attrRef} style={{ display: "block", marginBottom: "0.85rem", fontFamily: "avenir-lt-pro, sans-serif", fontStyle: "normal", fontSize: "clamp(1rem, 1.2vw, 1.25rem)", color: "rgba(255,255,255,0.65)", letterSpacing: "0.02em" }}>
+        — {t.author}
+      </span>
 
       {/* Footer: arrows only */}
       <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", paddingTop: "1.25rem", borderTop: "1px solid rgba(255,255,255,0.1)" }}>
