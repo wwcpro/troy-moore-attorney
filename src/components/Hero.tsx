@@ -103,10 +103,6 @@ function TestimonialCarousel() {
             </svg>
           ))}
         </div>
-        {/* Decorative accent quote — lower right, large, faint */}
-        <div aria-hidden="true" style={{ position: "absolute", bottom: "-4rem", right: "-1rem", fontFamily: "var(--font-heading)", fontStyle: "italic", fontSize: "clamp(15rem, 25vw, 27.5rem)", lineHeight: 1, color: "#ffffff", opacity: 0.21, userSelect: "none", pointerEvents: "none" }}>
-          &rdquo;
-        </div>
         <blockquote style={{
           fontFamily: "var(--font-heading)",
           fontStyle: "italic",
@@ -116,15 +112,20 @@ function TestimonialCarousel() {
           color: "#ffffff",
           margin: 0,
         }}>
-          {t.body}
+          &ldquo;{t.body}&rdquo;
         </blockquote>
         <span ref={attrRef} style={{ display: "block", marginTop: "1.1rem", fontFamily: "avenir-lt-pro, sans-serif", fontStyle: "normal", fontSize: "clamp(1rem, 1.2vw, 1.25rem)", color: "rgba(255,255,255,0.65)", letterSpacing: "0.02em" }}>
           — {t.author}
         </span>
       </div>
 
+      {/* Accent quote — sits right above footer line, 2vw from right edge */}
+      <div aria-hidden="true" style={{ textAlign: "right", paddingRight: "2vw", lineHeight: 0.8, fontFamily: "var(--font-heading)", fontStyle: "italic", fontSize: "clamp(15rem, 25vw, 27.5rem)", color: "#098afc", opacity: 0.21, userSelect: "none", pointerEvents: "none", overflow: "hidden", marginBottom: "-0.15em" }}>
+        &rdquo;
+      </div>
+
       {/* Footer: arrows only */}
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", marginTop: "1.5rem", paddingTop: "1.25rem", borderTop: "1px solid rgba(255,255,255,0.1)" }}>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", paddingTop: "1.25rem", borderTop: "1px solid rgba(255,255,255,0.1)" }}>
         <div style={{ display: "flex", gap: "0.6rem" }}>
           {([[-1, "M15 18l-6-6 6-6"], [1, "M9 6l6 6-6 6"]] as const).map(([dir, d]) => (
             <button
