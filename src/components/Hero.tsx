@@ -1,14 +1,15 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { gsap } from "@/lib/gsap";
 import LetterAnimation from "./LetterAnimation";
 import ScrollReveal from "./ScrollReveal";
 import heroData from "@/data/hero.json";
+import testimonialsData from "@/data/testimonials.json";
 
 const STATS = [
-  { value: 24, suffix: "+", label: "Years Experience" },
+  { value: 24, suffix: "+", label: "Years of Experience" },
   { value: 1700, suffix: "+", label: "Complex Cases Handled" },
   { value: 3000, suffix: "+", label: "Clients Served" },
 ];
@@ -23,7 +24,7 @@ function StatCounter({ value, suffix, label }: { value: number; suffix: string; 
       val: value,
       duration: 2,
       ease: "power2.out",
-      scrollTrigger: { trigger: numRef.current, start: "top 40%", once: true },
+      scrollTrigger: { trigger: numRef.current, start: "top 80%", once: true },
       onUpdate() {
         if (numRef.current) numRef.current.textContent = Math.round(obj.val).toLocaleString();
       },
@@ -31,28 +32,116 @@ function StatCounter({ value, suffix, label }: { value: number; suffix: string; 
   }, [value]);
 
   return (
-    <div className="stat-item" style={{ textAlign: "center" }}>
-      <div style={{ lineHeight: 1, marginBottom: "0.5vw" }}>
+    <div className="stat-row" style={{ paddingTop: "2vw", paddingBottom: "2vw", borderTop: "1px solid rgba(255,255,255,0.14)", display: "flex", alignItems: "center", gap: "2vw" }}>
+      {/* Large number */}
+      <div style={{ minWidth: "45%", lineHeight: 1 }}>
         <span
           ref={numRef}
-          style={{ color: "#ffffff", fontFamily: "var(--font-heading)", fontWeight: 300, fontStyle: "italic", fontSize: "clamp(3.3rem, 6.6vw, 6.6rem)" }}
+          style={{ fontFamily: "var(--font-heading)", fontWeight: 300, fontStyle: "italic", fontSize: "clamp(3.2rem, 7vw, 8rem)", color: "#ffffff", letterSpacing: "-0.02em" }}
         >
           0
         </span>
-        <span style={{ color: "#ffffff", fontFamily: "var(--font-heading)", fontWeight: 300, fontStyle: "italic", fontSize: "clamp(3.3rem, 6.6vw, 6.6rem)" }}>
+        <span style={{ fontFamily: "var(--font-heading)", fontWeight: 300, fontStyle: "italic", fontSize: "clamp(3.2rem, 7vw, 8rem)", color: "#ffffff", letterSpacing: "-0.02em" }}>
           {suffix}
         </span>
       </div>
-      <p style={{ color: "var(--gold)", fontFamily: "var(--font-eyebrow)", fontSize: "clamp(0.6rem, 1vw, 1rem)", letterSpacing: "0.25em", textTransform: "uppercase", margin: 0 }}>
+      {/* Label */}
+      <p style={{ margin: 0, color: "rgba(255,255,255,0.65)", fontFamily: "var(--font-eyebrow)", fontSize: "clamp(0.7rem, 1vw, 1rem)", letterSpacing: "0.18em", textTransform: "uppercase", lineHeight: 1.5 }}>
         {label}
       </p>
     </div>
   );
 }
 
+function TestimonialCarousel() {
+  const [idx, setIdx] = useState(0);
+  const [busy, setBusy] = useState(false);
+  const quoteRef = useRef<HTMLDivElement>(null);
+  const attrRef  = useRef<HTMLSpanElement>(null);
+  const isFirst  = useRef(true);
+
+  const navigate = (dir: 1 | -1) => {
+    if (busy) return;
+    setBusy(true);
+    gsap.to([quoteRef.current, attrRef.current], {
+      opacity: 0, y: -14, duration: 0.22, ease: "power2.in",
+      onComplete: () => setIdx(i => (i + dir + testimonialsData.length) % testimonialsData.length),
+    });
+  };
+
+  useEffect(() => {
+    if (isFirst.current) { isFirst.current = false; return; }
+    gsap.fromTo(
+      [quoteRef.current, attrRef.current],
+      { opacity: 0, y: 14 },
+      { opacity: 1, y: 0, duration: 0.3, ease: "power2.out", onComplete: () => setBusy(false) }
+    );
+  }, [idx]);
+
+  const t = testimonialsData[idx];
+
+  return (
+    <div style={{
+      background: "rgba(255,255,255,0.055)",
+      border: "1px solid rgba(255,255,255,0.08)",
+      padding: "clamp(2rem, 3.5vw, 3.5rem)",
+      height: "100%",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "space-between",
+      boxSizing: "border-box",
+    }}>
+      {/* Decorative open-quote */}
+      <div ref={quoteRef} style={{ flex: 1 }}>
+        <div style={{ fontFamily: "var(--font-heading)", fontStyle: "italic", fontSize: "clamp(3rem, 5vw, 5.5rem)", lineHeight: 1, color: "var(--gold)", opacity: 0.5, marginBottom: "1rem", userSelect: "none" }}>
+          &ldquo;
+        </div>
+        <blockquote style={{
+          fontFamily: "var(--font-heading)",
+          fontStyle: "italic",
+          fontWeight: 300,
+          fontSize: "clamp(1rem, 1.55vw, 1.7rem)",
+          lineHeight: 1.6,
+          color: "#ffffff",
+          margin: 0,
+        }}>
+          {t.body}
+        </blockquote>
+      </div>
+
+      {/* Footer: attribution + arrows */}
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: "2rem", paddingTop: "1.25rem", borderTop: "1px solid rgba(255,255,255,0.1)" }}>
+        <span ref={attrRef} style={{ fontFamily: "var(--font-heading)", fontStyle: "italic", fontSize: "clamp(0.8rem, 1vw, 1rem)", color: "rgba(255,255,255,0.5)" }}>
+          — {t.author}
+        </span>
+        <div style={{ display: "flex", gap: "0.6rem" }}>
+          {([[-1, "M15 18l-6-6 6-6"], [1, "M9 6l6 6-6 6"]] as const).map(([dir, d]) => (
+            <button
+              key={dir}
+              onClick={() => navigate(dir)}
+              aria-label={dir === -1 ? "Previous" : "Next"}
+              style={{
+                width: 38, height: 38, borderRadius: "50%",
+                border: "1px solid rgba(255,255,255,0.22)",
+                background: "transparent", cursor: "pointer",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                color: "#ffffff", flexShrink: 0,
+              }}
+            >
+              <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round">
+                <path d={d} />
+              </svg>
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function Hero({ loaderDone }: { loaderDone: boolean }) {
-  const imageRef = useRef<HTMLDivElement>(null);
-  const eyebrowRef = useRef<HTMLParagraphElement>(null);
+  const imageRef    = useRef<HTMLDivElement>(null);
+  const eyebrowRef  = useRef<HTMLParagraphElement>(null);
   const signatureRef = useRef<HTMLDivElement>(null);
   const statsBarRef = useRef<HTMLDivElement>(null);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -60,46 +149,48 @@ export default function Hero({ loaderDone }: { loaderDone: boolean }) {
 
   useEffect(() => {
     if (!loaderDone) return;
-
     const ctx = gsap.context(() => {
-      gsap.fromTo(
-        imageRef.current,
-        { x: -80, opacity: 0, scale: 0.97 },
-        { x: 0, opacity: 1, scale: 1, duration: 1.1, ease: "power3.out", delay: 0.1 }
-      );
-      gsap.fromTo(
-        eyebrowRef.current,
-        { opacity: 0, y: 12 },
-        { opacity: 1, y: 0, duration: 0.6, ease: "power2.out", delay: 0.25 }
-      );
+      gsap.fromTo(imageRef.current, { x: -80, opacity: 0, scale: 0.97 }, { x: 0, opacity: 1, scale: 1, duration: 1.1, ease: "power3.out", delay: 0.1 });
+      gsap.fromTo(eyebrowRef.current, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out", delay: 0.25 });
     });
-
     return () => ctx.revert();
   }, [loaderDone]);
 
-  // Stats: scroll-scrubbed scale with 3D perspective entrance, staggered from center
+  // Stats: scroll entrance + proximity hover (no scrub)
   useEffect(() => {
     if (!statsBarRef.current) return;
+    const section = statsBarRef.current;
+
     const ctx = gsap.context(() => {
       gsap.fromTo(
-        ".stat-item",
-        { transformPerspective: 900, scale: 0.3, opacity: 0, y: 100, rotationX: 28 },
-        {
-          scale: 1,
-          opacity: 1,
-          y: 0,
-          rotationX: 0,
-          stagger: { amount: 0.65, from: "start" },
-          scrollTrigger: {
-            trigger: statsBarRef.current,
-            start: "top 90%",
-            end: "top 18%",
-            scrub: 2,
-          },
-        }
+        ".stat-row",
+        { opacity: 0, x: -28 },
+        { opacity: 1, x: 0, duration: 0.55, stagger: 0.13, ease: "power2.out",
+          scrollTrigger: { trigger: section, start: "top 80%", once: true } }
       );
     }, statsBarRef);
-    return () => ctx.revert();
+
+    // Proximity hover — same mechanic as StayingInformed
+    const rowEls = Array.from(section.querySelectorAll<HTMLElement>(".stat-row"));
+    const onMove = (e: MouseEvent) => {
+      rowEls.forEach((row) => {
+        const rect = row.getBoundingClientRect();
+        const centerY = rect.top + rect.height / 2;
+        const dist = Math.abs(e.clientY - centerY);
+        const proximity = Math.max(0, 1 - dist / 220);
+        const scale = 1 + Math.pow(proximity, 2) * 0.06;
+        gsap.to(row, { scale, duration: 0.4, ease: "power2.out", overwrite: "auto" });
+      });
+    };
+    const onLeave = () => rowEls.forEach((row) => gsap.to(row, { scale: 1, duration: 0.4, ease: "power2.out", overwrite: "auto" }));
+
+    section.addEventListener("mousemove", onMove);
+    section.addEventListener("mouseleave", onLeave);
+    return () => {
+      ctx.revert();
+      section.removeEventListener("mousemove", onMove);
+      section.removeEventListener("mouseleave", onLeave);
+    };
   }, []);
 
   // Load Lottie signature via CDN to avoid SSR/bundler issues
@@ -107,26 +198,15 @@ export default function Hero({ loaderDone }: { loaderDone: boolean }) {
     if (!loaderDone) return;
     const container = signatureRef.current;
     if (!container) return;
-
     let destroyed = false;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const win = window as any;
-
     const init = (data: unknown) => {
       if (destroyed || !win.lottie) return;
-      lottieInstance.current = win.lottie.loadAnimation({
-        container,
-        renderer: "svg",
-        loop: false,
-        autoplay: false,
-        animationData: data,
-      });
-      // Play after hero content has animated in
+      lottieInstance.current = win.lottie.loadAnimation({ container, renderer: "svg", loop: false, autoplay: false, animationData: data });
       setTimeout(() => lottieInstance.current?.play(), 1200);
     };
-
     const loadData = () => fetch("/assets/signature.json").then((r) => r.json());
-
     if (win.lottie) {
       loadData().then(init);
     } else {
@@ -135,11 +215,7 @@ export default function Hero({ loaderDone }: { loaderDone: boolean }) {
       script.onload = () => loadData().then(init);
       document.head.appendChild(script);
     }
-
-    return () => {
-      destroyed = true;
-      lottieInstance.current?.destroy();
-    };
+    return () => { destroyed = true; lottieInstance.current?.destroy(); };
   }, [loaderDone]);
 
   return (
@@ -152,125 +228,79 @@ export default function Hero({ loaderDone }: { loaderDone: boolean }) {
           #hero-img-wrap { height: 71svh; padding: 0 !important; }
           #hero-img-wrap img { object-position: right top !important; max-width: 80%; }
           #hero-text { padding: 1.5rem; margin-top: 2rem; }
+          .stats-columns { flex-direction: column !important; }
+          .stats-left { min-width: 100% !important; }
         }
       `}</style>
+
+      {/* ── Hero ─────────────────────────────────────────────────────── */}
       <section id="hero" className="relative" style={{ backgroundColor: "#f9f9f9" }}>
-        {/* Container */}
-        <div
-          id="hero-inner"
-          className="mx-auto flex flex-col lg:flex-row items-stretch"
-          style={{ paddingLeft: "5vw", paddingRight: "5vw", minWidth: 0 }}
-        >
+        <div id="hero-inner" className="mx-auto flex flex-col lg:flex-row items-stretch" style={{ paddingLeft: "5vw", paddingRight: "5vw", minWidth: 0 }}>
           {/* Left: Hero Image */}
-          <div
-            id="hero-img-wrap"
-            ref={imageRef}
-            className="lg:w-[48%] relative flex items-end justify-center"
-            style={{ opacity: 0, paddingLeft: "2vw", paddingRight: "2vw" }}
-          >
-            <Image
-              src={heroData.heroImage}
-              alt="Troy M. Moore"
-              width={540}
-              height={720}
-              className="w-full h-auto object-cover object-top"
-              priority
-            />
+          <div id="hero-img-wrap" ref={imageRef} className="lg:w-[48%] relative flex items-end justify-center" style={{ opacity: 0, paddingLeft: "2vw", paddingRight: "2vw" }}>
+            <Image src={heroData.heroImage} alt="Troy M. Moore" width={540} height={720} className="w-full h-auto object-cover object-top" priority />
           </div>
 
-          {/* Blue bar — mobile only, flush below image */}
+          {/* Blue bar — mobile only */}
           <div className="lg:hidden" style={{ width: "100%", height: 15, backgroundColor: "var(--navy)", flexShrink: 0 }} />
 
           {/* Right: Content */}
-          <div
-            id="hero-text"
-            className="lg:w-[52%] flex flex-col justify-start"
-            style={{ paddingBottom: "2vw", paddingTop: "2vw", paddingRight: "4vw" }}
-          >
-            {/* Eyebrow */}
-            <p
-              ref={eyebrowRef}
-              className="eyebrow font-medium"
-              style={{ color: "var(--gold)", opacity: 0, marginBottom: "clamp(1rem, 1vw, 2rem)" }}
-            >
-              {heroData.eyebrow}
-            </p>
-
-            {/* Headline */}
+          <div id="hero-text" className="lg:w-[52%] flex flex-col justify-start" style={{ paddingBottom: "2vw", paddingTop: "2vw", paddingRight: "4vw" }}>
+            <p ref={eyebrowRef} className="eyebrow font-medium" style={{ color: "var(--gold)", opacity: 0, marginBottom: "clamp(1rem, 1vw, 2rem)" }}>{heroData.eyebrow}</p>
             <h1 style={{ marginBottom: "clamp(1rem, 1vw, 2rem)" }}>{heroData.headline}</h1>
-
-            {/* Paragraph */}
             <ScrollReveal>
-              <p style={{ color: "#5a6a7a", marginBottom: "clamp(1rem, 1vw, 2rem)" }}>
-                {heroData.paragraph}
-              </p>
+              <p style={{ color: "#5a6a7a", marginBottom: "clamp(1rem, 1vw, 2rem)" }}>{heroData.paragraph}</p>
             </ScrollReveal>
-
-            {/* Why Clients Choose Troy */}
             <ScrollReveal>
-              <p className="font-bold" style={{ color: "var(--navy)", marginBottom: "clamp(1rem, 1vw, 2rem)" }}>
-                {heroData.bulletHeading}
-              </p>
+              <p className="font-bold" style={{ color: "var(--navy)", marginBottom: "clamp(1rem, 1vw, 2rem)" }}>{heroData.bulletHeading}</p>
             </ScrollReveal>
-
-            {/* Bullets */}
             <ScrollReveal stagger={0.1}>
               {heroData.bullets.map((bullet, i) => (
                 <div key={i} className="flex items-start gap-3" style={{ marginBottom: "clamp(1rem, 1vw, 2rem)" }}>
-                  <div
-                    className="flex-shrink-0 w-[1.4vw] h-[1.4vw] rounded-full flex items-center justify-center"
-                    style={{ backgroundColor: "var(--gold)", marginTop: "0.2vw", minWidth: 18, minHeight: 18 }}
-                  >
+                  <div className="flex-shrink-0 w-[1.4vw] h-[1.4vw] rounded-full flex items-center justify-center" style={{ backgroundColor: "var(--gold)", marginTop: "0.2vw", minWidth: 18, minHeight: 18 }}>
                     <svg width="60%" height="60%" viewBox="0 0 16 16" fill="none">
                       <path d="M3.5 8L6.5 11L12.5 5" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </div>
-                  <p>
-                    <span className="font-bold" style={{ color: "var(--navy)" }}>
-                      {bullet.label}
-                    </span>
-                    <span style={{ color: "#5a6a7a" }}> — {bullet.description}</span>
-                  </p>
+                  <p><span className="font-bold" style={{ color: "var(--navy)" }}>{bullet.label}</span><span style={{ color: "#5a6a7a" }}> — {bullet.description}</span></p>
                 </div>
               ))}
             </ScrollReveal>
-
-            {/* Quote */}
             <ScrollReveal style={{ marginTop: "clamp(1rem, 1vw, 2rem)" }}>
-              <blockquote
-                className="italic"
-                style={{ color: "var(--navy)", marginBottom: "clamp(1rem, 1vw, 2rem)", fontSize: "clamp(0.9rem, 1.27vw, 1.4rem)", lineHeight: "1.7em", width: "92%" }}
-              >
+              <blockquote className="italic" style={{ color: "var(--navy)", marginBottom: "clamp(1rem, 1vw, 2rem)", fontSize: "clamp(0.9rem, 1.27vw, 1.4rem)", lineHeight: "1.7em", width: "92%" }}>
                 &ldquo;{heroData.quote}&rdquo;
               </blockquote>
               <div style={{ width: "92%", display: "flex", justifyContent: "flex-end" }}>
-                <div
-                  ref={signatureRef}
-                  style={{ width: "14.1vw", minWidth: 177, opacity: 0.7 }}
-                />
+                <div ref={signatureRef} style={{ width: "14.1vw", minWidth: 177, opacity: 0.7 }} />
               </div>
             </ScrollReveal>
           </div>
         </div>
       </section>
 
-      {/* Blue bar with stats */}
-      <div
-        ref={statsBarRef}
-        style={{
-          width: "100%",
-          backgroundImage: "url(/assets/blue-bg2.png)",
-          backgroundPosition: "center center",
-          backgroundSize: "cover",
-          paddingTop: "5vw",
-          paddingBottom: "5vw",
-        }}
-      >
+      {/* ── Stats + Testimonials ──────────────────────────────────────── */}
+      <div ref={statsBarRef} style={{ width: "100%", background: "var(--navy)", paddingTop: "5vw", paddingBottom: "5vw" }}>
         <div style={{ maxWidth: 1600, margin: "0 auto", paddingLeft: "5vw", paddingRight: "5vw" }}>
-          <div style={{ display: "flex", justifyContent: "space-around", alignItems: "center", flexWrap: "wrap", gap: "clamp(1.5rem, 3vw, 4rem)" }}>
-            {STATS.map((stat) => (
-              <StatCounter key={stat.label} {...stat} />
-            ))}
+
+          {/* Section eyebrow */}
+          <p className="eyebrow" style={{ color: "var(--gold)", marginBottom: "3vw", letterSpacing: "0.25em", opacity: 0.8 }}>THE FIRM</p>
+
+          <div className="stats-columns" style={{ display: "flex", gap: "5vw", alignItems: "stretch" }}>
+
+            {/* Left: Stats */}
+            <div className="stats-left" style={{ flex: "0 0 42%" }}>
+              {STATS.map((stat) => (
+                <StatCounter key={stat.label} {...stat} />
+              ))}
+              {/* Bottom border */}
+              <div style={{ borderTop: "1px solid rgba(255,255,255,0.14)" }} />
+            </div>
+
+            {/* Right: Testimonial carousel */}
+            <div style={{ flex: 1, minHeight: 320 }}>
+              <TestimonialCarousel />
+            </div>
+
           </div>
         </div>
       </div>
