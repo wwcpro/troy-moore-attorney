@@ -115,13 +115,13 @@ function TestimonialCarousel() {
         }}>
           {t.body}
         </blockquote>
-      </div>
-
-      {/* Footer: attribution + arrows */}
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: "2rem", paddingTop: "1.25rem", borderTop: "1px solid rgba(255,255,255,0.1)" }}>
-        <span ref={attrRef} style={{ fontFamily: "var(--font-heading)", fontStyle: "italic", fontSize: "clamp(0.8rem, 1vw, 1rem)", color: "rgba(255,255,255,0.5)" }}>
+        <span ref={attrRef} style={{ display: "block", marginTop: "1.1rem", fontFamily: "avenir-lt-pro, sans-serif", fontStyle: "normal", fontSize: "clamp(1rem, 1.2vw, 1.25rem)", color: "rgba(255,255,255,0.65)", letterSpacing: "0.02em" }}>
           — {t.author}
         </span>
+      </div>
+
+      {/* Footer: arrows only */}
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", marginTop: "1.5rem", paddingTop: "1.25rem", borderTop: "1px solid rgba(255,255,255,0.1)" }}>
         <div style={{ display: "flex", gap: "0.6rem" }}>
           {([[-1, "M15 18l-6-6 6-6"], [1, "M9 6l6 6-6 6"]] as const).map(([dir, d]) => (
             <button
