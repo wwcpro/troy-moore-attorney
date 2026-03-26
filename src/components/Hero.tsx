@@ -119,8 +119,8 @@ function TestimonialCarousel() {
         </span>
       </div>
 
-      {/* Accent quote — just above footer line, right side, 2vw from edge */}
-      <div aria-hidden="true" style={{ textAlign: "right", paddingRight: "2vw", lineHeight: 0.8, fontFamily: "var(--font-heading)", fontStyle: "italic", fontSize: "clamp(15rem, 25vw, 27.5rem)", color: "#098afc", opacity: 0.21, userSelect: "none", pointerEvents: "none", overflow: "hidden", marginBottom: "-0.15em" }}>
+      {/* Accent quote — absolutely positioned: bottom just above footer line, right: 2vw from card edge */}
+      <div aria-hidden="true" style={{ position: "absolute", bottom: "4rem", right: "2vw", lineHeight: 1, fontFamily: "var(--font-heading)", fontStyle: "italic", fontSize: "clamp(15rem, 25vw, 27.5rem)", color: "#098afc", opacity: 0.21, userSelect: "none", pointerEvents: "none" }}>
         &rdquo;
       </div>
 
