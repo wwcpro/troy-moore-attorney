@@ -32,7 +32,7 @@ function StatCounter({ value, suffix, label }: { value: number; suffix: string; 
   }, [value]);
 
   return (
-    <div className="stat-row" style={{ paddingTop: "2vw", paddingBottom: "2vw", borderTop: "1px solid rgba(255,255,255,0.14)", display: "flex", alignItems: "center", gap: "2vw" }}>
+    <div className="stat-row" style={{ paddingTop: "1.2vw", paddingBottom: "1.2vw", borderTop: "1px solid rgba(255,255,255,0.14)", display: "flex", alignItems: "center", gap: "2vw" }}>
       {/* Large number */}
       <div style={{ minWidth: "45%", lineHeight: 1 }}>
         <span
@@ -82,7 +82,7 @@ function TestimonialCarousel() {
 
   return (
     <div style={{
-      background: "rgba(255,255,255,0.055)",
+      background: "var(--navy)",
       border: "1px solid rgba(255,255,255,0.08)",
       padding: "clamp(2rem, 3.5vw, 3.5rem)",
       height: "100%",
@@ -91,8 +91,16 @@ function TestimonialCarousel() {
       justifyContent: "space-between",
       boxSizing: "border-box",
     }}>
-      {/* Decorative open-quote */}
+      {/* Stars + quote */}
       <div ref={quoteRef} style={{ flex: 1 }}>
+        {/* 5 stars */}
+        <div style={{ display: "flex", gap: "0.35rem", marginBottom: "1.1rem" }}>
+          {Array.from({ length: 5 }).map((_, i) => (
+            <svg key={i} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width={18} height={18} style={{ fill: "var(--gold)", flexShrink: 0 }}>
+              <path d="M320.2 11.2L227.6 192.6L26.5 224.6L170.4 368.7L138.7 569.9L320.2 477.6L501.7 569.9L470 368.7L613.9 224.6L412.8 192.6L320.2 11.2z"/>
+            </svg>
+          ))}
+        </div>
         <div style={{ fontFamily: "var(--font-heading)", fontStyle: "italic", fontSize: "clamp(3rem, 5vw, 5.5rem)", lineHeight: 1, color: "var(--gold)", opacity: 0.5, marginBottom: "1rem", userSelect: "none" }}>
           &ldquo;
         </div>
@@ -279,7 +287,7 @@ export default function Hero({ loaderDone }: { loaderDone: boolean }) {
       </section>
 
       {/* ── Stats + Testimonials ──────────────────────────────────────── */}
-      <div ref={statsBarRef} style={{ width: "100%", backgroundImage: "url(/assets/blue-bg2.png)", backgroundSize: "cover", backgroundPosition: "center", paddingTop: "5vw", paddingBottom: "5vw" }}>
+      <div ref={statsBarRef} style={{ width: "100%", backgroundImage: "url(/assets/blue-bg2.png)", backgroundSize: "cover", backgroundPosition: "center", paddingTop: "3vw", paddingBottom: "3vw" }}>
         <div style={{ maxWidth: 1600, margin: "0 auto", paddingLeft: "5vw", paddingRight: "5vw" }}>
 
           {/* Section eyebrow */}
