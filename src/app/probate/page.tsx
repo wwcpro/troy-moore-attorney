@@ -192,6 +192,283 @@ const NO_WILL_OPTIONS: (PanelItem & { description: string })[] = [
   },
 ];
 
+/* ─── FAQ panel data ────────────────────────────────────────────── */
+const FAQ_ITEMS: (PanelItem & { description: string })[] = [
+  {
+    label: "TIMELINE",
+    title: "How Long Does Probate Take in Houston, TX?",
+    description:
+      "Timeline expectations for the Texas probate process — what affects the schedule and what families can realistically expect from filing through final distribution.",
+    href: "#faq-timeline",
+    panel: {
+      headline: "Probate Timeline in Houston — What to Expect",
+      sections: [
+        {
+          heading: "Typical Timeline for a Straightforward Estate",
+          body: "For estates with a valid will and independent administration in Harris County, the probate process typically takes 1 to 3 months from filing through the receipt of Letters Testamentary. The court hearing to admit the will and appoint the executor is generally scheduled 2 to 4 weeks after the application is filed.\n\nFollowing the hearing, the executor must complete several additional steps — publishing the creditor notice in a local legal newspaper, notifying beneficiaries by certified mail, and filing the inventory or affidavit in lieu of inventory. In practice, most straightforward estates can be substantially completed within 3 to 6 months from the date the application is filed.",
+        },
+        {
+          heading: "Factors That Extend the Timeline",
+          body: "Several circumstances commonly extend the probate timeline beyond the typical range:\n\nContested wills or disputes among heirs can result in litigation that delays administration by months or more. Estates with real property in multiple Texas counties require additional filings in each county's records. Difficulty locating heirs or beneficiaries extends the creditor and notice periods. Intestate estates — those without a will — generally take longer than will-based probate because of the additional heirship proceeding requirements.\n\nComplex assets, business interests, or unresolved creditor claims also add time and should be identified early.",
+        },
+        {
+          heading: "Why Timing Matters",
+          body: "Under Texas law, a will generally must be filed for probate within four years of the date of death. Waiting does not make the process easier and can foreclose certain options — including standard independent administration — that are available when the estate is handled promptly.\n\nStarting the process as early as practicable reduces the risk of missed deadlines, allows creditor claims to be addressed on a predictable timeline, and gives the family a clearer picture of what to expect.",
+          closing: "Contact Troy M. Moore, PLLC for a realistic assessment of what your specific estate will require and how long the process is likely to take.",
+        },
+      ],
+    },
+  },
+  {
+    label: "COSTS",
+    title: "How Much Does Probate Cost in Texas?",
+    description:
+      "Court filing fees, attorney fees, and other costs involved in Texas probate — and what factors affect the overall expense of administering an estate.",
+    href: "#faq-costs",
+    panel: {
+      headline: "What Probate Costs in Texas — A Practical Overview",
+      sections: [
+        {
+          heading: "Court Filing Fees",
+          body: "Harris County Probate Courts charge filing fees for probate applications, which typically range from $700 to $1,600 depending on the size and type of the estate. Additional fees apply for certified copies of Letters Testamentary, which are required to act on behalf of the estate with banks, title companies, and other institutions. If the estate includes real property in other Texas counties, filing and recording fees in each county will add to the total.",
+        },
+        {
+          heading: "Attorney Fees",
+          body: "Where the estate's complexity allows, Troy M. Moore, PLLC structures fees on a flat-fee basis — giving families a clear understanding of the legal cost before the engagement begins. Straightforward probate matters typically start around $3,000 in total legal fees, though the actual amount depends on the type of proceeding, the number of heirs, the assets involved, and whether any complications arise.\n\nEstates with multiple heirs, land in more than one county, difficulty serving interested parties, or contested issues involve a broader scope of work and are priced accordingly. An early consultation clarifies which category the estate falls into.",
+        },
+        {
+          heading: "Other Costs to Anticipate",
+          body: "Beyond court and attorney fees, estates may incur several additional costs depending on their specific circumstances:\n\nNewspaper publication of the creditor notice is required and involves a modest publication fee. Real property appraisals are sometimes required to establish date-of-death value for estate purposes. Executor fees — while not always taken — may be compensation a named executor is entitled to under Texas law. Bond fees may apply in dependent administrations or when the court requires a bond as a condition of appointment.",
+          closing: "Contact Troy M. Moore, PLLC to discuss the likely cost range for your specific estate before beginning the probate process.",
+        },
+      ],
+    },
+  },
+  {
+    label: "AVOIDANCE",
+    title: "Can Probate Be Avoided in Texas?",
+    description:
+      "Non-probate transfers, trusts, beneficiary designations, and other planning tools that may allow assets to pass outside of court — and when they apply.",
+    href: "#faq-avoidance",
+    panel: {
+      headline: "Avoiding Probate in Texas — Options and Limitations",
+      sections: [
+        {
+          heading: "When Probate Can Be Avoided",
+          body: "Not every estate requires a court proceeding. Several planning tools — when properly established during the owner's lifetime — can allow assets to pass directly to beneficiaries without going through probate:\n\nRevocable living trusts transfer assets outside of probate when properly funded. Named beneficiaries on life insurance policies, retirement accounts, and bank accounts receive those assets directly upon death. Transfer-on-Death deeds allow real property to pass to a named grantee without probate when the deed is recorded before death. Property held in joint tenancy with right of survivorship passes to the surviving owner outside of the estate.",
+        },
+        {
+          heading: "Small Estate Affidavit — Limited Probate Alternative",
+          body: "For intestate estates meeting specific statutory requirements — including a cap on total asset value excluding the homestead — a small estate affidavit may allow heirs to collect certain assets without a full court proceeding. This option has strict eligibility requirements and cannot generally be used to transfer real estate other than the homestead.\n\nIt is one of the less formal options in Texas law, but families should understand its limitations before assuming it will work for their situation.",
+        },
+        {
+          heading: "When Probate Is Still Required",
+          body: "Probate avoidance requires planning in advance. If the proper tools were not put in place before death, assets that do not have named beneficiaries, are not held in trust, and do not have survivorship rights will typically need to pass through some form of probate or heirship proceeding before title can be transferred.\n\nIn many estates, probate is the correct and most efficient path — not a problem to be avoided, but a legal process to be handled correctly.",
+          closing: "Contact Troy M. Moore, PLLC to evaluate whether probate is required for the estate or whether a non-probate option is available.",
+        },
+      ],
+    },
+  },
+  {
+    label: "NO WILL",
+    title: "What Happens When Someone Dies Without a Will in Texas?",
+    description:
+      "Texas intestate succession — how state law determines who inherits and what legal procedures are required to transfer property when no will exists.",
+    href: "#faq-no-will",
+    panel: {
+      headline: "Dying Without a Will in Texas — Intestacy and Your Options",
+      sections: [
+        {
+          heading: "How Texas Intestacy Law Works",
+          body: "When a person dies without a valid will, Texas intestacy law — not the family's wishes — determines who inherits the estate. The Texas Estates Code sets out a priority order: a surviving spouse and children are first in line, followed by parents, then siblings and their descendants if the decedent left no spouse or children.\n\nFor married couples, the distribution depends in part on whether the property is community or separate property and whether there are children from prior relationships. These rules can produce results the family did not expect — which is one of the most common reasons families pursue estate planning.",
+        },
+        {
+          heading: "What Is Required to Transfer Property",
+          body: "Without a will, there is no executor and no clear document establishing who owns what. Before titled property — particularly real estate — can be transferred to heirs, the family typically must go through a judicial determination of heirship or related court proceeding.\n\nThis proceeding requires a court filing, the appointment of an attorney ad litem to represent unknown heirs, and a hearing in which the court reviews family history and applies intestacy law to identify the legal heirs and their fractional interests. The resulting order is recorded in the property records of each county where the decedent owned real estate.",
+        },
+        {
+          heading: "Why Intestate Estates Are More Complex",
+          body: "Intestate estates — those without a will — generally involve more procedural steps and more time than will-based probate. The heirship proceeding itself adds length, and the absence of a named executor means the court must also appoint an administrator if ongoing authority is needed.\n\nFamilies often underestimate the complexity of an intestate estate, particularly when real property is involved. Early legal guidance helps identify the appropriate procedure and avoid approaches that won't satisfy title requirements.",
+          closing: "Contact Troy M. Moore, PLLC to discuss the appropriate next steps when someone passes away without a will.",
+        },
+      ],
+    },
+  },
+  {
+    label: "EXECUTOR",
+    title: "What Are an Executor's Duties in Texas Probate?",
+    description:
+      "The legal responsibilities of a named executor after court appointment — from receiving Letters Testamentary through the final distribution of estate assets.",
+    href: "#faq-executor",
+    panel: {
+      headline: "Executor Duties Under Texas Probate Law",
+      sections: [
+        {
+          heading: "Appointment and Initial Authority",
+          body: "An executor's formal authority begins at the probate court hearing, where the court admits the will and issues an order appointing the executor. Following the hearing, the executor receives Letters Testamentary — a document issued by the court clerk that authorizes the executor to act on behalf of the estate.\n\nLetters Testamentary are required to access financial accounts, correspond with financial institutions, address real property matters, and handle other estate business that requires evidence of legal authority. Certified copies of the Letters are typically needed for multiple purposes throughout the administration.",
+        },
+        {
+          heading: "Creditors, Notice, and Inventory",
+          body: "Following appointment, the executor must publish a Notice to Creditors in a local legal newspaper and notify all beneficiaries named in the will by certified mail. Within 90 days of appointment, the executor must also file either an inventory of the probate estate or an affidavit in lieu of inventory, as permitted.\n\nThese steps are legally required and have specific timeframes. Missing them can create complications, extend the administration, or result in personal liability for the executor.",
+        },
+        {
+          heading: "Distribution and Closing the Estate",
+          body: "Once creditor claims have been resolved and estate obligations addressed, the executor distributes the remaining assets to the beneficiaries as directed by the will. In an independent administration, the executor can generally complete this process without additional court involvement at each step.\n\nThe executor has fiduciary duties to the estate and its beneficiaries throughout the process. Acting outside of those duties — whether intentionally or through neglect — can expose the executor to personal liability. Working with an experienced probate attorney helps the executor stay on track and avoid avoidable missteps.",
+          closing: "Contact Troy M. Moore, PLLC for guidance on executor duties and how to handle each stage of the Texas probate process correctly.",
+        },
+      ],
+    },
+  },
+  {
+    label: "OUT OF STATE",
+    title: "How Does Probate Work for an Out-of-State Executor?",
+    description:
+      "What Texas law requires when the executor named in a will lives outside of Texas — and how the process works in practice for non-resident executors.",
+    href: "#faq-out-of-state",
+    panel: {
+      headline: "Out-of-State Executors and Texas Probate",
+      sections: [
+        {
+          heading: "Texas Probate Applies Regardless of Where the Executor Lives",
+          body: "When a Texas resident passes away with a will naming an out-of-state executor, the probate proceeding still takes place in Texas — in the county where the decedent resided. The executor must file the probate application in the appropriate Texas probate court and attend the initial court hearing, which can often be managed through a local attorney without requiring repeated trips to Houston.\n\nThe Texas Estates Code requires non-resident executors to appoint a registered agent in Texas for service of process. This is a routine part of the proceeding and does not typically create significant complications.",
+        },
+        {
+          heading: "Practical Considerations for Non-Resident Executors",
+          body: "Managing an estate from out of state adds logistical complexity, particularly when the estate includes real property, financial accounts at Texas institutions, or assets that require in-person attention. An experienced probate attorney in Houston can handle the court filings, correspond with institutions, obtain and distribute certified copies of Letters Testamentary, and manage the process on the executor's behalf.\n\nIn most straightforward cases, an out-of-state executor does not need to appear in Texas more than once — if at all — when properly represented.",
+        },
+        {
+          heading: "Complying With Texas Law",
+          body: "Regardless of where the executor lives, the estate is subject to Texas probate law, Texas deadlines, and Texas court requirements. This includes the four-year filing deadline for wills, creditor notice requirements, and inventory filing obligations.\n\nOut-of-state executors sometimes assume that distance excuses delay — but Texas courts apply the same standards regardless. Engaging a local attorney early helps ensure the administration stays on track and complies with all applicable requirements.",
+          closing: "Contact Troy M. Moore, PLLC to discuss how the firm can assist out-of-state executors with Texas probate administration.",
+        },
+      ],
+    },
+  },
+  {
+    label: "CONTESTED",
+    title: "Can a Will Be Contested in Texas Probate?",
+    description:
+      "The legal grounds for contesting a will in Texas, who has standing to bring a challenge, and what happens when a will is disputed in probate court.",
+    href: "#faq-contested",
+    panel: {
+      headline: "Contesting a Will in Texas — Grounds, Standing, and Process",
+      sections: [
+        {
+          heading: "Grounds for Contesting a Will",
+          body: "A will can be contested in Texas probate court on several recognized legal grounds:\n\nLack of testamentary capacity — the testator did not have the mental capacity required under Texas law at the time the will was signed. Undue influence — another person improperly influenced or controlled the testator's decisions about the will. Fraud or forgery — the will or the testator's signature was falsified or obtained through misrepresentation. Improper execution — the will was not signed or witnessed in compliance with Texas formalities.\n\nEach of these grounds requires evidence and legal argument. Not every family disagreement over inheritance rises to the level of a legally recognized contest.",
+        },
+        {
+          heading: "Who Can Contest and the Two-Year Window",
+          body: "Only interested parties — those who would benefit if the contested will were set aside — have legal standing to bring a will contest in Texas. This typically includes heirs who would inherit under a prior will or under intestacy law.\n\nTexas law generally requires that a will contest be filed within two years of the date the will was admitted to probate. This deadline is strictly enforced. Waiting — even to gather more information — can result in losing the right to contest entirely.",
+        },
+        {
+          heading: "What a Will Contest Involves",
+          body: "A will contest is a lawsuit filed in the probate court challenging the validity of the admitted will. It can result in the will being set aside in whole or in part, with the estate then passing under an earlier valid will or under Texas intestacy law.\n\nContested probate matters are significantly more complex and time-consuming than uncontested proceedings. Families considering a contest — or facing one — should seek legal guidance promptly.",
+          closing: "Contact Troy M. Moore, PLLC to discuss whether grounds exist to contest a will or to respond to a challenge that has been filed.",
+        },
+      ],
+    },
+  },
+  {
+    label: "CONSULTATION",
+    title: "What Do I Need to Bring to a Probate Consultation?",
+    description:
+      "The documents and information that help your probate attorney evaluate the estate quickly and recommend the right legal path — before time and expense increase.",
+    href: "#faq-consultation",
+    panel: {
+      headline: "Preparing for a Probate Consultation",
+      sections: [
+        {
+          heading: "Key Documents to Gather",
+          body: "Bringing the right documents to a first consultation allows your attorney to assess the estate accurately and identify the appropriate probate procedure without delay. The most useful documents to gather include:",
+          list: [
+            "The original Last Will and Testament (if one exists) and any codicils",
+            "Any trust agreements in which the deceased was a settlor or beneficiary",
+            "The death certificate (a copy is sufficient for the consultation)",
+            "Bank and financial account statements for accounts not held jointly",
+            "Life insurance policy documents or letters from the insurance company",
+            "Real estate deeds for property owned by the decedent",
+            "Transfer on Death deed or beneficiary designation documents",
+            "Business documents if the deceased owned an interest in a company",
+            "Retirement account statements (IRA, 401(k), pension documents)",
+          ],
+          closing: "Not having all of these documents is not a reason to delay the consultation. A general picture of the estate's assets and family structure is often enough to identify the right next step.",
+        },
+        {
+          heading: "Questions Worth Thinking Through in Advance",
+          body: "In addition to documents, it helps to have a general sense of the estate's composition — whether it includes real property, how many heirs or beneficiaries are named, whether there are any known creditor obligations, and whether any family members are likely to dispute the estate. This context helps your attorney give more precise guidance on which procedure applies and what the process will realistically involve.",
+          closing: "Contact Troy M. Moore, PLLC to schedule a probate consultation. The firm can evaluate your situation and provide a clear picture of the options and next steps.",
+        },
+      ],
+    },
+  },
+];
+
+/* ─── FAQ Section (StayingInformed-style rows) ───────────────────── */
+function FaqSection({ onOpen }: { onOpen: (item: PanelItem) => void }) {
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!sectionRef.current) return;
+    const section = sectionRef.current;
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        section.querySelectorAll(".info-row"),
+        { opacity: 0, y: 25 },
+        { opacity: 1, y: 0, duration: 0.6, stagger: 0.1, ease: "power2.out", scrollTrigger: { trigger: section, start: "top 72%", once: true } }
+      );
+      gsap.fromTo(
+        section.querySelectorAll(".divider-line"),
+        { scaleX: 0 },
+        { scaleX: 1, duration: 0.5, stagger: 0.08, ease: "power2.out", scrollTrigger: { trigger: section, start: "top 72%", once: true } }
+      );
+    }, sectionRef);
+
+    const rowEls = Array.from(section.querySelectorAll<HTMLElement>(".info-row"));
+    const onMove = (e: MouseEvent) => {
+      rowEls.forEach((row) => {
+        const rect = row.getBoundingClientRect();
+        const dist = Math.abs(e.clientY - (rect.top + rect.height / 2));
+        const scale = 1 + Math.pow(Math.max(0, 1 - dist / 220), 2) * 0.08;
+        gsap.to(row, { scale, duration: 0.4, ease: "power2.out", overwrite: "auto" });
+      });
+    };
+    const onLeave = () => rowEls.forEach((row) => gsap.to(row, { scale: 1, duration: 0.4, ease: "power2.out", overwrite: "auto" }));
+    section.addEventListener("mousemove", onMove);
+    section.addEventListener("mouseleave", onLeave);
+    return () => { ctx.revert(); section.removeEventListener("mousemove", onMove); section.removeEventListener("mouseleave", onLeave); };
+  }, []);
+
+  return (
+    <div ref={sectionRef} className="section-stack">
+      {FAQ_ITEMS.map((item, i) => (
+        <div key={i}>
+          <div className="divider-line" />
+          <button
+            className="info-row group flex flex-col md:flex-row md:items-center transition-[padding,color] duration-300 hover:pl-3"
+            style={{ width: "100%", padding: "clamp(1.25rem, 3vw, 3rem) 0", background: "none", border: "none", cursor: "pointer", textAlign: "left", opacity: 0 }}
+            onClick={() => onOpen(item)}
+          >
+            <span className="eyebrow font-semibold" style={{ color: "var(--gold)", marginBottom: "0.5rem" }}>{item.label}</span>
+            <div className="min-w-0" style={{ flex: 9 }}>
+              <h3 className="transition-colors duration-300 group-hover:text-[var(--gold)]" style={{ color: "var(--navy)", marginBottom: "0.3vw" }}>{item.title}</h3>
+              <p className="leading-relaxed md:w-[90%]" style={{ color: "#8899a8" }}>{item.description}</p>
+            </div>
+            <span className="cta-circle hidden md:flex" style={{ marginLeft: "auto" }}>
+              <svg width="58" height="58" viewBox="0 0 29 29" fill="none">
+                <path className="CircleIcon_circle__vewPw" d="M0.75 14.5a13.75 13.75 0 1 0 27.5 0a13.75 13.75 0 1 0 -27.5 0" />
+                <path className="CircleIcon_circle-overlay__lg7sz" d="M0.75,14.5A13.75,13.75 0 1 1 28.25,14.5A13.75,13.75 0 1 1 0.75,14.5" />
+                <path className="CircleIcon_icon__n80xg" d="M12.5 11L16 14.5L12.5 18" strokeLinecap="round" />
+              </svg>
+            </span>
+          </button>
+        </div>
+      ))}
+      <div className="divider-line" />
+    </div>
+  );
+}
+
 /* ─── Will Options Section (StayingInformed-style rows) ─────────── */
 function WillOptionsSection({ onOpen }: { onOpen: (item: PanelItem) => void }) {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -489,6 +766,142 @@ function NavyBtn({ label, href }: { label: string; href?: string }) {
   );
 }
 
+/* ─── Hero form ─────────────────────────────────────────────────── */
+const HELP_OPTIONS = [
+  "Probate of a Will",
+  "Muniment of Title",
+  "Heirship Proceeding — No Will",
+  "Estate Administration — No Will",
+  "Affidavit of Heirship",
+  "Not Sure — I Need Guidance",
+];
+
+function HeroForm() {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [form, setForm] = useState({ name: "", phone: "", email: "", message: "" });
+  const [helpWith, setHelpWith] = useState<string[]>([]);
+  const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+
+  useEffect(() => {
+    gsap.fromTo(
+      cardRef.current,
+      { y: 56, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.9, ease: "power3.out", delay: 0.5 }
+    );
+  }, []);
+
+  const toggle = (opt: string) =>
+    setHelpWith((prev) =>
+      prev.includes(opt) ? prev.filter((o) => o !== opt) : [...prev, opt]
+    );
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitting(true);
+    // TODO: wire to form submission API
+    setTimeout(() => { setSubmitted(true); setSubmitting(false); }, 1200);
+  };
+
+  if (submitted) {
+    return (
+      <div
+        ref={cardRef}
+        style={{ background: "#fff", borderRadius: "8px", padding: "clamp(1.8rem, 2.5vw, 2.8rem)", boxShadow: "0 24px 60px rgba(0,0,0,0.28)", textAlign: "center" }}
+      >
+        <div style={{ width: 52, height: 52, borderRadius: "50%", background: "var(--gold)", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 1.25rem" }}>
+          <svg width="22" height="22" fill="none" viewBox="0 0 24 24">
+            <path d="M5 12l5 5L19 7" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </div>
+        <p className="eyebrow" style={{ color: "var(--gold)", marginBottom: "0.45rem" }}>Request Received</p>
+        <h3 style={{ color: "var(--navy)", marginBottom: "0.6rem" }}>We&rsquo;ll be in touch soon</h3>
+        <p style={{ color: "#6a7a8a", margin: 0 }}>
+          Thank you for reaching out. Our office typically responds within one business day.
+          You can also reach us directly at{" "}
+          <a href="tel:2816090303" style={{ color: "var(--navy)", borderBottom: "1px solid var(--gold)" }}>(281) 609-0303</a>.
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <div
+      ref={cardRef}
+      className="probate-hero-form"
+      style={{ background: "#fff", borderRadius: "8px", padding: "clamp(1.5rem, 2.2vw, 2.5rem)", boxShadow: "0 24px 60px rgba(0,0,0,0.28)", opacity: 0 }}
+    >
+      {/* Card header */}
+      <p className="eyebrow" style={{ color: "var(--gold)", marginBottom: "0.3rem" }}>Free Case Review</p>
+      <h3 style={{ color: "var(--navy)", marginBottom: "0.3rem", lineHeight: 1.25 }}>Tell Us About Your Situation</h3>
+      <p style={{ color: "#7a8a9a", fontSize: "clamp(0.74rem, 0.78vw, 0.84rem)", marginBottom: "clamp(1rem, 1.4vw, 1.4rem)", lineHeight: 1.55 }}>
+        Confidential &middot; No Obligation &middot; Response within 24 hours
+      </p>
+
+      <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "clamp(0.6rem, 0.8vw, 0.9rem)" }}>
+        <input
+          required type="text" placeholder="Full Name *"
+          className="hero-form-input"
+          value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })}
+        />
+        <input
+          required type="tel" placeholder="Phone Number *"
+          className="hero-form-input"
+          value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })}
+        />
+        <input
+          required type="email" placeholder="Email Address *"
+          className="hero-form-input"
+          value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })}
+        />
+
+        {/* I need help with */}
+        <div>
+          <p style={{ fontFamily: "var(--font-eyebrow)", fontSize: "clamp(0.58rem, 0.65vw, 0.7rem)", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--navy)", opacity: 0.75, marginBottom: "0.5rem" }}>
+            I need help with:
+          </p>
+          <div style={{ display: "flex", flexDirection: "column", gap: "0.38rem" }}>
+            {HELP_OPTIONS.map((opt) => (
+              <label key={opt} className="hero-form-checkbox-label">
+                <input
+                  type="checkbox"
+                  className="hero-form-checkbox"
+                  checked={helpWith.includes(opt)}
+                  onChange={() => toggle(opt)}
+                />
+                <span style={{ color: "var(--navy)", fontSize: "clamp(0.78rem, 0.82vw, 0.88rem)", lineHeight: 1.45 }}>{opt}</span>
+              </label>
+            ))}
+          </div>
+        </div>
+
+        <textarea
+          className="hero-form-input"
+          placeholder="Anything else we should know? (optional)"
+          rows={3}
+          style={{ resize: "none" }}
+          value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })}
+        />
+
+        <button
+          type="submit"
+          disabled={submitting}
+          className="btn-cta"
+          style={{ justifyContent: "space-between", width: "100%", marginTop: "0.2rem", opacity: submitting ? 0.7 : 1 }}
+        >
+          {submitting ? "Sending…" : "Request My Free Case Review"}
+          {!submitting && <CircleSVG />}
+        </button>
+
+        <p style={{ color: "#a0adb8", fontSize: "clamp(0.6rem, 0.62vw, 0.66rem)", lineHeight: 1.65, textAlign: "center", margin: 0 }}>
+          Confidential. No attorney-client relationship is created by submitting this form.
+          By providing your phone number you consent to receive SMS updates from our office.
+        </p>
+      </form>
+    </div>
+  );
+}
+
 /* ─── Page ─────────────────────────────────────────────────────── */
 export default function ProbatePage() {
   const [panelItem, setPanelItem] = useState<PanelItem | null>(null);
@@ -621,6 +1034,77 @@ export default function ProbatePage() {
           transform: translateY(-4px);
           box-shadow: 0 20px 50px rgba(11,55,93,0.14);
         }
+
+        /* ── Hero two-column layout ── */
+        .probate-hero-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: clamp(2rem, 4vw, 5rem);
+          align-items: start;
+          padding-left: 10vw;
+          padding-right: 10vw;
+          padding-bottom: clamp(3rem, 4vw, 4.5rem);
+        }
+        @media (max-width: 960px) {
+          .probate-hero-grid { grid-template-columns: 1fr; padding-right: 10vw; }
+          .probate-hero-form { order: -1; }
+        }
+
+        /* ── Hero form card inputs ── */
+        .hero-form-input {
+          width: 100%;
+          padding: 0.72em 1em;
+          border: 1.5px solid #e0e4e8;
+          border-radius: 4px;
+          font-family: var(--font-body);
+          font-size: clamp(0.82rem, 0.85vw, 0.92rem);
+          color: var(--navy);
+          background: #fff;
+          transition: border-color 0.2s ease, box-shadow 0.2s ease;
+          outline: none;
+        }
+        .hero-form-input:focus {
+          border-color: var(--navy);
+          box-shadow: 0 0 0 3px rgba(11,55,93,0.07);
+        }
+        .hero-form-input::placeholder { color: #9aabb8; }
+        .hero-form-checkbox-label {
+          display: flex;
+          align-items: flex-start;
+          gap: 0.55rem;
+          cursor: pointer;
+          user-select: none;
+        }
+        .hero-form-checkbox {
+          -webkit-appearance: none;
+          appearance: none;
+          width: 1em;
+          height: 1em;
+          border: 1.5px solid #c8d0d8;
+          border-radius: 3px;
+          background: #fff;
+          cursor: pointer;
+          flex-shrink: 0;
+          margin-top: 0.18em;
+          transition: background 0.15s, border-color 0.15s;
+          position: relative;
+        }
+        .hero-form-checkbox:checked {
+          background: var(--navy);
+          border-color: var(--navy);
+        }
+        .hero-form-checkbox:checked::after {
+          content: '';
+          position: absolute;
+          left: 2px;
+          top: -1px;
+          width: 5px;
+          height: 9px;
+          border: 2px solid #fff;
+          border-top: none;
+          border-left: none;
+          transform: rotate(45deg);
+        }
       `}</style>
 
       {/* ── Main content — slides left when panel opens ─────────── */}
@@ -645,31 +1129,49 @@ export default function ProbatePage() {
             <div aria-hidden style={{ position: "absolute", top: "-20%", right: "-10%", width: "60vw", height: "60vw", borderRadius: "50%", border: "1px solid rgba(195,160,91,0.07)", pointerEvents: "none" }} />
             <div aria-hidden style={{ position: "absolute", top: "5%", right: "-5%", width: "42vw", height: "42vw", borderRadius: "50%", border: "1px solid rgba(195,160,91,0.05)", pointerEvents: "none" }} />
 
-            <div style={WRAP}>
-              <ScrollReveal>
-                <p className="eyebrow" style={{ color: "var(--gold)", marginBottom: "clamp(0.75rem, 1.2vw, 1.2rem)" }}>
-                  Houston Probate Attorney
-                </p>
-              </ScrollReveal>
-              <ScrollReveal delay={0.08}>
-                <h1 style={{ color: "#ffffff", maxWidth: "820px", marginBottom: "clamp(1.2rem, 2vw, 2rem)" }}>
-                  Clear Direction for Families Navigating Probate in Houston
-                </h1>
-              </ScrollReveal>
-              <ScrollReveal delay={0.16}>
-                <p style={{ color: "rgba(255,255,255,0.72)", maxWidth: "640px", marginBottom: "clamp(1.8rem, 3vw, 3rem)", lineHeight: 1.85 }}>
-                  When a family member passes away, the legal questions that follow can arrive all at once.
-                  Troy&nbsp;M.&nbsp;Moore,&nbsp;PLLC helps families move through the Texas probate process
-                  with clarity, efficiency, and steady legal guidance — whether there is a valid will or no
-                  will at all.
-                </p>
-              </ScrollReveal>
-              <ScrollReveal delay={0.22}>
-                <div style={{ display: "flex", flexWrap: "wrap", gap: "clamp(0.75rem, 1.2vw, 1rem)", marginBottom: "clamp(3rem, 5vw, 5.5rem)" }}>
-                  <PrimaryBtn label="Schedule a Probate Consultation" href="#consult" />
-                  <GhostBtn label="Start Here" href="#start-here" />
-                </div>
-              </ScrollReveal>
+            <div className="probate-hero-grid">
+              {/* Left: copy */}
+              <div>
+                <ScrollReveal>
+                  <p className="eyebrow" style={{ color: "var(--gold)", marginBottom: "clamp(0.75rem, 1.2vw, 1.2rem)" }}>
+                    Houston Probate Attorney
+                  </p>
+                </ScrollReveal>
+                <ScrollReveal delay={0.08}>
+                  <h1 style={{ color: "#ffffff", marginBottom: "clamp(1.2rem, 2vw, 2rem)" }}>
+                    Clear Direction for Families Navigating Probate in Houston
+                  </h1>
+                </ScrollReveal>
+                <ScrollReveal delay={0.16}>
+                  <p style={{ color: "rgba(255,255,255,0.72)", marginBottom: "clamp(0.9rem, 1.5vw, 1.5rem)", lineHeight: 1.85 }}>
+                    When a family member passes away, the legal questions that follow can arrive all at once.
+                    Troy&nbsp;M.&nbsp;Moore,&nbsp;PLLC helps families move through the Texas probate process
+                    with clarity, efficiency, and steady legal guidance — whether there is a valid will or no
+                    will at all.
+                  </p>
+                  <p style={{ color: "rgba(255,255,255,0.55)", marginBottom: "clamp(0.9rem, 1.5vw, 1.5rem)", lineHeight: 1.85 }}>
+                    Probate timelines in Texas can range from a few months to well over a year depending on
+                    the estate's complexity, the presence of a will, and whether disputes arise among heirs.
+                    Having an experienced attorney from the start helps avoid costly delays, missed deadlines,
+                    and procedural errors that can complicate an already difficult time.
+                  </p>
+                  <p style={{ color: "rgba(255,255,255,0.42)", marginBottom: "clamp(1.8rem, 3vw, 3rem)", lineHeight: 1.85 }}>
+                    As a Houston probate attorney serving Harris County, Fort Bend County, Montgomery County,
+                    and surrounding areas, Troy&nbsp;M.&nbsp;Moore has guided families through both simple and
+                    contested estates since 1999. From filing the initial application to closing the estate,
+                    the firm handles every stage of the Texas probate process — so families can focus on what
+                    matters most.
+                  </p>
+                </ScrollReveal>
+                <ScrollReveal delay={0.22}>
+                  <div style={{ display: "flex", flexWrap: "wrap", gap: "clamp(0.75rem, 1.2vw, 1rem)" }}>
+                    <GhostBtn label="Start Here" href="#start-here" />
+                  </div>
+                </ScrollReveal>
+              </div>
+
+              {/* Right: form */}
+              <HeroForm />
             </div>
 
             {/* Trust strip */}
@@ -732,10 +1234,10 @@ export default function ProbatePage() {
             <div style={WRAP}>
               <ScrollReveal>
                 <p className="eyebrow" style={{ color: "var(--gold)", marginBottom: "clamp(0.5rem, 0.8vw, 0.8rem)" }}>Start Here</p>
-                <h2 style={{ color: "var(--navy)", marginBottom: "clamp(0.8rem, 1.2vw, 1.2rem)", maxWidth: "680px" }}>
+                <h2 style={{ color: "var(--navy)", marginBottom: "clamp(0.8rem, 1.2vw, 1.2rem)", maxWidth: "905px" }}>
                   Whether There Is a Will or Not, the Right Probate Path Starts with a Clear Legal Strategy
                 </h2>
-                <p style={{ color: "#5a6a7a", maxWidth: "600px", marginBottom: "clamp(2rem, 3.5vw, 3.5rem)" }}>
+                <p style={{ color: "#5a6a7a", maxWidth: "800px", marginBottom: "clamp(2rem, 3.5vw, 3.5rem)" }}>
                   The first question in most probate matters is straightforward: did the decedent leave a
                   valid Last Will and Testament, or not? That answer often shapes the legal process, the
                   court filings required, and the authority needed to handle the estate.
@@ -963,7 +1465,22 @@ export default function ProbatePage() {
             </div>
           </section>
 
-          {/* ── 9. FINAL CTA ─────────────────────────────────────── */}
+          {/* ── 9. FAQ ───────────────────────────────────────────── */}
+          <section style={{ backgroundColor: "#ffffff", ...PAD }}>
+            <div style={WRAP}>
+              <ScrollReveal>
+                <div style={{ marginBottom: "3vw" }}>
+                  <p className="eyebrow" style={{ color: "var(--gold)", marginBottom: "0.5vw" }}>Common Questions</p>
+                  <h2 style={{ color: "var(--navy)", maxWidth: "640px" }}>
+                    Frequently Asked Questions About Houston Probate
+                  </h2>
+                </div>
+              </ScrollReveal>
+              <FaqSection onOpen={openPanel} />
+            </div>
+          </section>
+
+          {/* ── 10. FINAL CTA ────────────────────────────────────── */}
           <section id="consult" style={{ backgroundColor: "var(--navy)", ...PAD, position: "relative", overflow: "hidden", textAlign: "center" }}>
             <div aria-hidden style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", width: "80vw", height: "80vw", maxWidth: "900px", maxHeight: "900px", borderRadius: "50%", border: "1px solid rgba(195,160,91,0.06)", pointerEvents: "none" }} />
             <div style={{ ...WRAP, position: "relative", zIndex: 1 }}>

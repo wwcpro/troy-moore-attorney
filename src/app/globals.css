@@ -66,7 +66,7 @@ p, a, span, li, label, input, textarea, button {
 
 /* ─── Mobile typography (default / screens ≤ 1000px) ─── */
 h1 { font-size: clamp(2rem, 8vw, 3rem); line-height: 1.15; }
-h2 { font-size: clamp(1.225rem, 4.9vw, 1.75rem); line-height: 1.1; }
+h2 { font-size: clamp(1.04rem, 4.15vw, 1.49rem); line-height: 1.1; }
 h3 { font-size: clamp(1.25rem, 5vw, 1.75rem); line-height: 1.2; }
 .eyebrow { font-size: clamp(0.6rem, 2.5vw, 0.8rem); letter-spacing: 0.25em; }
 body, p, a, span, li { font-size: clamp(0.85rem, 2.5vw, 1rem); line-height: 1.7; }
@@ -74,7 +74,7 @@ body, p, a, span, li { font-size: clamp(0.85rem, 2.5vw, 1rem); line-height: 1.7;
 /* ─── vw-based typography for screens > 1000px ─── */
 @media (min-width: 1001px) {
   h1 { font-size: 3vw; line-height: 1.1; }
-  h2 { font-size: 2.8vw; line-height: 1.05; }
+  h2 { font-size: 2.38vw; line-height: 1.05; }
   h3 { font-size: 2vw; line-height: 1.15; }
   .eyebrow { font-size: 1vw; letter-spacing: 0.3em; }
   body { font-size: 0.8vw; }
