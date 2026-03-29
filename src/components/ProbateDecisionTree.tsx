@@ -118,6 +118,17 @@ export default function ProbateDecisionTree({ highlight }: { highlight: TreeHigh
         background: "rgba(0,0,0,0.12)",
       }}
     >
+      <style>{`
+        .decision-tree-cols { display: flex; gap: 0.75rem; align-items: flex-start; }
+        .decision-tree-col-will { flex: 1; min-width: 0; }
+        .decision-tree-col-nowill { flex: 2; min-width: 0; }
+        @media (max-width: 520px) {
+          .decision-tree-cols { flex-direction: column; }
+          .decision-tree-col-will,
+          .decision-tree-col-nowill { flex: 1; min-width: 0; }
+          .decision-tree-divider { display: none; }
+        }
+      `}</style>
       <p
         className="eyebrow"
         style={{
@@ -165,9 +176,9 @@ export default function ProbateDecisionTree({ highlight }: { highlight: TreeHigh
         />
       </div>
 
-      <div style={{ display: "flex", gap: "0.75rem", alignItems: "flex-start" }}>
+      <div className="decision-tree-cols">
         {/* WITH A WILL column */}
-        <div style={{ flex: 1, minWidth: 0 }}>
+        <div className="decision-tree-col-will">
           <div style={branchCard(isWill)}>
             <span
               className="eyebrow"
@@ -271,6 +282,7 @@ export default function ProbateDecisionTree({ highlight }: { highlight: TreeHigh
         </div>
 
         <div
+          className="decision-tree-divider"
           style={{
             width: 1,
             background: "rgba(255,255,255,0.05)",
@@ -280,7 +292,7 @@ export default function ProbateDecisionTree({ highlight }: { highlight: TreeHigh
         />
 
         {/* WITHOUT A WILL column */}
-        <div style={{ flex: 2, minWidth: 0 }}>
+        <div className="decision-tree-col-nowill">
           <div style={branchCard(isNoWill)}>
             <span
               className="eyebrow"

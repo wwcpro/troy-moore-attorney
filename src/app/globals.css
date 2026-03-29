@@ -288,3 +288,12 @@ a.info-row span {
   background: rgba(195, 160, 91, 0.25);
   color: var(--navy);
 }
+
+/* ─── SidePanel responsive width ─── */
+.side-panel { width: 85vw; }
+.side-panel-close-mobile { display: none !important; }
+
+@media (max-width: 640px) {
+  .side-panel { width: 100vw; }
+  .side-panel-close-mobile { display: flex !important; }
+}
