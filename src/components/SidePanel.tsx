@@ -68,27 +68,6 @@ const SidePanel = forwardRef<HTMLDivElement, Props>(({ item, onClose }, ref) => 
         <span className="eyebrow" style={{ color: "var(--gold)", letterSpacing: "0.12em" }}>
           {item?.label}
         </span>
-        {/* Mobile-only close button — hidden on desktop via globals.css */}
-        <button
-          className="side-panel-close-mobile"
-          onClick={onClose}
-          aria-label="Close panel"
-          style={{
-            width: 40,
-            height: 40,
-            borderRadius: "50%",
-            border: "1px solid rgba(255,255,255,0.15)",
-            background: "rgba(255,255,255,0.08)",
-            color: "#ffffff",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            fontSize: "1rem",
-            cursor: "pointer",
-          }}
-        >
-          ✕
-        </button>
       </div>
 
       {/* Scrollable content — flex: 1 fills remaining height */}
