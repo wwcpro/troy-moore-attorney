@@ -188,6 +188,8 @@ export default function AboutPage() {
 
         /* ── Team card ── */
         .about-team-card {
+          display: block;
+          width: 100%;
           cursor: pointer;
           border: 1px solid #e5e7eb;
           border-radius: 8px;
@@ -272,7 +274,6 @@ export default function AboutPage() {
               backgroundImage: "url(/assets/about.webp)",
               backgroundSize: "cover",
               backgroundPosition: "center top",
-              backgroundAttachment: "fixed",
             }}
           >
             <div className="about-hero-overlay" />
@@ -497,7 +498,7 @@ export default function AboutPage() {
                     key={member.href}
                     className="about-team-card"
                     onClick={() => openPanel(member)}
-                    style={{ background: "none", border: "none", padding: 0, font: "inherit" }}
+                    style={{ padding: 0, font: "inherit" }}
                   >
                     <div style={{ overflow: "hidden" }}>
                       {/* eslint-disable-next-line @next/next/no-img-element */}
