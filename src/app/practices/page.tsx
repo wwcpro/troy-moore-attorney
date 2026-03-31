@@ -63,16 +63,15 @@ function PracticesList({ onOpen }: { onOpen: (item: PanelItem) => void }) {
       );
     }, section);
 
-    // Proximity hover
+    // Proximity scale — rows grow toward cursor based on vertical distance (same as home page)
     const rowEls = Array.from(section.querySelectorAll<HTMLElement>(".info-row"));
     const onMove = (e: MouseEvent) => {
       rowEls.forEach((row) => {
         const rect = row.getBoundingClientRect();
-        const dist = Math.hypot(
-          e.clientX - (rect.left + rect.width / 2),
-          e.clientY - (rect.top + rect.height / 2)
-        );
-        const scale = Math.max(0.94, 1 - dist / 700);
+        const centerY = rect.top + rect.height / 2;
+        const dist = Math.abs(e.clientY - centerY);
+        const proximity = Math.max(0, 1 - dist / 220);
+        const scale = 1 + Math.pow(proximity, 2) * 0.08;
         gsap.to(row, { scale, duration: 0.4, ease: "power2.out", overwrite: "auto" });
       });
     };
@@ -251,8 +250,9 @@ export default function PracticesPage() {
               <h1
                 style={{
                   color: "var(--navy)",
-                  marginBottom: "clamp(1rem, 1.5vw, 1.5rem)",
-                  maxWidth: "18ch",
+                  fontSize: "clamp(5rem, 15vw, 18rem)",
+                  lineHeight: 0.9,
+                  marginBottom: "clamp(1.5rem, 2.5vw, 2.5rem)",
                 }}
               >
                 Practices
@@ -265,7 +265,7 @@ export default function PracticesPage() {
                   fontFamily: "var(--font-heading)",
                   fontWeight: 300,
                   lineHeight: 1.5,
-                  maxWidth: "48ch",
+                  maxWidth: "96ch",
                 }}
               >
                 Probate, estate planning, and personal injury services for Houston families — with over 25 years of dedicated Texas legal experience.
