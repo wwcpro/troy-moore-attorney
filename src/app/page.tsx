@@ -10,7 +10,6 @@ import LatestCarousel from "@/components/LatestCarousel";
 import StayingInformed from "@/components/StayingInformed";
 import FeaturedArticle from "@/components/FeaturedArticle";
 import Footer from "@/components/Footer";
-import FixedCTA from "@/components/FixedCTA";
 import SidePanel, { type PanelItem } from "@/components/SidePanel";
 
 export default function Home() {
@@ -126,7 +125,6 @@ export default function Home() {
         document.body
       )}
 
-      <FixedCTA show={loaderDone && !panelItem} />
     </>
   );
 }

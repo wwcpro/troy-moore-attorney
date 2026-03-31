@@ -4,7 +4,6 @@ import { useState, useRef, useCallback, useEffect } from "react";
 import { createPortal } from "react-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import FixedCTA from "@/components/FixedCTA";
 import ScrollReveal from "@/components/ScrollReveal";
 import SidePanel, { type PanelItem } from "@/components/SidePanel";
 import { gsap } from "@/lib/gsap";
@@ -1580,7 +1579,6 @@ export default function ProbatePage() {
         document.body
       )}
 
-      <FixedCTA show={!panelItem} />
 
       {/* ── Mobile sticky CTA bar ────────────────────────────────── */}
       <div

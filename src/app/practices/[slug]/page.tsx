@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import FixedCTA from "@/components/FixedCTA";
 import practicesData from "@/data/practices.json";
 
 /* ─── Types ──────────────────────────────────────────────────────── */
@@ -228,7 +227,6 @@ export default async function PracticeDetailPage({
       </main>
 
       <Footer />
-      <FixedCTA show={true} />
     </>
   );
 }

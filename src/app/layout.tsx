@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import TransitionManager from "@/components/TransitionManager";
+import FixedCTA from "@/components/FixedCTA";
 
 export const metadata: Metadata = {
   title: "Troy M. Moore | Probate, Estate Planning & Trusts Attorney",
@@ -23,6 +24,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen">
         <TransitionManager>{children}</TransitionManager>
+        <FixedCTA show={true} />
       </body>
     </html>
   );

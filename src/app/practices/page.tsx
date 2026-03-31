@@ -4,7 +4,6 @@ import { useState, useRef, useCallback, useEffect } from "react";
 import { createPortal } from "react-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import FixedCTA from "@/components/FixedCTA";
 import SidePanel, { type PanelItem } from "@/components/SidePanel";
 import { gsap } from "@/lib/gsap";
 import practicesData from "@/data/practices.json";
@@ -359,7 +358,6 @@ export default function PracticesPage() {
         document.body
       )}
 
-      <FixedCTA show={!panelItem} />
     </>
   );
 }
