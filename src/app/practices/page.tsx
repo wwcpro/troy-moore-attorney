@@ -250,9 +250,9 @@ export default function PracticesPage() {
               <h1
                 style={{
                   color: "var(--navy)",
-                  fontSize: "clamp(5rem, 15vw, 18rem)",
+                  fontSize: "clamp(4rem, 12vw, 14.4rem)",
                   lineHeight: 0.9,
-                  marginBottom: "clamp(1.5rem, 2.5vw, 2.5rem)",
+                  marginBottom: 0,
                 }}
               >
                 Practices
