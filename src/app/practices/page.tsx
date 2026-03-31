@@ -233,7 +233,6 @@ export default function PracticesPage() {
               background: "#ffffff",
               paddingTop: "calc(72px + clamp(4rem, 7vw, 8rem))",
               paddingBottom: "clamp(0.25rem, 0.5vw, 0.5rem)",
-              borderBottom: "1px solid #f0f0f0",
             }}
           >
             <div style={WRAP}>
