@@ -232,7 +232,7 @@ export default function PracticesPage() {
             style={{
               background: "#ffffff",
               paddingTop: "calc(72px + clamp(4rem, 7vw, 8rem))",
-              paddingBottom: "clamp(3rem, 5vw, 5rem)",
+              paddingBottom: "clamp(1rem, 1.5vw, 1.5rem)",
               borderBottom: "1px solid #f0f0f0",
             }}
           >
@@ -274,7 +274,7 @@ export default function PracticesPage() {
           </section>
 
           {/* ── 2. PRACTICES LIST ────────────────────────────────── */}
-          <section style={{ background: "#ffffff", ...PAD }}>
+          <section style={{ background: "#ffffff", ...PAD, paddingTop: "clamp(1.5rem, 2vw, 2rem)" }}>
             <div style={WRAP}>
               <PracticesList onOpen={openPanel} />
             </div>
