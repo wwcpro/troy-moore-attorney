@@ -19,8 +19,6 @@ export default function TransitionManager({ children }: { children: React.ReactN
   const horizClipRef = useRef<SVGRectElement>(null);
   const navyL  = useRef<HTMLDivElement>(null);
   const navyR  = useRef<HTMLDivElement>(null);
-  const whiteL = useRef<HTMLDivElement>(null);
-  const whiteR = useRef<HTMLDivElement>(null);
   const goldL  = useRef<HTMLDivElement>(null);
   const goldR  = useRef<HTMLDivElement>(null);
 
@@ -53,8 +51,8 @@ export default function TransitionManager({ children }: { children: React.ReactN
     prevPath.current = pathname;
     document.body.style.overflow = "hidden";
 
-    gsap.set([navyL.current, whiteL.current, goldL.current], { x: 0 });
-    gsap.set([navyR.current, whiteR.current, goldR.current], { x: 0 });
+    gsap.set([navyL.current, goldL.current], { x: 0 });
+    gsap.set([navyR.current, goldR.current], { x: 0 });
 
     const tl = gsap.timeline();
     tl
@@ -75,15 +73,13 @@ export default function TransitionManager({ children }: { children: React.ReactN
       .to(iconRef.current, { opacity: 0, y: -18, duration: 0.28, ease: "power2.in" })
       .to(goldL.current,  { x: "-100%", duration: 0.6, ease: "power4.inOut" }, "<0.05")
       .to(goldR.current,  { x:  "100%", duration: 0.6, ease: "power4.inOut" }, "<")
-      .to(whiteL.current, { x: "-100%", duration: 0.6, ease: "power4.inOut" }, "<0.04")
-      .to(whiteR.current, { x:  "100%", duration: 0.6, ease: "power4.inOut" }, "<")
       .to(navyL.current, {
         x: "-100%", duration: 0.6, ease: "power4.inOut",
         onStart: () => {
           setLoaderDone(true);
           gsap.set(coverRef.current, { autoAlpha: 0 });
         },
-      }, "<0.04")
+      }, "+=0.08")
       .to(navyR.current, {
         x: "100%", duration: 0.6, ease: "power4.inOut",
         onComplete: () => { document.body.style.overflow = ""; },
@@ -150,8 +146,6 @@ export default function TransitionManager({ children }: { children: React.ReactN
       {/* Sliding door panels — initial load only */}
       <div ref={navyL}  style={door("left",  "var(--navy)", 9995)} />
       <div ref={navyR}  style={door("right", "var(--navy)", 9995)} />
-      <div ref={whiteL} style={door("left",  "var(--gold)", 9996)} />
-      <div ref={whiteR} style={door("right", "var(--gold)", 9996)} />
       <div ref={goldL}  style={door("left",  "#ffffff",     9997)} />
       <div ref={goldR}  style={door("right", "#ffffff",     9997)} />
 

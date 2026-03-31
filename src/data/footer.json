@@ -1,13 +1,11 @@
 {
   "upperLinks": [
-    { "label": "Protect Your Legacy", "href": "/locations" },
+    { "label": "Practice Areas", "href": "/practices" },
     { "label": "Meet Our Team", "href": "/about" }
   ],
   "socialLinks": [
-    { "label": "LinkedIn", "href": "https://linkedin.com", "icon": "linkedin" },
-    { "label": "Twitter", "href": "https://twitter.com", "icon": "twitter" },
-    { "label": "Facebook", "href": "https://facebook.com", "icon": "facebook" },
-    { "label": "Instagram", "href": "https://instagram.com", "icon": "instagram" }
+    { "label": "Facebook", "href": "https://www.facebook.com/troymmoorepllc/", "icon": "facebook" },
+    { "label": "YouTube", "href": "https://www.youtube.com/channel/UCeJvFWBkRiXtWwHaamQ-8Tg?view_as=subscriber", "icon": "youtube" }
   ],
   "quickLinks": [
     { "label": "About", "href": "/about" },
