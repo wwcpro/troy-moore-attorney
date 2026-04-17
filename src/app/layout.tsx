@@ -9,6 +9,13 @@ export const metadata: Metadata = {
   title: "Troy M. Moore | Probate, Estate Planning & Trusts Attorney",
   description:
     "For 15+ years, Troy Moore has been Houston's go-to probate expert — helping families navigate loss, inheritance disputes, and estate planning with care and clarity.",
+  openGraph: {
+    images: [{ url: "/assets/about.webp", width: 1200, height: 630, alt: "Law Office of Troy M. Moore, PLLC" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/assets/about.webp"],
+  },
 };
 
 export default function RootLayout({
