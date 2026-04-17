@@ -188,6 +188,9 @@ export default function Footer() {
             <TransitionLink href="/terms-and-conditions" style={{ fontSize: "0.72rem", color: "var(--navy)", opacity: 0.5, transition: "opacity 0.2s" }} className="hover:opacity-100">
               Terms &amp; Conditions
             </TransitionLink>
+            <TransitionLink href="/sitemap" style={{ fontSize: "0.72rem", color: "var(--navy)", opacity: 0.5, transition: "opacity 0.2s" }} className="hover:opacity-100">
+              Sitemap
+            </TransitionLink>
           </div>
         </div>
       </div>
