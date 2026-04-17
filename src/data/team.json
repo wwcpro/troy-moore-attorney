@@ -1,0 +1,110 @@
+[
+  {
+    "slug": "troy-moore",
+    "name": "Troy M. Moore",
+    "role": "Attorney at Law",
+    "eyebrow": "FOUNDING ATTORNEY",
+    "photo": "/assets/troy-profile.webp",
+    "bio": "25+ years of Texas probate & estate planning experience.",
+    "email": "t.moore@troymoorelaw.com",
+    "phone": "(281) 942-6907",
+    "headline": "Experienced. Client-First. Texas Proven.",
+    "intro": "Troy M. Moore is the founding attorney of the Law Office of Troy M. Moore, PLLC. Licensed to practice in all courts in the State of Texas, as well as the US Southern District Court, Troy has spent over 25 years focusing exclusively on probate, estate planning, life insurance litigation, and trust property matters. Raised locally in Cypress, Texas, he brings both deep professional expertise and a personal connection to the communities he serves.",
+    "quote": "Remember, an ounce of legal prevention is worth far more than a pound of cure.",
+    "sections": [
+      {
+        "heading": "About Troy",
+        "body": "Troy is licensed to practice in all courts in the State of Texas, as well as the Texas Southern District Court of the United States. Mr. Moore was raised locally in Cypress, Texas. He is a proud father of two young college students. Since beginning his career, he has focused on probate, estate planning, life insurance litigation, and trust property matters. Clients enjoy dynamic and effective legal services with a client-first attitude — always."
+      },
+      {
+        "heading": "Academic Achievements",
+        "body": "Mr. Moore was an accomplished student while at South Texas College of Law. He received the highest grade award in Texas Pretrial Procedure, made the Dean's List in 2001, and served as Editor in Chief and Associate Editor of the Corporate Counsel Review, a publication from South Texas College of Law."
+      },
+      {
+        "heading": "Education",
+        "body": "Bachelor of Arts in Biology, Texas A&M University, 1998. Doctor of Jurisprudence, South Texas College of Law, 2001. Good standing with the State Bar of Texas, active since 2001."
+      }
+    ],
+    "credentials": [
+      "25 Years Licensed in Texas",
+      "Former Primary Candidate for Judge of Harris County Probate Court No. 5",
+      "Solo practitioner for 18 years",
+      "Member of American Inns of Court – Texas Probate Section",
+      "Member of REPTL (Real Estate, Probate & Trust Lawyer) Section of the State Bar of Texas",
+      "Member of Texas Trial Lawyers Association",
+      "Member of Houston Trial Lawyers Association",
+      "Admitted to practice before US Federal Court, Southern District",
+      "Admitted to the State Bar of New Mexico",
+      "Author of Legal Articles on Probate Matters and Personal Injury"
+    ],
+    "practiceAreas": [
+      "Probate Law",
+      "Estate Planning",
+      "Life Insurance Litigation",
+      "Trusts & Estates",
+      "Personal Injury"
+    ]
+  },
+  {
+    "slug": "tiffany-bell",
+    "name": "Tiffany Bell",
+    "role": "Paralegal",
+    "eyebrow": "PARALEGAL",
+    "photo": "/assets/tiffany-profile.webp",
+    "bio": "Nearly 8 years of experience in probate, estate planning & personal injury.",
+    "email": "info@troymoorelaw.com",
+    "phone": "(281) 609-0303",
+    "headline": "Dedicated. Detail-Oriented. Client-Centered.",
+    "intro": "Tiffany Bell is an experienced paralegal with nearly 8 years of dedicated service in the legal field. Motivated by a genuine desire to understand legal processes and assist others, she has established herself as an indispensable asset in the areas of probate, estate planning, and personal injury.",
+    "quote": "Every client deserves to feel heard and fully supported throughout their legal matter.",
+    "sections": [
+      {
+        "heading": "About Tiffany",
+        "body": "Tiffany holds an Associates of Applied Science and an Advanced Technical Certificate, both in Paralegal Studies, which have honed her expertise and understanding of the intricacies of the legal system. Her commitment to her work shines through as she takes on files from start to finish, ensuring no detail goes unnoticed."
+      },
+      {
+        "heading": "Dedication to Every Case",
+        "body": "Tiffany's ability to work closely with clients and the attorney makes her an invaluable asset to the legal team. She handles each matter with the same level of care and attention — whether it's a straightforward estate planning package or a complex probate proceeding."
+      }
+    ],
+    "credentials": [
+      "Associates of Applied Science in Paralegal Studies",
+      "Advanced Technical Certificate in Paralegal Studies",
+      "Nearly 8 years of experience in probate and estate planning",
+      "Experienced in personal injury case management"
+    ],
+    "practiceAreas": [
+      "Probate",
+      "Estate Planning",
+      "Personal Injury"
+    ]
+  },
+  {
+    "slug": "andrea-patino",
+    "name": "Andrea Patino",
+    "role": "Legal Staff",
+    "eyebrow": "LEGAL STAFF",
+    "photo": "/assets/andrea-profile.webp",
+    "bio": "Dedicated legal professional supporting the firm's probate and estate planning clients.",
+    "email": "info@troymoorelaw.com",
+    "phone": "(281) 609-0303",
+    "headline": "Responsive. Caring. Thorough.",
+    "intro": "Andrea Patino is a key member of the Law Office of Troy M. Moore, PLLC legal team, providing vital support to clients navigating probate and estate planning matters throughout the Houston area.",
+    "quote": "Our clients come to us during some of the most difficult times in their lives — every interaction matters.",
+    "sections": [
+      {
+        "heading": "About Andrea",
+        "body": "Andrea brings a strong commitment to client service and an eye for detail to every matter she handles. She works closely with both the attorney and clients to ensure cases move forward efficiently and that clients always feel informed and supported."
+      }
+    ],
+    "credentials": [
+      "Legal support experience in probate and estate planning",
+      "Client intake and case management",
+      "Bilingual support available"
+    ],
+    "practiceAreas": [
+      "Probate",
+      "Estate Planning"
+    ]
+  }
+]

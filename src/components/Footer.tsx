@@ -133,6 +133,13 @@ export default function Footer() {
                   <p className="text-white/45" style={{ fontSize: "clamp(0.7rem, 0.7vw, 0.9rem)", lineHeight: 1.7 }}>{loc.address}<br />{loc.city}</p>
                 </div>
               ))}
+              <TransitionLink
+                href="/service-areas"
+                className="text-[var(--gold)] hover:text-white transition-colors"
+                style={{ fontSize: "clamp(0.72rem, 0.75vw, 0.9rem)", marginTop: "0.25rem" }}
+              >
+                View All Service Areas →
+              </TransitionLink>
             </div>
 
             {/* Contact */}

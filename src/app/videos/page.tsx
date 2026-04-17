@@ -132,7 +132,7 @@ export default function VideosPage() {
         {/* ── HERO ─────────────────────────────────────────────── */}
         <section
           style={{
-            background: "var(--navy)",
+            background: "var(--hero-gradient)",
             paddingTop: "calc(72px + clamp(4rem, 7vw, 8rem))",
             paddingBottom: "clamp(4rem, 6vw, 6rem)",
           }}

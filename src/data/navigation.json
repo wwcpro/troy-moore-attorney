@@ -8,6 +8,7 @@
     { "label": "Practices", "href": "/practices" },
     { "label": "Blog", "href": "/blog" },
     { "label": "Videos", "href": "/videos" },
+    { "label": "FAQ", "href": "/faq" },
     { "label": "Contact Us", "href": "/contact" }
   ],
   "phone": { "label": "(281) 609-0303", "href": "tel:2816090303" }

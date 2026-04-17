@@ -5,6 +5,7 @@ import { createPortal } from "react-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SidePanel, { type PanelItem } from "@/components/SidePanel";
+import PageCTA from "@/components/PageCTA";
 import { gsap } from "@/lib/gsap";
 
 /* ─── Layout constants ───────────────────────────────────────────── */
@@ -534,24 +535,22 @@ export default function AboutPage() {
           </section>
 
           {/* ── 5. FINAL CTA ─────────────────────────────────────── */}
-          <section style={{ background: "var(--navy)", ...PAD }}>
-            <div style={WRAP}>
-              <div style={{ maxWidth: "58ch" }}>
-                <p className="eyebrow" style={{ color: "var(--gold)", marginBottom: "clamp(0.3rem, 0.5vw, 0.5rem)" }}>
-                  Ready to Get Started
-                </p>
-                <h2 style={{ color: "#ffffff", marginBottom: "clamp(1rem, 1.5vw, 1.5rem)" }}>
-                  Experience the difference of a firm that puts clients first.
-                </h2>
-                <p style={{ color: "rgba(255,255,255,0.55)", lineHeight: 1.8, marginBottom: "clamp(2rem, 3vw, 3rem)" }}>
-                  With over 25 years of Texas probate and estate planning experience, the Law Office of Troy M. Moore, PLLC is ready to guide your family through whatever comes next. Contact us today for a consultation.
-                </p>
-                <a href="tel:2816090303" className="btn-cta-ghost" style={{ textDecoration: "none" }}>
-                  Call (281) 609-0303 <CircleSVG />
-                </a>
-              </div>
-            </div>
-          </section>
+          <PageCTA
+            eyebrow="Ready to Get Started"
+            heading="Experience the difference of a firm that puts clients first."
+            description="With over 25 years of Texas probate and estate planning experience, the Law Office of Troy M. Moore, PLLC is ready to guide your family through whatever comes next. Contact us today for a consultation."
+          >
+            <a href="tel:2816090303" className="btn-cta" style={{ textDecoration: "none" }}>
+              Call (281) 609-0303
+              <span className="cta-circle">
+                <svg viewBox="0 0 29 29" fill="none" style={{ width: "1.625em", height: "1.625em" }}>
+                  <path className="CircleIcon_circle__vewPw" d="M0.75 14.5a13.75 13.75 0 1 0 27.5 0a13.75 13.75 0 1 0 -27.5 0" />
+                  <path className="CircleIcon_circle-overlay__lg7sz" d="M0.75,14.5A13.75,13.75 0 1 1 28.25,14.5A13.75,13.75 0 1 1 0.75,14.5" />
+                  <path className="CircleIcon_icon__n80xg" d="M12.5 11L16 14.5L12.5 18" stroke="currentColor" strokeLinecap="round" />
+                </svg>
+              </span>
+            </a>
+          </PageCTA>
         </main>
 
         <Footer />

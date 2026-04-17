@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import FAQPreview from "@/components/FAQPreview";
+import PageCTA from "@/components/PageCTA";
 
 export const revalidate = 3600;
 
@@ -221,7 +223,7 @@ export default async function BlogPostPage({
         ) : (
           <section
             style={{
-              background: "var(--navy)",
+              background: "var(--hero-gradient)",
               paddingTop: "calc(72px + clamp(4rem, 7vw, 8rem))",
               paddingBottom: "clamp(3rem, 5vw, 5rem)",
             }}
@@ -248,70 +250,95 @@ export default async function BlogPostPage({
           </div>
         </section>
 
-        {/* ── BACK + CTA ───────────────────────────────────────── */}
+        {/* ── FAQ PREVIEW ──────────────────────────────────────── */}
         <section
           style={{
             background: "var(--light-gray)",
-            borderTop: "1px solid #e5e7eb",
-            paddingTop: "clamp(3rem, 5vw, 5rem)",
-            paddingBottom: "clamp(3rem, 5vw, 5rem)",
+            paddingTop: "clamp(3.5rem, 5vw, 5rem)",
+            paddingBottom: "clamp(3.5rem, 5vw, 5rem)",
           }}
         >
-          <div
-            style={{
-              ...WRAP,
-              display: "flex",
-              flexWrap: "wrap",
-              alignItems: "center",
-              justifyContent: "space-between",
-              gap: "2rem",
-            }}
-          >
-            <div>
-              <p className="eyebrow" style={{ color: "var(--gold)", marginBottom: "0.5rem" }}>
-                Law Office of Troy M. Moore, PLLC
-              </p>
+          <div style={WRAP}>
+            <p
+              className="eyebrow"
+              style={{
+                color: "var(--gold)",
+                fontSize: "clamp(0.6rem, 0.7vw, 0.75rem)",
+                marginBottom: "0.6rem",
+              }}
+            >
+              Common Questions
+            </p>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "flex-end",
+                justifyContent: "space-between",
+                flexWrap: "wrap",
+                gap: "1rem",
+                marginBottom: "clamp(1.5rem, 2vw, 2rem)",
+              }}
+            >
               <h2
                 style={{
                   color: "var(--navy)",
-                  marginBottom: "clamp(0.75rem, 1vw, 1rem)",
-                  maxWidth: "36ch",
+                  fontSize: "clamp(1.2rem, 1.8vw, 2rem)",
+                  margin: 0,
                 }}
               >
-                Ready to discuss your case?
+                Frequently Asked Questions
               </h2>
-              <p style={{ color: "#6a7a8a", lineHeight: 1.75, maxWidth: "44ch" }}>
-                Contact us today for a consultation. The firm serves Houston, Cypress, Tomball, The Woodlands, Spring, and all of Texas.
-              </p>
-            </div>
-            <div style={{ display: "flex", flexDirection: "column", gap: "1rem", alignItems: "flex-start" }}>
-              <a href="tel:2816090303" className="btn-cta" style={{ textDecoration: "none" }}>
-                Call (281) 609-0303
-                <span className="cta-circle">
-                  <svg viewBox="0 0 29 29" fill="none" style={{ width: "1.625em", height: "1.625em" }}>
-                    <path className="CircleIcon_circle__vewPw" d="M0.75 14.5a13.75 13.75 0 1 0 27.5 0a13.75 13.75 0 1 0 -27.5 0" />
-                    <path className="CircleIcon_circle-overlay__lg7sz" d="M0.75,14.5A13.75,13.75 0 1 1 28.25,14.5A13.75,13.75 0 1 1 0.75,14.5" />
-                    <path className="CircleIcon_icon__n80xg" d="M12.5 11L16 14.5L12.5 18" stroke="currentColor" strokeLinecap="round" />
-                  </svg>
-                </span>
-              </a>
               <a
-                href="/blog"
+                href="/faq"
                 style={{
-                  color: "var(--navy)",
-                  fontSize: "clamp(0.78rem, 0.85vw, 0.95rem)",
-                  textDecoration: "none",
+                  color: "var(--gold)",
                   fontFamily: "var(--font-eyebrow)",
+                  fontSize: "clamp(0.62rem, 0.72vw, 0.78rem)",
                   textTransform: "uppercase",
                   letterSpacing: "0.18em",
-                  opacity: 0.65,
+                  textDecoration: "none",
+                  whiteSpace: "nowrap",
                 }}
               >
-                ← All Articles
+                View All FAQs →
               </a>
             </div>
+            <FAQPreview category="Probate" />
           </div>
         </section>
+
+        {/* ── CTA ──────────────────────────────────────────────── */}
+        <PageCTA
+          eyebrow="Law Office of Troy M. Moore, PLLC"
+          heading="Ready to discuss your case?"
+          description="Contact us today for a consultation. The firm serves Houston, Cypress, Tomball, The Woodlands, Spring, and all of Texas."
+        >
+          <div style={{ display: "flex", flexDirection: "column", gap: "1rem", alignItems: "flex-start" }}>
+            <a href="tel:2816090303" className="btn-cta" style={{ textDecoration: "none" }}>
+              Call (281) 609-0303
+              <span className="cta-circle">
+                <svg viewBox="0 0 29 29" fill="none" style={{ width: "1.625em", height: "1.625em" }}>
+                  <path className="CircleIcon_circle__vewPw" d="M0.75 14.5a13.75 13.75 0 1 0 27.5 0a13.75 13.75 0 1 0 -27.5 0" />
+                  <path className="CircleIcon_circle-overlay__lg7sz" d="M0.75,14.5A13.75,13.75 0 1 1 28.25,14.5A13.75,13.75 0 1 1 0.75,14.5" />
+                  <path className="CircleIcon_icon__n80xg" d="M12.5 11L16 14.5L12.5 18" stroke="currentColor" strokeLinecap="round" />
+                </svg>
+              </span>
+            </a>
+            <a
+              href="/blog"
+              style={{
+                color: "rgba(255,255,255,0.45)",
+                fontSize: "clamp(0.72rem, 0.8vw, 0.88rem)",
+                textDecoration: "none",
+                fontFamily: "var(--font-eyebrow)",
+                textTransform: "uppercase",
+                letterSpacing: "0.18em",
+              }}
+            >
+              ← All Articles
+            </a>
+          </div>
+        </PageCTA>
       </main>
 
       <Footer />

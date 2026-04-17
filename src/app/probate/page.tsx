@@ -6,6 +6,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
 import SidePanel, { type PanelItem } from "@/components/SidePanel";
+import PageCTA from "@/components/PageCTA";
 import { gsap } from "@/lib/gsap";
 
 /* ─── Layout constants — matching StayingInformed / home page ──── */
@@ -1506,54 +1507,25 @@ export default function ProbatePage() {
           </section>
 
           {/* ── 10. FINAL CTA ────────────────────────────────────── */}
-          <section id="consult" style={{ backgroundColor: "var(--navy)", ...PAD, position: "relative", overflow: "hidden", textAlign: "center" }}>
-            <div aria-hidden style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", width: "80vw", height: "80vw", maxWidth: "900px", maxHeight: "900px", borderRadius: "50%", border: "1px solid rgba(195,160,91,0.06)", pointerEvents: "none" }} />
-            <div style={{ ...WRAP, position: "relative", zIndex: 1 }}>
-              <ScrollReveal>
-                <p className="eyebrow" style={{ color: "var(--gold)", marginBottom: "clamp(0.5rem, 0.8vw, 0.8rem)" }}>Next Steps</p>
-                <h2 style={{ color: "#ffffff", maxWidth: "700px", margin: "0 auto clamp(1rem, 1.8vw, 1.8rem)" }}>
-                  Ready to Understand Your Probate Options?
-                </h2>
-                <p style={{ color: "rgba(255,255,255,0.7)", maxWidth: "580px", margin: "0 auto clamp(2rem, 3.5vw, 3.5rem)", lineHeight: 1.85 }}>
-                  If you need help understanding whether an estate should proceed through probate of a will,
-                  muniment of title, heirship, administration, a small estate affidavit, or another Texas
-                  probate option, Troy&nbsp;M.&nbsp;Moore,&nbsp;PLLC can help you evaluate the situation
-                  and determine the right next step.
-                </p>
-                <div style={{ display: "flex", flexWrap: "wrap", gap: "clamp(0.75rem, 1.2vw, 1rem)", justifyContent: "center" }}>
-                  <a href="tel:2816090303" className="btn-cta" style={{ textDecoration: "none" }}>
-                    Call (281) 609-0303
-                    <span className="cta-circle" style={{ background: "rgba(255,255,255,0.13)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 010 1.18 2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14v2.92z" />
-                      </svg>
-                    </span>
-                  </a>
-                  <GhostBtn label="Review Probate Process Summary" href="/texas-probate-process" />
-                </div>
-              </ScrollReveal>
-
-              <ScrollReveal delay={0.2}>
-                <div style={{ marginTop: "clamp(3rem, 5vw, 5rem)", paddingTop: "clamp(2rem, 3vw, 3rem)", borderTop: "1px solid rgba(255,255,255,0.1)", maxWidth: "600px", margin: "clamp(3rem, 5vw, 5rem) auto 0" }}>
-                  <div style={{ display: "flex", gap: "0.3rem", justifyContent: "center", marginBottom: "1.2rem" }}>
-                    {Array.from({ length: 5 }).map((_, i) => (
-                      <svg key={i} width="14" height="14" viewBox="0 0 20 20" fill="var(--gold)">
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                      </svg>
-                    ))}
-                  </div>
-                  <p style={{ color: "rgba(255,255,255,0.75)", fontFamily: "var(--font-heading)", fontStyle: "italic", fontWeight: 300, fontSize: "clamp(1rem, 1.4vw, 1.3rem)", lineHeight: 1.6, marginBottom: "1rem" }}>
-                    &ldquo;Troy and his team were great throughout our estate planning. Professional, patient,
-                    and informative. If you have not already taken care of your future, I highly recommend
-                    Troy Moore.&rdquo;
-                  </p>
-                  <p className="eyebrow" style={{ color: "rgba(255,255,255,0.4)", fontSize: "clamp(0.6rem, 0.7vw, 0.72rem)", letterSpacing: "0.2em" }}>
-                    — Tim Williams
-                  </p>
-                </div>
-              </ScrollReveal>
+          <PageCTA
+            eyebrow="Next Steps"
+            heading="Ready to Understand Your Probate Options?"
+            description="If you need help understanding whether an estate should proceed through probate of a will, muniment of title, heirship, administration, a small estate affidavit, or another Texas probate option, Troy M. Moore, PLLC can help you evaluate the situation and determine the right next step."
+          >
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem", alignItems: "center" }}>
+              <a href="tel:2816090303" className="btn-cta" style={{ textDecoration: "none" }}>
+                Call (281) 609-0303
+                <span className="cta-circle">
+                  <svg viewBox="0 0 29 29" fill="none" style={{ width: "1.625em", height: "1.625em" }}>
+                    <path className="CircleIcon_circle__vewPw" d="M0.75 14.5a13.75 13.75 0 1 0 27.5 0a13.75 13.75 0 1 0 -27.5 0" />
+                    <path className="CircleIcon_circle-overlay__lg7sz" d="M0.75,14.5A13.75,13.75 0 1 1 28.25,14.5A13.75,13.75 0 1 1 0.75,14.5" />
+                    <path className="CircleIcon_icon__n80xg" d="M12.5 11L16 14.5L12.5 18" stroke="currentColor" strokeLinecap="round" />
+                  </svg>
+                </span>
+              </a>
+              <GhostBtn label="Review Probate Process Summary" href="/practices/houston-cypress-texas-probate-attorney" />
             </div>
-          </section>
+          </PageCTA>
         </main>
 
         <Footer />

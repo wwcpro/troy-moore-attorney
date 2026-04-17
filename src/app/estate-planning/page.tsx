@@ -5,6 +5,7 @@ import { createPortal } from "react-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SidePanel, { type PanelItem } from "@/components/SidePanel";
+import PageCTA from "@/components/PageCTA";
 import { gsap } from "@/lib/gsap";
 
 /* ─── Layout constants — matching probate page ──────────────────── */
@@ -1018,57 +1019,22 @@ export default function EstatePlanningPage() {
           </section>
 
           {/* ── 7. FINAL CTA ─────────────────────────────────────── */}
-          <section style={{ background: "var(--navy)", ...PAD }}>
-            <div style={{ ...WRAP, display: "flex", gap: "clamp(2rem, 4vw, 5rem)", alignItems: "center", flexWrap: "wrap" }}>
-              <div style={{ flex: 1, minWidth: "260px" }}>
-                <p className="eyebrow" style={{ color: "var(--gold)", marginBottom: "clamp(0.3rem, 0.5vw, 0.5rem)" }}>
-                  Ready to Get Started
-                </p>
-                <h2 style={{ color: "#ffffff", marginBottom: "clamp(1rem, 1.5vw, 1.5rem)" }}>
-                  Protect your family.<br />Start today.
-                </h2>
-                <p style={{ color: "rgba(255,255,255,0.55)", lineHeight: 1.75, marginBottom: "clamp(1.5rem, 2vw, 2rem)", maxWidth: "44ch" }}>
-                  Estate planning is one of the most important things you can do for your family — and it takes less time and cost than most people expect. Contact Troy M. Moore, PLLC to schedule a consultation.
-                </p>
-                <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
-                  <a
-                    href="tel:2816090303"
-                    style={{
-                      display: "inline-flex",
-                      alignItems: "center",
-                      gap: "0.75rem",
-                      color: "var(--gold)",
-                      fontSize: "clamp(0.9rem, 1.1vw, 1.2rem)",
-                      fontWeight: 500,
-                      textDecoration: "none",
-                      letterSpacing: "0.02em",
-                    }}
-                  >
-                    (281) 609-0303
-                  </a>
-                </div>
-              </div>
-
-              {/* Testimonial */}
-              <div
-                style={{
-                  flex: 1,
-                  minWidth: "260px",
-                  padding: "clamp(1.5rem, 2.5vw, 2.5rem)",
-                  background: "rgba(255,255,255,0.04)",
-                  border: "1px solid rgba(255,255,255,0.08)",
-                  borderRadius: 8,
-                }}
-              >
-                <blockquote style={{ fontFamily: "var(--font-heading)", fontStyle: "italic", fontWeight: 300, fontSize: "clamp(1rem, 1.55vw, 1.7rem)", lineHeight: 1.6, color: "#ffffff", margin: "0 0 1.1rem" }}>
-                  &ldquo;Troy took the time to understand what we actually needed — not just sell us a package. We left with a complete plan and real peace of mind knowing our family is protected.&rdquo;
-                </blockquote>
-                <span style={{ display: "block", fontFamily: "avenir-lt-pro, sans-serif", fontStyle: "normal", fontSize: "clamp(0.7rem, 0.9vw, 1rem)", color: "rgba(255,255,255,0.65)", letterSpacing: "0.02em" }}>
-                  — Houston Client
-                </span>
-              </div>
-            </div>
-          </section>
+          <PageCTA
+            eyebrow="Ready to Get Started"
+            heading={<>Protect your family.<br />Start today.</>}
+            description="Estate planning is one of the most important things you can do for your family — and it takes less time and cost than most people expect. Contact Troy M. Moore, PLLC to schedule a consultation."
+          >
+            <a href="tel:2816090303" className="btn-cta" style={{ textDecoration: "none" }}>
+              Call (281) 609-0303
+              <span className="cta-circle">
+                <svg viewBox="0 0 29 29" fill="none" style={{ width: "1.625em", height: "1.625em" }}>
+                  <path className="CircleIcon_circle__vewPw" d="M0.75 14.5a13.75 13.75 0 1 0 27.5 0a13.75 13.75 0 1 0 -27.5 0" />
+                  <path className="CircleIcon_circle-overlay__lg7sz" d="M0.75,14.5A13.75,13.75 0 1 1 28.25,14.5A13.75,13.75 0 1 1 0.75,14.5" />
+                  <path className="CircleIcon_icon__n80xg" d="M12.5 11L16 14.5L12.5 18" stroke="currentColor" strokeLinecap="round" />
+                </svg>
+              </span>
+            </a>
+          </PageCTA>
         </main>
 
         <Footer />
