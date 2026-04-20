@@ -1508,6 +1508,7 @@ export default function ProbatePage() {
 
           {/* ── 10. FINAL CTA ────────────────────────────────────── */}
           <PageCTA
+            id="consult"
             eyebrow="Next Steps"
             heading="Ready to Understand Your Probate Options?"
             description="If you need help understanding whether an estate should proceed through probate of a will, muniment of title, heirship, administration, a small estate affidavit, or another Texas probate option, Troy M. Moore, PLLC can help you evaluate the situation and determine the right next step."

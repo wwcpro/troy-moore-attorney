@@ -5,6 +5,7 @@ interface PageCTAProps {
   heading: React.ReactNode;
   description: string;
   children: React.ReactNode;
+  id?: string;
 }
 
 const ROW: React.CSSProperties = {
@@ -13,9 +14,10 @@ const ROW: React.CSSProperties = {
   borderTop: "1px solid rgba(255,255,255,0.14)",
 };
 
-export default function PageCTA({ eyebrow, heading, description, children }: PageCTAProps) {
+export default function PageCTA({ eyebrow, heading, description, children, id }: PageCTAProps) {
   return (
     <section
+      id={id}
       style={{
         backgroundImage: "url(/assets/blue-bg2.png)",
         backgroundSize: "cover",
