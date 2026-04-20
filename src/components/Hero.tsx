@@ -108,29 +108,21 @@ export default function Hero({ loaderDone }: { loaderDone: boolean }) {
     };
   }, []);
 
-  // Load Lottie signature via CDN to avoid SSR/bundler issues
+  // Load Lottie signature via dynamic import to avoid SSR issues
   useEffect(() => {
     if (!loaderDone) return;
     const container = signatureRef.current;
     if (!container) return;
     let destroyed = false;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const win = window as any;
-    const init = (data: unknown) => {
-      if (destroyed || !win.lottie) return;
-      lottieInstance.current = win.lottie.loadAnimation({ container, renderer: "svg", loop: false, autoplay: false, animationData: data });
+    (async () => {
+      const [lottie, data] = await Promise.all([
+        import("lottie-web").then((m) => m.default),
+        fetch("/assets/signature.json").then((r) => r.json()),
+      ]);
+      if (destroyed) return;
+      lottieInstance.current = lottie.loadAnimation({ container, renderer: "svg", loop: false, autoplay: false, animationData: data });
       setTimeout(() => lottieInstance.current?.play(), 1200);
-    };
-    const loadData = () => fetch("/assets/signature.json").then((r) => r.json());
-    if (win.lottie) {
-      loadData().then(init);
-    } else {
-      const script = document.createElement("script");
-      script.src = "https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js";
-      script.async = true;
-      script.onload = () => loadData().then(init);
-      document.head.appendChild(script);
-    }
+    })();
     return () => { destroyed = true; lottieInstance.current?.destroy(); };
   }, [loaderDone]);
 

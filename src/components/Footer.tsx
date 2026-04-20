@@ -163,10 +163,10 @@ export default function Footer() {
               {/* Badge logos */}
               <div className="flex flex-wrap gap-3 items-center justify-center">
                 {[
-                  { src: "/assets/badge-htla.png", alt: "HTLA" },
-                  { src: "/assets/badge-reptl.png", alt: "REPTL" },
-                  { src: "/assets/badge-expertise.png", alt: "Expertise" },
-                  { src: "/assets/badge-ttla.png", alt: "TTLA" },
+                  { src: "/assets/badge-htla.webp", alt: "HTLA" },
+                  { src: "/assets/badge-reptl.webp", alt: "REPTL" },
+                  { src: "/assets/badge-expertise.webp", alt: "Expertise" },
+                  { src: "/assets/badge-ttla.webp", alt: "TTLA" },
                 ].map((badge) => (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img
