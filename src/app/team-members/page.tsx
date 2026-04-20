@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "Our Team | Law Office of Troy M. Moore, PLLC",
   description:
     "Meet the legal team at the Law Office of Troy M. Moore, PLLC — experienced Houston probate and estate planning professionals dedicated to serving clients across Texas.",
+  alternates: { canonical: "https://troymoorelaw.com/team-members" },
 };
 
 const WRAP: React.CSSProperties = {

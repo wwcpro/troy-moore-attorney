@@ -105,6 +105,7 @@ export async function generateMetadata({
   return {
     title: `${post.title.rendered} | Law Office of Troy M. Moore, PLLC`,
     description: stripHtml(post.excerpt.rendered),
+    alternates: { canonical: `https://troymoorelaw.com/blog/${slug}` },
   };
 }
 
@@ -396,12 +397,23 @@ function HeroContent({
       <h1
         style={{
           color: "#ffffff",
-          marginBottom: 0,
+          marginBottom: "clamp(0.75rem, 1.2vw, 1rem)",
           maxWidth: "24ch",
         }}
       >
         {post.title.rendered}
       </h1>
+      <p
+        style={{
+          color: "rgba(255,255,255,0.55)",
+          fontSize: "clamp(0.75rem, 0.82vw, 0.9rem)",
+          fontFamily: "var(--font-eyebrow)",
+          letterSpacing: "0.06em",
+          margin: 0,
+        }}
+      >
+        By Troy M. Moore, Attorney at Law
+      </p>
     </>
   );
 }

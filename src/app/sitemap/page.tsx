@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   title: "Sitemap | Law Office of Troy M. Moore, PLLC",
   description:
     "Full sitemap for the Law Office of Troy M. Moore, PLLC — Houston probate and estate planning attorney.",
+  alternates: { canonical: "https://troymoorelaw.com/sitemap" },
 };
 
 const WRAP: React.CSSProperties = {

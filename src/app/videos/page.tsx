@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "Videos | Law Office of Troy M. Moore, PLLC",
   description:
     "Watch estate planning workshops and guides from Houston attorney Troy M. Moore — covering probate avoidance, wills, trusts, and Texas estate planning strategies.",
+  alternates: { canonical: "https://troymoorelaw.com/videos" },
 };
 
 const WRAP: React.CSSProperties = {

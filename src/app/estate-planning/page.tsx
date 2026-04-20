@@ -477,6 +477,68 @@ function ServicesSection({ onOpen }: { onOpen: (item: PanelItem) => void }) {
 }
 
 /* ─── Page ───────────────────────────────────────────────────────── */
+const STATS = [
+  { end: 25, suffix: "+", label: "Years of Texas Law Practice" },
+  { end: 1000, suffix: "+", label: "Estate Plans Drafted" },
+  { end: 100, suffix: "%", label: "Client-Focused Process" },
+  { text: "Fixed", label: "Flat-Fee Pricing" },
+];
+
+function StatsStrip() {
+  const stripRef = useRef<HTMLDivElement>(null);
+  const numRefs = useRef<(HTMLParagraphElement | null)[]>([]);
+
+  useEffect(() => {
+    if (!stripRef.current) return;
+    const ctx = gsap.context(() => {
+      STATS.forEach((stat, i) => {
+        if (!stat.end || !numRefs.current[i]) return;
+        const el = numRefs.current[i]!;
+        const obj = { val: 0 };
+        gsap.fromTo(
+          obj,
+          { val: 0 },
+          {
+            val: stat.end,
+            duration: 1.8,
+            ease: "power2.out",
+            scrollTrigger: { trigger: stripRef.current!, start: "top 85%", once: true },
+            onUpdate() {
+              el.textContent = `${Math.round(obj.val).toLocaleString()}${stat.suffix ?? ""}`;
+            },
+            onComplete() {
+              el.textContent = `${stat.end.toLocaleString()}${stat.suffix ?? ""}`;
+            },
+          }
+        );
+      });
+    }, stripRef);
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <section style={{ background: "#061e36", borderTop: "1px solid rgba(255,255,255,0.07)" }}>
+      <div style={{ ...WRAP, paddingTop: "clamp(2rem, 3vw, 3.5rem)", paddingBottom: "clamp(2rem, 3vw, 3.5rem)" }}>
+        <div ref={stripRef} className="ep-trust-grid">
+          {STATS.map((item, i) => (
+            <div key={i} style={{ textAlign: "center", padding: "clamp(1rem, 1.5vw, 1.5rem) 0" }}>
+              <p
+                ref={(el) => { numRefs.current[i] = el; }}
+                style={{ fontFamily: "var(--font-heading)", fontWeight: 300, fontStyle: "italic", color: "#ffffff", fontSize: "clamp(3.2rem, 7vw, 8rem)", lineHeight: 1, letterSpacing: "-0.02em", marginBottom: "0.5rem" }}
+              >
+                {item.text ?? `0${item.suffix ?? ""}`}
+              </p>
+              <p style={{ color: "rgba(255,255,255,0.65)", fontFamily: "var(--font-eyebrow)", fontSize: "clamp(0.7rem, 1vw, 1rem)", letterSpacing: "0.18em", textTransform: "uppercase", lineHeight: 1.5 }}>
+                {item.label}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function EstatePlanningPage() {
   const [panelItem, setPanelItem] = useState<PanelItem | null>(null);
   const [mounted, setMounted] = useState(false);
@@ -756,27 +818,7 @@ export default function EstatePlanningPage() {
           </section>
 
           {/* ── 2. TRUST STRIP ───────────────────────────────────── */}
-          <section style={{ background: "var(--navy)", borderTop: "1px solid rgba(255,255,255,0.07)" }}>
-            <div style={{ ...WRAP, paddingTop: "clamp(2rem, 3vw, 3.5rem)", paddingBottom: "clamp(2rem, 3vw, 3.5rem)" }}>
-              <div className="ep-trust-grid">
-                {[
-                  { stat: "25+", label: "Years of Texas Law Practice" },
-                  { stat: "1,000+", label: "Estate Plans Drafted" },
-                  { stat: "100%", label: "Client-Focused Process" },
-                  { stat: "Fixed", label: "Flat-Fee Pricing" },
-                ].map((item, i) => (
-                  <div key={i} style={{ textAlign: "center", padding: "clamp(1rem, 1.5vw, 1.5rem) 0" }}>
-                    <p style={{ fontFamily: "var(--font-heading)", fontWeight: 300, fontStyle: "italic", color: "#ffffff", fontSize: "clamp(3.2rem, 7vw, 8rem)", lineHeight: 1, letterSpacing: "-0.02em", marginBottom: "0.5rem" }}>
-                      {item.stat}
-                    </p>
-                    <p style={{ color: "rgba(255,255,255,0.65)", fontFamily: "var(--font-eyebrow)", fontSize: "clamp(0.7rem, 1vw, 1rem)", letterSpacing: "0.18em", textTransform: "uppercase", lineHeight: 1.5 }}>
-                      {item.label}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
+          <StatsStrip />
 
           {/* ── 3. QUESTIONNAIRE CTA ─────────────────────────────── */}
           <section style={{ background: "#fff", ...PAD }}>

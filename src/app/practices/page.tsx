@@ -4,6 +4,7 @@ import { useState, useRef, useCallback, useEffect } from "react";
 import { createPortal } from "react-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import PageCTA from "@/components/PageCTA";
 import SidePanel, { type PanelItem } from "@/components/SidePanel";
 import { gsap } from "@/lib/gsap";
 import practicesData from "@/data/practices.json";
@@ -14,7 +15,22 @@ interface PracticeItem extends PanelItem {
   slug: string;
 }
 
+const GROUP_ORDER = ["PROBATE", "ESTATE PLANNING", "PERSONAL INJURY"];
+
 const PRACTICES = practicesData as PracticeItem[];
+
+function groupAndSort(items: PracticeItem[]): { label: string; items: PracticeItem[] }[] {
+  const map = new Map<string, PracticeItem[]>();
+  for (const item of items) {
+    const key = item.label ?? "OTHER";
+    const group = map.get(key) ?? [];
+    group.push(item);
+    map.set(key, group);
+  }
+  return GROUP_ORDER
+    .filter((g) => map.has(g))
+    .map((g) => ({ label: g, items: map.get(g)!.slice().sort((a, b) => a.title.localeCompare(b.title)) }));
+}
 
 /* ─── Layout constants ───────────────────────────────────────────── */
 const WRAP: React.CSSProperties = {
@@ -87,59 +103,73 @@ function PracticesList({ onOpen }: { onOpen: (item: PanelItem) => void }) {
     };
   }, []);
 
+  const groups = groupAndSort(PRACTICES);
+
   return (
     <div ref={sectionRef} className="section-stack">
-      {PRACTICES.map((item, i) => (
-        <div key={i}>
-          <div className="divider-line" />
-          <button
-            className="info-row group flex flex-col md:flex-row md:items-center transition-[padding,color] duration-300 hover:pl-3"
+      {groups.map((group) => (
+        <div key={group.label}>
+          <p
+            className="eyebrow"
             style={{
-              width: "100%",
-              padding: "clamp(1.25rem, 2.5vw, 2.5rem) 0",
-              background: "none",
-              border: "none",
-              cursor: "pointer",
-              textAlign: "left",
-              opacity: 0,
+              color: "var(--gold)",
+              fontSize: "clamp(0.55rem, 0.65vw, 0.75rem)",
+              letterSpacing: "0.22em",
+              paddingTop: "clamp(2rem, 3vw, 3.5rem)",
+              paddingBottom: "clamp(0.5rem, 0.75vw, 0.75rem)",
+              borderBottom: "2px solid var(--gold)",
+              marginBottom: 0,
             }}
-            onClick={() => onOpen(item)}
           >
-            <span
-              className="eyebrow font-semibold"
-              style={{ color: "var(--gold)", marginBottom: "0.5rem" }}
-            >
-              {item.label}
-            </span>
-            <div className="min-w-0" style={{ flex: 9 }}>
-              <h3
-                className="transition-colors duration-300 group-hover:text-[var(--gold)]"
-                style={{ color: "var(--navy)", marginBottom: "clamp(0.2rem, 0.3vw, 0.4rem)" }}
+            {group.label}
+          </p>
+          {group.items.map((item, i) => (
+            <div key={i}>
+              <div className="divider-line" />
+              <button
+                className="info-row group flex flex-col md:flex-row md:items-center transition-[padding,color] duration-300 hover:pl-3"
+                style={{
+                  width: "100%",
+                  padding: "clamp(1.25rem, 2.5vw, 2.5rem) 0",
+                  background: "none",
+                  border: "none",
+                  cursor: "pointer",
+                  textAlign: "left",
+                  opacity: 0,
+                }}
+                onClick={() => onOpen(item)}
               >
-                {item.title}
-              </h3>
-              <p className="leading-relaxed md:w-[85%]" style={{ color: "#8899a8" }}>
-                {item.description}
-              </p>
+                <div className="min-w-0" style={{ flex: 9 }}>
+                  <h3
+                    className="transition-colors duration-300 group-hover:text-[var(--gold)]"
+                    style={{ color: "var(--navy)", marginBottom: "clamp(0.2rem, 0.3vw, 0.4rem)" }}
+                  >
+                    {item.title}
+                  </h3>
+                  <p className="leading-relaxed md:w-[85%]" style={{ color: "#8899a8" }}>
+                    {item.description}
+                  </p>
+                </div>
+                <span className="cta-circle hidden md:flex" style={{ marginLeft: "auto" }}>
+                  <svg width="58" height="58" viewBox="0 0 29 29" fill="none">
+                    <path
+                      className="CircleIcon_circle__vewPw"
+                      d="M0.75 14.5a13.75 13.75 0 1 0 27.5 0a13.75 13.75 0 1 0 -27.5 0"
+                    />
+                    <path
+                      className="CircleIcon_circle-overlay__lg7sz"
+                      d="M0.75,14.5A13.75,13.75 0 1 1 28.25,14.5A13.75,13.75 0 1 1 0.75,14.5"
+                    />
+                    <path
+                      className="CircleIcon_icon__n80xg"
+                      d="M12.5 11L16 14.5L12.5 18"
+                      strokeLinecap="round"
+                    />
+                  </svg>
+                </span>
+              </button>
             </div>
-            <span className="cta-circle hidden md:flex" style={{ marginLeft: "auto" }}>
-              <svg width="58" height="58" viewBox="0 0 29 29" fill="none">
-                <path
-                  className="CircleIcon_circle__vewPw"
-                  d="M0.75 14.5a13.75 13.75 0 1 0 27.5 0a13.75 13.75 0 1 0 -27.5 0"
-                />
-                <path
-                  className="CircleIcon_circle-overlay__lg7sz"
-                  d="M0.75,14.5A13.75,13.75 0 1 1 28.25,14.5A13.75,13.75 0 1 1 0.75,14.5"
-                />
-                <path
-                  className="CircleIcon_icon__n80xg"
-                  d="M12.5 11L16 14.5L12.5 18"
-                  strokeLinecap="round"
-                />
-              </svg>
-            </span>
-          </button>
+          ))}
         </div>
       ))}
       <div className="divider-line" />
@@ -279,31 +309,37 @@ export default function PracticesPage() {
           </section>
 
           {/* ── 3. FINAL CTA ─────────────────────────────────────── */}
-          <section style={{ background: "var(--navy)", ...PAD }}>
-            <div style={WRAP}>
-              <div style={{ maxWidth: "56ch" }}>
-                <p className="eyebrow" style={{ color: "var(--gold)", marginBottom: "clamp(0.3rem, 0.5vw, 0.5rem)" }}>
-                  Ready to Get Started
-                </p>
-                <h2 style={{ color: "#ffffff", marginBottom: "clamp(1rem, 1.5vw, 1.5rem)" }}>
-                  Not sure where to start? We can help.
-                </h2>
-                <p style={{ color: "rgba(255,255,255,0.55)", lineHeight: 1.8, marginBottom: "clamp(2rem, 3vw, 3rem)" }}>
-                  Whether you need to navigate the Texas probate process, protect your family with an estate plan, or pursue a personal injury claim — the Law Office of Troy M. Moore is ready to guide you.
-                </p>
-                <a href="tel:2816090303" className="btn-cta-ghost" style={{ textDecoration: "none" }}>
-                  Call (281) 609-0303
-                  <span className="cta-circle">
-                    <svg viewBox="0 0 29 29" fill="none" style={{ width: "1.625em", height: "1.625em" }}>
-                      <path className="CircleIcon_circle__vewPw" d="M0.75 14.5a13.75 13.75 0 1 0 27.5 0a13.75 13.75 0 1 0 -27.5 0" />
-                      <path className="CircleIcon_circle-overlay__lg7sz" d="M0.75,14.5A13.75,13.75 0 1 1 28.25,14.5A13.75,13.75 0 1 1 0.75,14.5" />
-                      <path className="CircleIcon_icon__n80xg" d="M12.5 11L16 14.5L12.5 18" stroke="currentColor" strokeLinecap="round" />
-                    </svg>
-                  </span>
-                </a>
-              </div>
+          <PageCTA
+            eyebrow="Next Steps"
+            heading="Ready to Explore Your Legal Options?"
+            description="Whether you need to navigate the Texas probate process, protect your family with an estate plan, or resolve a will dispute — Troy M. Moore, PLLC can evaluate your situation and guide you toward the right next step."
+          >
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem", alignItems: "center" }}>
+              <a href="tel:2816090303" className="btn-cta" style={{ textDecoration: "none" }}>
+                Call (281) 609-0303
+                <span className="cta-circle">
+                  <svg viewBox="0 0 29 29" fill="none" style={{ width: "1.625em", height: "1.625em" }}>
+                    <path className="CircleIcon_circle__vewPw" d="M0.75 14.5a13.75 13.75 0 1 0 27.5 0a13.75 13.75 0 1 0 -27.5 0" />
+                    <path className="CircleIcon_circle-overlay__lg7sz" d="M0.75,14.5A13.75,13.75 0 1 1 28.25,14.5A13.75,13.75 0 1 1 0.75,14.5" />
+                    <path className="CircleIcon_icon__n80xg" d="M12.5 11L16 14.5L12.5 18" stroke="currentColor" strokeLinecap="round" />
+                  </svg>
+                </span>
+              </a>
+              <a
+                href="/contact"
+                style={{
+                  color: "rgba(255,255,255,0.45)",
+                  fontSize: "clamp(0.72rem, 0.8vw, 0.88rem)",
+                  textDecoration: "none",
+                  fontFamily: "var(--font-eyebrow)",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.18em",
+                }}
+              >
+                Contact Us →
+              </a>
             </div>
-          </section>
+          </PageCTA>
         </main>
 
         <Footer />

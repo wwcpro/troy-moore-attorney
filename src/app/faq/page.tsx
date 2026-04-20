@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   title: "Frequently Asked Questions | Law Office of Troy M. Moore, PLLC",
   description:
     "Answers to common questions about probate, estate planning, and personal injury law in Texas from Houston attorney Troy M. Moore.",
+  alternates: { canonical: "https://troymoorelaw.com/faq" },
 };
 
 export default function FaqPage() {

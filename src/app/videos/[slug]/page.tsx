@@ -4,6 +4,8 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FAQPreview from "@/components/FAQPreview";
 import PageCTA from "@/components/PageCTA";
+import JsonLd from "@/components/JsonLd";
+import { videoObjectSchema } from "@/lib/schemas";
 import videosData from "@/data/videos.json";
 
 const WRAP: React.CSSProperties = {
@@ -26,6 +28,7 @@ export async function generateMetadata({
   return {
     title: `${video.title} | Law Office of Troy M. Moore, PLLC`,
     description: video.description,
+    alternates: { canonical: `https://troymoorelaw.com/videos/${slug}` },
   };
 }
 
@@ -42,6 +45,7 @@ export default async function VideoDetailPage({
 
   return (
     <>
+      <JsonLd data={videoObjectSchema({ title: video.title, description: video.description, youtubeId: video.youtubeId, slug: video.slug })} />
       <style>{`
         .video-embed-wrap {
           position: relative;

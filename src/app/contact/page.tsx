@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "Contact Us | Law Office of Troy M. Moore, PLLC",
   description:
     "Reach the Law Office of Troy M. Moore 24 hours a day, 7 days a week. Two Houston-area locations: Northwest Houston and The Heights.",
+  alternates: { canonical: "https://troymoorelaw.com/contact" },
 };
 
 /* ─── Layout constants ───────────────────────────────────────────── */

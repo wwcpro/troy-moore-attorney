@@ -134,6 +134,7 @@ export async function generateMetadata({
     return {
       title: `${page.title.rendered} | Law Office of Troy M. Moore, PLLC`,
       description: stripHtml(page.excerpt.rendered).slice(0, 160),
+      alternates: { canonical: `https://troymoorelaw.com/practice-areas/${slug}` },
     };
   }
   const geoLocation = (geoLocationsData as GeoLocation[]).find((l) => l.slug === slug);
@@ -141,6 +142,7 @@ export async function generateMetadata({
     return {
       title: `${generateGeoTitle(geoLocation)} | Law Office of Troy M. Moore, PLLC`,
       description: generateGeoDescription(geoLocation),
+      alternates: { canonical: `https://troymoorelaw.com/practice-areas/${slug}` },
     };
   }
   return {};

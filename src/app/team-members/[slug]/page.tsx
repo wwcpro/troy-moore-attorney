@@ -28,6 +28,7 @@ export async function generateMetadata({
   return {
     title: `${member.name} | Law Office of Troy M. Moore, PLLC`,
     description: member.intro,
+    alternates: { canonical: `https://troymoorelaw.com/team-members/${slug}` },
   };
 }
 

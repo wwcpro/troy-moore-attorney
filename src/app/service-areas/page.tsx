@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "Service Areas | Law Office of Troy M. Moore, PLLC",
   description:
     "The Law Office of Troy M. Moore, PLLC serves clients throughout the Houston metro area — probate attorney and estate planning services in Harris, Fort Bend, Montgomery, Brazoria, Galveston, Chambers, and Waller counties.",
+  alternates: { canonical: "https://troymoorelaw.com/service-areas" },
 };
 
 const WRAP: React.CSSProperties = {
