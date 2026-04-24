@@ -29,8 +29,8 @@ const OFFICES = [
   },
   {
     name: "The Heights",
-    address: "408 E 7th Street",
-    suite: "Suite B",
+    address: "190 T.C. Jester",
+    suite: "Suite 100",
     city: "Houston, Texas 77007",
     phone: "+1 (281) 942-6907",
     tel: "12819426907",

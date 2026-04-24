@@ -8,11 +8,11 @@ interface HeroFormProps {
 }
 
 const DEFAULT_OPTIONS = [
+  "Estate Planning",
   "Probate of a Will",
   "Muniment of Title",
-  "Heirship Proceeding — No Will",
-  "Estate Planning",
   "Life Insurance Dispute",
+  "Heirship Proceeding — No Will",
   "Not Sure — I Need Guidance",
 ];
 

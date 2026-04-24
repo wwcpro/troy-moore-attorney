@@ -9,9 +9,9 @@ import heroData from "@/data/hero.json";
 import TestimonialCarousel from "./TestimonialCarousel";
 
 const STATS = [
-  { value: 24, suffix: "+", label: "Years of Experience" },
-  { value: 1700, suffix: "+", label: "Complex Cases Handled" },
-  { value: 3000, suffix: "+", label: "Clients Served" },
+  { value: 25, suffix: "+", label: "Years of Experience" },
+  { value: 2800, suffix: "+", label: "Complex Cases Handled" },
+  { value: 4000, suffix: "+", label: "Clients Served" },
 ];
 
 function StatCounter({ value, suffix, label }: { value: number; suffix: string; label: string }) {

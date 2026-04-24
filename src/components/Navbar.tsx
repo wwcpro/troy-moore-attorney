@@ -60,6 +60,7 @@ export default function Navbar() {
       <style>{`
         @media (max-width: 1023px) {
           #navbar-logo { transform: scale(0.8); transform-origin: left top; }
+          .mobile-hamburger { display: flex !important; }
         }
       `}</style>
       <nav
@@ -165,106 +166,80 @@ export default function Navbar() {
           </a>
         </div>
 
-        {/* Mobile phone number — left of hamburger */}
-        <a
-          href={navData.phone.href}
-          className="lg:hidden nav-link font-semibold"
-          style={{ position: "absolute", right: (scrolled ? 56 : 72) + 20, top: "50%", transform: "translateY(-50%)", color: "var(--navy)", fontSize: "16px" }}
-        >
-          {navData.phone.label}
-        </a>
-
-        {/* Mobile hamburger — full nav-height square flush to right */}
+        {/* Mobile hamburger — flush to right edge */}
         <button
-          className="lg:hidden flex flex-col items-center justify-center gap-[5px]"
-          style={{
-            position: "absolute", right: 0, top: "50%", transform: "translateY(-50%)",
-            width: scrolled ? 56 : 72, height: scrolled ? 56 : 72,
-            backgroundColor: "var(--navy)", borderRadius: 0,
-          }}
+          type="button"
+          aria-label={mobileOpen ? "Close menu" : "Open menu"}
           onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Toggle menu"
+          style={{
+            display: "none",
+            position: "absolute",
+            right: 0,
+            top: 0,
+            bottom: 0,
+            width: scrolled ? 56 : 72,
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: 5,
+            backgroundColor: "var(--navy)",
+            border: "none",
+            cursor: "pointer",
+            zIndex: 60,
+          }}
+          className="mobile-hamburger"
         >
-          <span
-            className="block h-[2px] transition-all duration-300"
-            style={{
-              width: Math.round((scrolled ? 56 : 72) * 0.56), backgroundColor: "#ffffff",
-              transform: mobileOpen ? "translateY(3.5px) rotate(45deg)" : "none",
-            }}
-          />
-          <span
-            className="block h-[2px] transition-all duration-300"
-            style={{
-              width: Math.round((scrolled ? 56 : 72) * 0.56), backgroundColor: "#ffffff",
-              transform: mobileOpen ? "translateY(-3.5px) rotate(-45deg)" : "none",
-            }}
-          />
+          <span style={{ display: "block", width: 22, height: 2, backgroundColor: "#ffffff", transition: "transform 0.3s ease, opacity 0.3s ease", transform: mobileOpen ? "translateY(7px) rotate(45deg)" : "none" }} />
+          <span style={{ display: "block", width: 22, height: 2, backgroundColor: "#ffffff", transition: "opacity 0.3s ease", opacity: mobileOpen ? 0 : 1 }} />
+          <span style={{ display: "block", width: 22, height: 2, backgroundColor: "#ffffff", transition: "transform 0.3s ease, opacity 0.3s ease", transform: mobileOpen ? "translateY(-7px) rotate(-45deg)" : "none" }} />
         </button>
       </nav>
 
-      {/* Mobile overlay — circle mask expands from hamburger center */}
+      {/* Mobile overlay */}
       <AnimatePresence>
-        {mobileOpen && (() => {
-          const hamSize = scrolled ? 56 : 72;
-          const origin = `calc(100% - ${hamSize / 2}px) ${hamSize / 2}px`;
-          return (
-            <motion.div
-              key="mobile-overlay"
-              initial={{ clipPath: `circle(0px at ${origin})` }}
-              animate={{ clipPath: `circle(170vmax at ${origin})`, transition: { duration: 0.65, ease: [0.76, 0, 0.24, 1] } }}
-              exit={{ clipPath: `circle(0px at ${origin})`, transition: { duration: 0.45, ease: [0.76, 0, 0.24, 1] } }}
-              className="fixed inset-0 z-40 flex flex-col justify-center"
-              style={{ backgroundColor: "#ffffff", paddingLeft: "10vw", paddingBottom: "50vh", gap: "1.25rem" }}
-            >
+        {mobileOpen && (
+          <motion.div
+            key="mobile-overlay"
+            initial={{ opacity: 0, y: -12 }}
+            animate={{ opacity: 1, y: 0, transition: { duration: 0.35, ease: [0.25, 0.1, 0.25, 1] } }}
+            exit={{ opacity: 0, y: -12, transition: { duration: 0.25, ease: [0.25, 0.1, 0.25, 1] } }}
+            style={{
+              position: "fixed",
+              top: scrolled ? 56 : 72,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              zIndex: 49,
+              backgroundColor: "#ffffff",
+              overflowY: "auto",
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            {/* Nav links */}
+            <div style={{ flex: 1, padding: "clamp(2rem, 8vw, 3rem) clamp(1.5rem, 8vw, 2.5rem)", display: "flex", flexDirection: "column" }}>
               {/* Primary links */}
-              {navData.leftLinks.map((link, i) => (
-                <motion.div
-                  key={link.href}
-                  initial={{ opacity: 0, x: -28 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.28 + i * 0.1, duration: 0.45, ease: [0.25, 0.1, 0.25, 1] }}
-                >
-                  <Link
-                    href={link.href}
-                    onClick={(e) => { e.preventDefault(); setMobileOpen(false); navigate(link.href); }}
-                    style={{
-                      fontFamily: '"kepler-std", serif',
-                      fontWeight: 300,
-                      fontStyle: "italic",
-                      fontSize: "clamp(1.87rem, 8.5vw, 2.975rem)",
-                      color: "var(--navy)",
-                    }}
-                  >
-                    {link.label}
-                  </Link>
-                </motion.div>
-              ))}
-
-              {/* Divider */}
-              <motion.div
-                initial={{ scaleX: 0, opacity: 0 }}
-                animate={{ scaleX: 1, opacity: 1 }}
-                transition={{ delay: 0.48, duration: 0.35, ease: "easeOut" }}
-                style={{ transformOrigin: "left center", width: "40%", height: 1, backgroundColor: "rgba(11,55,93,0.15)" }}
-              />
-
-              {/* Secondary links */}
-              <div style={{ display: "flex", flexDirection: "column", gap: "0.45rem" }}>
-                {navData.rightLinks.map((link, i) => (
+              <div style={{ display: "flex", flexDirection: "column", gap: "0.25rem", marginBottom: "clamp(1.5rem, 5vw, 2rem)" }}>
+                {navData.leftLinks.map((link, i) => (
                   <motion.div
                     key={link.href}
-                    initial={{ opacity: 0, x: -18 }}
+                    initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.52 + i * 0.07, duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
+                    transition={{ delay: 0.08 + i * 0.08, duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
                   >
                     <Link
                       href={link.href}
                       onClick={(e) => { e.preventDefault(); setMobileOpen(false); navigate(link.href); }}
                       style={{
-                        fontFamily: '"avenir-lt-pro", sans-serif',
-                        fontWeight: 400,
-                        fontSize: "clamp(0.975rem, 4.4vw, 1.55rem)",
+                        display: "block",
+                        fontFamily: '"kepler-std", serif',
+                        fontWeight: 300,
+                        fontStyle: "italic",
+                        fontSize: "clamp(2rem, 9vw, 3rem)",
                         color: "var(--navy)",
+                        lineHeight: 1.2,
+                        paddingTop: "0.5rem",
+                        paddingBottom: "0.5rem",
                       }}
                     >
                       {link.label}
@@ -272,9 +247,88 @@ export default function Navbar() {
                   </motion.div>
                 ))}
               </div>
+
+              {/* Divider */}
+              <motion.div
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ delay: 0.24, duration: 0.3, ease: "easeOut" }}
+                style={{ transformOrigin: "left center", height: 1, backgroundColor: "rgba(11,55,93,0.1)", marginBottom: "clamp(1rem, 4vw, 1.5rem)" }}
+              />
+
+              {/* Secondary links */}
+              <div style={{ display: "flex", flexDirection: "column", gap: "0.1rem", marginBottom: "auto" }}>
+                {navData.rightLinks.map((link, i) => (
+                  <motion.div
+                    key={link.href}
+                    initial={{ opacity: 0, x: -14 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.28 + i * 0.05, duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+                  >
+                    <Link
+                      href={link.href}
+                      onClick={(e) => { e.preventDefault(); setMobileOpen(false); navigate(link.href); }}
+                      style={{
+                        display: "block",
+                        fontFamily: '"avenir-lt-pro", sans-serif',
+                        fontWeight: 400,
+                        fontSize: "clamp(1rem, 4.5vw, 1.4rem)",
+                        color: "rgba(11,55,93,0.65)",
+                        paddingTop: "0.45rem",
+                        paddingBottom: "0.45rem",
+                      }}
+                    >
+                      {link.label}
+                    </Link>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            {/* Bottom CTA strip */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.38, duration: 0.35 }}
+              style={{
+                padding: "1.25rem clamp(1.5rem, 8vw, 2.5rem)",
+                borderTop: "1px solid rgba(11,55,93,0.08)",
+                background: "#f9f9f9",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                gap: "1rem",
+              }}
+            >
+              <a
+                href={navData.phone.href}
+                style={{ color: "var(--navy)", fontFamily: '"avenir-lt-pro", sans-serif', fontWeight: 600, fontSize: "clamp(0.95rem, 4vw, 1.1rem)" }}
+              >
+                {navData.phone.label}
+              </a>
+              <a
+                href={navData.phone.href}
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "0.5rem",
+                  padding: "0.65rem 1.25rem",
+                  backgroundColor: "var(--navy)",
+                  color: "#ffffff",
+                  borderRadius: 100,
+                  fontFamily: '"avenir-lt-pro", sans-serif',
+                  fontWeight: 600,
+                  fontSize: "clamp(0.78rem, 3.2vw, 0.9rem)",
+                  letterSpacing: "0.08em",
+                  textDecoration: "none",
+                  flexShrink: 0,
+                }}
+              >
+                Call Now
+              </a>
             </motion.div>
-          );
-        })()}
+          </motion.div>
+        )}
       </AnimatePresence>
     </>
   );

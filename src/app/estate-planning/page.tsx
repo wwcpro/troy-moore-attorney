@@ -269,6 +269,91 @@ function NavyBtn({ label, href }: { label: string; href?: string }) {
   );
 }
 
+/* ─── FAQ data ──────────────────────────────────────────────────── */
+const EP_FAQS = [
+  {
+    label: "GETTING STARTED",
+    question: "Estate planning? Probate? Powers of attorney? How am I going to make sense of everything I need to know?",
+    answer: "Estate planning can feel overwhelming, but it doesn't have to be. When you work with Troy M. Moore, he will walk you through every tool available and explain — in plain English — how each one applies to your situation. That includes how to protect retirement accounts and brokerage assets, how to plan for business succession if you own a closely held business, how to handle real property and Texas deed requirements, how to select the right executor or trustee, and how to structure your plan so your family avoids disputes during the probate process. Troy has decades of experience guiding Houston families through these decisions, and he provides the personal attention you need to feel confident about every choice you make.",
+  },
+  {
+    label: "WHY AVOID PROBATE",
+    question: "Why is it important to avoid probate as part of the estate planning process?",
+    answer: "Texas probate law is complex. Administering a probate estate — whether dependent or independent administration — requires court filings, statutory waiting periods, and ongoing legal involvement that can stretch the process out for months. The costs are real: attorney fees, court filing fees, and executor compensation can add up to several thousand dollars. Probate is also a public process, which means your assets, debts, and beneficiaries become part of the public court record. Beyond cost and privacy, the complexity of probate creates fertile ground for estate litigation — disputes among beneficiaries that can delay distribution and damage family relationships. All of these are strong reasons to use estate planning tools that allow your family to transfer assets outside of probate entirely.",
+  },
+  {
+    label: "HARRIS COUNTY",
+    question: "How can I make sure I provide clear guidance to my family in Harris County?",
+    answer: "Clear guidance for your family starts with a properly drafted, up-to-date estate plan executed by an attorney who knows Texas law. Whether you live in Harris County, Montgomery County, Fort Bend County, or anywhere else in the greater Houston area, the key is working with a lawyer who has spent years focused specifically on Texas estate planning and probate. Troy M. Moore has done exactly that — he understands how Harris County probate court operates, what local judges look for, and how to structure a plan that leaves no room for ambiguity when your family needs it most. A well-crafted plan tells your loved ones exactly what to do and who is in charge, so they are not left guessing during an already difficult time.",
+  },
+  {
+    label: "WHY TROY MOORE",
+    question: "Why should I choose The Law Office of Troy M. Moore, PLLC to prepare my estate plan in Houston, TX?",
+    answer: "Troy M. Moore has devoted his entire legal career to helping Texas individuals and families with estate planning and probate matters. A graduate of the South Texas College of Law and a long-time member of the Texas Bar Association, he has been practicing in Houston for over 25 years — accumulating the kind of practical knowledge that only comes from handling thousands of real cases, not just textbook scenarios. Every client at Troy M. Moore, PLLC works directly with the attorney — not a paralegal or a junior associate. Plans are drafted to your specific situation, reviewed for internal consistency, and explained thoroughly before you sign anything. Troy charges flat fees so you always know the cost upfront, with no hourly billing surprises.",
+  },
+  {
+    label: "PROBATE REPRESENTATION",
+    question: "Can you represent me if I need a probate attorney in the Houston area?",
+    answer: "Yes. The Law Office of Troy M. Moore, PLLC focuses exclusively on estate planning, estate administration, and probate law in the Houston area. Troy represents surviving spouses, adult children, executors, administrators, guardians of minor children, and other interested parties in all probate-related matters — from straightforward independent administrations to contested will disputes and heirship proceedings. If you need help navigating the Texas probate process — whether your loved one left a will or died without one — contact our office to schedule an initial consultation and discuss your options.",
+  },
+];
+
+function EPFaqSection() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!sectionRef.current) return;
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        sectionRef.current!.querySelectorAll(".ep-faq-row"),
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.55, stagger: 0.09, ease: "power2.out", scrollTrigger: { trigger: sectionRef.current, start: "top 75%", once: true } }
+      );
+    }, sectionRef);
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <div ref={sectionRef}>
+      {EP_FAQS.map((item, i) => {
+        const isOpen = openIndex === i;
+        return (
+          <div key={i} className="ep-faq-row" style={{ opacity: 0 }}>
+            <div style={{ height: 1, background: "rgba(11,55,93,0.1)", transformOrigin: "left center" }} />
+            <button
+              onClick={() => setOpenIndex(isOpen ? null : i)}
+              style={{ width: "100%", background: "none", border: "none", cursor: "pointer", textAlign: "left", padding: "clamp(1.25rem, 2vw, 2rem) 0", display: "flex", alignItems: "flex-start", gap: "1.5rem" }}
+            >
+              <span className="eyebrow" style={{ color: "var(--gold)", flexShrink: 0, paddingTop: "0.15rem", minWidth: "10ch" }}>{item.label}</span>
+              <div style={{ flex: 1 }}>
+                <h3 style={{ color: "var(--navy)", fontWeight: 500, fontSize: "clamp(0.95rem, 1.1vw, 1.25rem)", margin: 0, lineHeight: 1.4 }}>
+                  {item.question}
+                </h3>
+                <div
+                  style={{
+                    overflow: "hidden",
+                    maxHeight: isOpen ? 600 : 0,
+                    opacity: isOpen ? 1 : 0,
+                    transition: "max-height 0.4s ease, opacity 0.35s ease",
+                    marginTop: isOpen ? "clamp(0.75rem, 1vw, 1rem)" : 0,
+                  }}
+                >
+                  <p style={{ color: "#6a7a8a", lineHeight: 1.85, fontSize: "clamp(0.85rem, 0.9vw, 1rem)", margin: 0 }}>
+                    {item.answer}
+                  </p>
+                </div>
+              </div>
+              <span style={{ flexShrink: 0, color: "var(--navy)", fontSize: "1.5rem", lineHeight: 1, paddingTop: "0.1rem", transition: "transform 0.3s ease", transform: isOpen ? "rotate(45deg)" : "rotate(0deg)" }}>+</span>
+            </button>
+          </div>
+        );
+      })}
+      <div style={{ height: 1, background: "rgba(11,55,93,0.1)" }} />
+    </div>
+  );
+}
+
 /* ─── Hero form ─────────────────────────────────────────────────── */
 const EP_HELP_OPTIONS = [
   "Last Will & Testament",
@@ -334,7 +419,7 @@ function HeroForm() {
       className="ep-hero-form"
       style={{ background: "#fff", borderRadius: "8px", padding: "clamp(1.5rem, 2.2vw, 2.5rem)", boxShadow: "0 24px 60px rgba(0,0,0,0.28)", opacity: 0 }}
     >
-      <p className="eyebrow" style={{ color: "var(--gold)", marginBottom: "0.3rem" }}>Free Consultation</p>
+      <p className="eyebrow" style={{ color: "var(--gold)", marginBottom: "0.3rem" }}>Initial Consultation</p>
       <h3 style={{ color: "var(--navy)", marginBottom: "0.3rem", lineHeight: 1.25 }}>Tell Us About Your Goals</h3>
       <p style={{ color: "#7a8a9a", fontSize: "clamp(0.74rem, 0.78vw, 0.84rem)", marginBottom: "clamp(1rem, 1.4vw, 1.4rem)", lineHeight: 1.55 }}>
         Confidential &middot; No Obligation &middot; Response within 24 hours
@@ -1060,7 +1145,22 @@ export default function EstatePlanningPage() {
             </div>
           </section>
 
-          {/* ── 7. FINAL CTA ─────────────────────────────────────── */}
+          {/* ── 7. FAQ ───────────────────────────────────────────── */}
+          <section style={{ background: "#f9f9f9", ...PAD }}>
+            <div style={WRAP}>
+              <div style={{ marginBottom: "clamp(2rem, 3vw, 3.5rem)" }}>
+                <p className="eyebrow" style={{ color: "var(--gold)", marginBottom: "clamp(0.3rem, 0.5vw, 0.5rem)" }}>
+                  Common Questions
+                </p>
+                <h2 style={{ color: "var(--navy)" }}>
+                  Estate Planning — Frequently Asked Questions
+                </h2>
+              </div>
+              <EPFaqSection />
+            </div>
+          </section>
+
+          {/* ── 8. FINAL CTA ─────────────────────────────────────── */}
           <PageCTA
             eyebrow="Ready to Get Started"
             heading={<>Protect your family.<br />Start today.</>}
