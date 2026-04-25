@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const SERVICE_OPTIONS = [
@@ -16,6 +16,8 @@ type FormState = 'button' | 'form' | 'success';
 
 const easing = [0.25, 0.1, 0.25, 1] as [number, number, number, number];
 
+export const OPEN_TALK_TO_TROY = 'open-talk-to-troy';
+
 export default function FixedCTA({ show }: { show: boolean }) {
   const [state, setState] = useState<FormState>('button');
   const [name, setName] = useState('');
@@ -24,6 +26,12 @@ export default function FixedCTA({ show }: { show: boolean }) {
   const [selected, setSelected] = useState<string[]>([]);
   const [smsConsent, setSmsConsent] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    const handler = () => setState('form');
+    window.addEventListener(OPEN_TALK_TO_TROY, handler);
+    return () => window.removeEventListener(OPEN_TALK_TO_TROY, handler);
+  }, []);
 
   const toggleService = (id: string) => {
     setSelected((prev) => prev.includes(id) ? prev.filter((s) => s !== id) : [...prev, id]);

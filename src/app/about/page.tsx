@@ -8,6 +8,11 @@ import SidePanel, { type PanelItem } from "@/components/SidePanel";
 import PageCTA from "@/components/PageCTA";
 import { gsap } from "@/lib/gsap";
 
+const openTalkToTroy = (e: React.MouseEvent) => {
+  e.preventDefault();
+  window.dispatchEvent(new CustomEvent("open-talk-to-troy"));
+};
+
 /* ─── Layout constants ───────────────────────────────────────────── */
 const PAD: React.CSSProperties = {
   paddingTop: "clamp(4rem, 6vw, 7rem)",
@@ -351,7 +356,7 @@ export default function AboutPage() {
                 ))}
               </div>
 
-              <a href="tel:2816090303" className="btn-cta-ghost" style={{ textDecoration: "none" }}>
+              <a href="#" onClick={openTalkToTroy} className="btn-cta-ghost" style={{ textDecoration: "none" }}>
                 Schedule a Consultation
                 <CircleSVG />
               </a>

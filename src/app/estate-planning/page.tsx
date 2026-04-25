@@ -371,6 +371,7 @@ function HeroForm() {
   const [helpWith, setHelpWith] = useState<string[]>([]);
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [smsConsent, setSmsConsent] = useState(false);
 
   useEffect(() => {
     gsap.fromTo(
@@ -481,15 +482,34 @@ function HeroForm() {
           style={{ resize: "none" }}
         />
 
+        <label style={{ display: "flex", alignItems: "flex-start", gap: "0.6rem", cursor: "pointer" }}>
+          <input
+            type="checkbox"
+            checked={smsConsent}
+            onChange={(e) => setSmsConsent(e.target.checked)}
+            required
+            style={{ marginTop: 3, flexShrink: 0, accentColor: "var(--navy)", width: 15, height: 15 }}
+          />
+          <span style={{ color: "#6a7a8a", fontSize: "clamp(0.6rem, 0.62vw, 0.68rem)", lineHeight: 1.55 }}>
+            By checking this box, I consent to receive text messages from the Law Office of Troy M. Moore regarding my inquiry. Message frequency may vary. Message and data rates may apply.{" "}
+            <strong style={{ color: "rgba(11,55,93,0.7)" }}>Reply STOP to opt out.</strong>{" "}
+            This consent is not required to obtain legal services.
+          </span>
+        </label>
+
         <button
           type="submit"
-          disabled={submitting}
+          disabled={submitting || !smsConsent}
           className="btn-cta"
-          style={{ justifyContent: "space-between", opacity: submitting ? 0.7 : 1 }}
+          style={{ justifyContent: "space-between", opacity: (submitting || !smsConsent) ? 0.5 : 1, cursor: (submitting || !smsConsent) ? "not-allowed" : "pointer" }}
         >
           {submitting ? "Sending…" : "Get a Consultation"}
           {!submitting && <CircleSVG />}
         </button>
+
+        <p style={{ color: "#a0adb8", fontSize: "clamp(0.6rem, 0.62vw, 0.66rem)", lineHeight: 1.65, textAlign: "center", margin: 0 }}>
+          Confidential. No attorney-client relationship is created by submitting this form.
+        </p>
       </form>
     </div>
   );

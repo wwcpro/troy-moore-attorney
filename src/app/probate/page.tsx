@@ -746,9 +746,15 @@ function CircleSVG() {
 }
 
 /* ─── Small reusable button components ──────────────────────────── */
+const openTalkToTroy = (e: React.MouseEvent) => {
+  e.preventDefault();
+  window.dispatchEvent(new CustomEvent("open-talk-to-troy"));
+};
+
 function PrimaryBtn({ label, mobileLabel, href }: { label: string; mobileLabel?: string; href?: string }) {
+  const isForm = !href || href === "#consult";
   return (
-    <a href={href ?? "#consult"} className="btn-cta" style={{ textDecoration: "none" }}>
+    <a href={isForm ? "#" : href} onClick={isForm ? openTalkToTroy : undefined} className="btn-cta" style={{ textDecoration: "none" }}>
       {mobileLabel ? (
         <>
           <span className="btn-label-full">{label}</span>
@@ -761,8 +767,9 @@ function PrimaryBtn({ label, mobileLabel, href }: { label: string; mobileLabel?:
 }
 
 function GhostBtn({ label, mobileLabel, href }: { label: string; mobileLabel?: string; href?: string }) {
+  const isForm = !href || href === "#consult";
   return (
-    <a href={href ?? "#consult"} className="btn-cta-ghost" style={{ textDecoration: "none" }}>
+    <a href={isForm ? "#" : href} onClick={isForm ? openTalkToTroy : undefined} className="btn-cta-ghost" style={{ textDecoration: "none" }}>
       {mobileLabel ? <><span className="btn-label-full">{label}</span><span className="btn-label-short">{mobileLabel}</span></> : label}
       <CircleSVG />
     </a>
@@ -770,8 +777,9 @@ function GhostBtn({ label, mobileLabel, href }: { label: string; mobileLabel?: s
 }
 
 function NavyBtn({ label, mobileLabel, href }: { label: string; mobileLabel?: string; href?: string }) {
+  const isForm = !href || href === "#consult";
   return (
-    <a href={href ?? "#consult"} className="btn-cta" style={{ textDecoration: "none" }}>
+    <a href={isForm ? "#" : href} onClick={isForm ? openTalkToTroy : undefined} className="btn-cta" style={{ textDecoration: "none" }}>
       {mobileLabel ? <><span className="btn-label-full">{label}</span><span className="btn-label-short">{mobileLabel}</span></> : label}
       <CircleSVG />
     </a>
@@ -794,6 +802,7 @@ function HeroForm() {
   const [helpWith, setHelpWith] = useState<string[]>([]);
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [smsConsent, setSmsConsent] = useState(false);
 
   useEffect(() => {
     gsap.fromTo(
@@ -895,11 +904,26 @@ function HeroForm() {
           value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })}
         />
 
+        <label style={{ display: "flex", alignItems: "flex-start", gap: "0.6rem", cursor: "pointer" }}>
+          <input
+            type="checkbox"
+            checked={smsConsent}
+            onChange={(e) => setSmsConsent(e.target.checked)}
+            required
+            style={{ marginTop: 3, flexShrink: 0, accentColor: "var(--navy)", width: 15, height: 15 }}
+          />
+          <span style={{ color: "#6a7a8a", fontSize: "clamp(0.6rem, 0.62vw, 0.68rem)", lineHeight: 1.55 }}>
+            By checking this box, I consent to receive text messages from the Law Office of Troy M. Moore regarding my inquiry. Message frequency may vary. Message and data rates may apply.{" "}
+            <strong style={{ color: "rgba(11,55,93,0.7)" }}>Reply STOP to opt out.</strong>{" "}
+            This consent is not required to obtain legal services.
+          </span>
+        </label>
+
         <button
           type="submit"
-          disabled={submitting}
+          disabled={submitting || !smsConsent}
           className="btn-cta"
-          style={{ justifyContent: "space-between", width: "100%", marginTop: "0.2rem", opacity: submitting ? 0.7 : 1 }}
+          style={{ justifyContent: "space-between", width: "100%", marginTop: "0.2rem", opacity: (submitting || !smsConsent) ? 0.5 : 1, cursor: (submitting || !smsConsent) ? "not-allowed" : "pointer" }}
         >
           {submitting ? "Sending…" : "Review My Case"}
           {!submitting && <CircleSVG />}
@@ -907,7 +931,6 @@ function HeroForm() {
 
         <p style={{ color: "#a0adb8", fontSize: "clamp(0.6rem, 0.62vw, 0.66rem)", lineHeight: 1.65, textAlign: "center", margin: 0 }}>
           Confidential. No attorney-client relationship is created by submitting this form.
-          By providing your phone number you consent to receive SMS updates from our office.
         </p>
       </form>
     </div>
@@ -1318,7 +1341,7 @@ export default function ProbatePage() {
                     <strong>Not sure which path applies?</strong> The right legal process depends on the
                     will, the assets, the heirs, and the circumstances. An early consultation can identify
                     the correct option before time and expense increase unnecessarily.{" "}
-                    <a href="#consult" style={{ color: "var(--navy)", textDecoration: "none", borderBottom: "1px solid var(--gold)" }}>
+                    <a href="#" onClick={openTalkToTroy} style={{ color: "var(--navy)", textDecoration: "none", borderBottom: "1px solid var(--gold)", cursor: "pointer" }}>
                       Get Help Determining the Right Probate Option →
                     </a>
                   </p>
