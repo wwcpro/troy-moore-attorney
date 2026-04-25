@@ -1051,6 +1051,7 @@ export default function ProbatePage() {
           .probate-trust-grid { grid-template-columns: 1fr; }
           .probate-cred-grid { grid-template-columns: 1fr; }
           .probate-options-grid { grid-template-columns: 1fr; }
+          .probate-hero-start { display: none; }
           /* Tighter horizontal padding for hero copy on small screens */
           .probate-hero-grid {
             padding-left: 6vw;
@@ -1195,7 +1196,7 @@ export default function ProbatePage() {
                   </p>
                 </ScrollReveal>
                 <ScrollReveal delay={0.22}>
-                  <div style={{ display: "flex", flexWrap: "wrap", gap: "clamp(0.75rem, 1.2vw, 1rem)" }}>
+                  <div className="probate-hero-start" style={{ display: "flex", flexWrap: "wrap", gap: "clamp(0.75rem, 1.2vw, 1rem)" }}>
                     <GhostBtn label="Start Here" href="#start-here" />
                   </div>
                 </ScrollReveal>

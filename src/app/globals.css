@@ -70,7 +70,7 @@ p, a, span, li, label, input, textarea, button {
 
 /* ─── Mobile typography (default / screens ≤ 1000px) ─── */
 h1 { font-size: clamp(2.2rem, 8vw, 3rem); line-height: 1.15; }
-h2 { font-size: clamp(1.4rem, 4.5vw, 2rem); line-height: 1.1; }
+h2 { font-size: clamp(1.75rem, 5.5vw, 2.2rem); line-height: 1.1; }
 h3 { font-size: clamp(1.35rem, 5vw, 1.75rem); line-height: 1.2; }
 .eyebrow { font-size: clamp(0.72rem, 2.5vw, 0.85rem); letter-spacing: 0.25em; }
 body, p, a, span, li { font-size: clamp(0.88rem, 2.5vw, 1rem); line-height: 1.7; }
