@@ -31,7 +31,7 @@ interface WPPost {
   };
 }
 
-/* ─── Category map ───────────────────────────────────────────────── */
+/* ─── Category map (display names, keyed by WP category ID) ─────── */
 const CATEGORIES: Record<number, string> = {
   32: "Auto Accident",
   29: "Beneficiary Litigation",
@@ -92,6 +92,19 @@ async function getPost(slug: string): Promise<WPPost | null> {
   }
 }
 
+async function getRelatedPosts(categoryId: number, excludeId: number): Promise<WPPost[]> {
+  try {
+    const res = await fetch(
+      `https://troymmoore.com/wp-json/wp/v2/posts?categories=${categoryId}&exclude=${excludeId}&per_page=4&_embed=wp:featuredmedia&_fields=id,slug,title,excerpt,date,categories,_embedded,_links`,
+      { next: { revalidate: 3600 }, headers: WP_HEADERS }
+    );
+    if (!res.ok) return [];
+    return res.json();
+  } catch {
+    return [];
+  }
+}
+
 /* ─── Static params ──────────────────────────────────────────────── */
 export async function generateStaticParams() {
   const slugs = await getAllSlugs();
@@ -107,10 +120,18 @@ export async function generateMetadata({
   const { slug } = await params;
   const post = await getPost(slug);
   if (!post) return {};
+  const category = CATEGORIES[post.categories?.[0]];
   return {
     title: `${post.title.rendered} | Law Office of Troy M. Moore, PLLC`,
     description: stripHtml(post.excerpt.rendered),
     alternates: { canonical: `https://troymoorelaw.com/blog/${slug}` },
+    openGraph: {
+      title: post.title.rendered,
+      description: stripHtml(post.excerpt.rendered).slice(0, 160),
+      url: `https://troymoorelaw.com/blog/${slug}`,
+      type: "article",
+      ...(category && { tags: [category] }),
+    },
   };
 }
 
@@ -125,7 +146,12 @@ export default async function BlogPostPage({
   if (!post) notFound();
 
   const img = post._embedded?.["wp:featuredmedia"]?.[0];
-  const category = CATEGORIES[post.categories?.[0]] ?? null;
+  const primaryCategoryId = post.categories?.[0];
+  const category = CATEGORIES[primaryCategoryId] ?? null;
+
+  const related = primaryCategoryId
+    ? await getRelatedPosts(primaryCategoryId, post.id)
+    : [];
 
   return (
     <>
@@ -139,10 +165,10 @@ export default async function BlogPostPage({
       <JsonLd data={breadcrumbSchema([
         { name: "Home", url: "/" },
         { name: "Blog", url: "/blog" },
+        ...(category ? [{ name: category, url: `/blog?category=${primaryCategoryId}` }] : []),
         { name: post.title.rendered, url: `/blog/${post.slug}` },
       ])} />
       <style>{`
-        /* ── Hero overlay ── */
         .blog-hero-overlay {
           position: absolute; inset: 0;
           background: linear-gradient(
@@ -153,16 +179,12 @@ export default async function BlogPostPage({
           );
         }
 
-        /* ── Prose content ── */
         .blog-prose {
           color: #4a5a6a;
           line-height: 1.85;
           font-size: clamp(0.95rem, 1.05vw, 1.1rem);
-          max-width: 72ch;
         }
-        .blog-prose p {
-          margin-bottom: 1.5rem;
-        }
+        .blog-prose p { margin-bottom: 1.5rem; }
         .blog-prose h2 {
           color: var(--navy);
           font-size: clamp(1.2rem, 1.6vw, 1.75rem);
@@ -183,21 +205,14 @@ export default async function BlogPostPage({
           margin-bottom: 1.5rem;
           padding-left: 1.5rem;
         }
-        .blog-prose li {
-          margin-bottom: 0.5rem;
-        }
+        .blog-prose li { margin-bottom: 0.5rem; }
         .blog-prose a {
           color: var(--gold);
           text-decoration: underline;
           text-underline-offset: 3px;
         }
-        .blog-prose a:hover {
-          color: var(--navy);
-        }
-        .blog-prose strong {
-          color: var(--navy);
-          font-weight: 600;
-        }
+        .blog-prose a:hover { color: var(--navy); }
+        .blog-prose strong { color: var(--navy); font-weight: 600; }
         .blog-prose blockquote {
           border-left: 3px solid var(--gold);
           padding-left: 1.5rem;
@@ -205,9 +220,54 @@ export default async function BlogPostPage({
           font-style: italic;
           color: #6a7a8a;
         }
-        /* Strip WP block classes' default spacing */
         .blog-prose .wp-block-heading { margin-top: 2.5rem; }
         .blog-prose .wp-block-list { padding-left: 1.5rem; }
+
+        /* ── Sidebar ── */
+        .blog-layout {
+          display: grid;
+          grid-template-columns: 1fr 300px;
+          gap: clamp(2.5rem, 4vw, 5rem);
+          align-items: start;
+        }
+        @media (max-width: 900px) {
+          .blog-layout { grid-template-columns: 1fr; }
+        }
+
+        .related-card {
+          display: flex;
+          gap: 0.875rem;
+          align-items: flex-start;
+          text-decoration: none;
+          padding: 0.875rem 0;
+          border-bottom: 1px solid #e5e7eb;
+          transition: opacity 0.2s ease;
+        }
+        .related-card:last-child { border-bottom: none; }
+        .related-card:hover { opacity: 0.75; }
+
+        .related-thumb {
+          width: 72px;
+          flex-shrink: 0;
+          aspect-ratio: 16/9;
+          border-radius: 4px;
+          overflow: hidden;
+          background: var(--navy);
+        }
+        .related-thumb img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+        }
+        .related-thumb-placeholder {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          opacity: 0.35;
+        }
       `}</style>
 
       <Navbar />
@@ -254,7 +314,7 @@ export default async function BlogPostPage({
           </section>
         )}
 
-        {/* ── CONTENT ──────────────────────────────────────────── */}
+        {/* ── CONTENT + SIDEBAR ────────────────────────────────── */}
         <section
           style={{
             background: "#ffffff",
@@ -263,10 +323,146 @@ export default async function BlogPostPage({
           }}
         >
           <div style={WRAP}>
-            <div
-              className="blog-prose"
-              dangerouslySetInnerHTML={{ __html: post.content.rendered }}
-            />
+            <div className="blog-layout">
+              {/* ── Main prose ── */}
+              <div
+                className="blog-prose"
+                dangerouslySetInnerHTML={{ __html: post.content.rendered }}
+              />
+
+              {/* ── Sidebar ── */}
+              <aside style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
+
+                {/* Related Articles */}
+                {related.length > 0 && (
+                  <div
+                    style={{
+                      background: "var(--light-gray)",
+                      borderRadius: 8,
+                      padding: "clamp(1.25rem, 2vw, 1.75rem)",
+                      border: "1px solid #e5e7eb",
+                    }}
+                  >
+                    <p
+                      className="eyebrow"
+                      style={{
+                        color: "var(--gold)",
+                        fontSize: "clamp(0.58rem, 0.66vw, 0.72rem)",
+                        marginBottom: "1rem",
+                      }}
+                    >
+                      {category ? `More on ${category}` : "Related Articles"}
+                    </p>
+                    <div>
+                      {related.map((r) => {
+                        const rImg = r._embedded?.["wp:featuredmedia"]?.[0];
+                        return (
+                          <a key={r.id} href={`/blog/${r.slug}`} className="related-card">
+                            <div className="related-thumb">
+                              {rImg ? (
+                                /* eslint-disable-next-line @next/next/no-img-element */
+                                <img src={rImg.source_url} alt={rImg.alt_text || r.title.rendered} />
+                              ) : (
+                                <div className="related-thumb-placeholder">
+                                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5">
+                                    <rect x="3" y="3" width="18" height="18" rx="2" />
+                                    <circle cx="8.5" cy="8.5" r="1.5" />
+                                    <path d="M21 15l-5-5L5 21" />
+                                  </svg>
+                                </div>
+                              )}
+                            </div>
+                            <div>
+                              <p
+                                style={{
+                                  color: "var(--navy)",
+                                  fontFamily: "var(--font-heading)",
+                                  fontSize: "clamp(0.78rem, 0.88vw, 0.94rem)",
+                                  fontWeight: 600,
+                                  lineHeight: 1.35,
+                                  marginBottom: "0.3rem",
+                                }}
+                              >
+                                {r.title.rendered}
+                              </p>
+                              <p
+                                style={{
+                                  color: "#9aabb8",
+                                  fontSize: "0.7rem",
+                                  fontFamily: "var(--font-eyebrow)",
+                                }}
+                              >
+                                {formatDate(r.date)}
+                              </p>
+                            </div>
+                          </a>
+                        );
+                      })}
+                    </div>
+                    <a
+                      href="/blog"
+                      style={{
+                        display: "inline-block",
+                        marginTop: "1.25rem",
+                        color: "var(--gold)",
+                        fontFamily: "var(--font-eyebrow)",
+                        fontSize: "0.65rem",
+                        textTransform: "uppercase",
+                        letterSpacing: "0.16em",
+                        textDecoration: "none",
+                      }}
+                    >
+                      All Articles →
+                    </a>
+                  </div>
+                )}
+
+                {/* Consultation CTA */}
+                <div
+                  style={{
+                    background: "var(--navy)",
+                    borderRadius: 8,
+                    padding: "clamp(1.25rem, 2vw, 1.75rem)",
+                  }}
+                >
+                  <p
+                    className="eyebrow"
+                    style={{
+                      color: "var(--gold)",
+                      fontSize: "clamp(0.58rem, 0.66vw, 0.72rem)",
+                      marginBottom: "0.75rem",
+                    }}
+                  >
+                    Ready to Get Started?
+                  </p>
+                  <p
+                    style={{
+                      color: "rgba(255,255,255,0.75)",
+                      fontSize: "clamp(0.82rem, 0.92vw, 0.98rem)",
+                      lineHeight: 1.7,
+                      marginBottom: "1.25rem",
+                    }}
+                  >
+                    Contact the Law Office of Troy M. Moore for a consultation — serving Houston, Cypress, The Woodlands, and all of Texas.
+                  </p>
+                  <a
+                    href="tel:2816090303"
+                    className="btn-cta"
+                    style={{ textDecoration: "none", display: "inline-flex", fontSize: "clamp(0.72rem, 0.8vw, 0.88rem)" }}
+                  >
+                    Call (281) 609-0303
+                    <span className="cta-circle">
+                      <svg viewBox="0 0 29 29" fill="none" style={{ width: "1.625em", height: "1.625em" }}>
+                        <path className="CircleIcon_circle__vewPw" d="M0.75 14.5a13.75 13.75 0 1 0 27.5 0a13.75 13.75 0 1 0 -27.5 0" />
+                        <path className="CircleIcon_circle-overlay__lg7sz" d="M0.75,14.5A13.75,13.75 0 1 1 28.25,14.5A13.75,13.75 0 1 1 0.75,14.5" />
+                        <path className="CircleIcon_icon__n80xg" d="M12.5 11L16 14.5L12.5 18" stroke="currentColor" strokeLinecap="round" />
+                      </svg>
+                    </span>
+                  </a>
+                </div>
+
+              </aside>
+            </div>
           </div>
         </section>
 

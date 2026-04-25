@@ -47,6 +47,13 @@ export interface HomepagePost {
   sort_order: number;
 }
 
+export interface Category {
+  id: number;
+  name: string;
+  slug: string;
+  post_count: number;
+}
+
 export interface FeaturedArticle {
   id: number;
   eyebrow: string;

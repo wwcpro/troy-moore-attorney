@@ -33,7 +33,7 @@ interface WPPost {
   };
 }
 
-/* ─── Category map ───────────────────────────────────────────────── */
+/* ─── Category map (display names, keyed by WP category ID) ─────── */
 const CATEGORIES: Record<number, string> = {
   32: "Auto Accident",
   29: "Beneficiary Litigation",
