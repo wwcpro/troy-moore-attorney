@@ -23,8 +23,13 @@ export const metadata: Metadata = {
 };
 
 export default async function FaqPage() {
-  const { data } = await supabase.from("faq").select("*").order("sort_order").catch(() => ({ data: null }));
-  const faqData: FaqItem[] = (data && data.length > 0) ? data : (faqFallback as FaqItem[]);
+  let faqData: FaqItem[] = faqFallback as FaqItem[];
+  try {
+    const { data } = await supabase.from("faq").select("*").order("sort_order");
+    if (data && data.length > 0) faqData = data;
+  } catch {
+    // fall back to local JSON
+  }
 
   return (
     <>
