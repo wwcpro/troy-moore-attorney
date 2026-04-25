@@ -6,6 +6,7 @@ import JsonLd from "@/components/JsonLd";
 import { faqSchema, breadcrumbSchema, speakableSchema } from "@/lib/schemas";
 import { supabase } from "@/lib/supabase";
 import type { FaqItem } from "@/lib/supabase";
+import faqFallback from "@/data/faq.json";
 
 export const revalidate = 3600;
 
@@ -22,8 +23,8 @@ export const metadata: Metadata = {
 };
 
 export default async function FaqPage() {
-  const { data } = await supabase.from("faq").select("*").order("sort_order");
-  const faqData: FaqItem[] = data ?? [];
+  const { data } = await supabase.from("faq").select("*").order("sort_order").catch(() => ({ data: null }));
+  const faqData: FaqItem[] = (data && data.length > 0) ? data : (faqFallback as FaqItem[]);
 
   return (
     <>

@@ -1,10 +1,12 @@
 import { createClient } from "@supabase/supabase-js";
 
-const url = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+const url = process.env.NEXT_PUBLIC_SUPABASE_URL ?? "";
+const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? "";
 
 // Single shared client — safe to import from server components and API routes
-export const supabase = createClient(url, key);
+// url/key fall back to empty strings so the module loads even if env vars are
+// missing (queries will fail gracefully rather than crashing the build).
+export const supabase = createClient(url || "https://placeholder.supabase.co", key || "placeholder");
 
 // ── Types ──────────────────────────────────────────────────────────────────
 
