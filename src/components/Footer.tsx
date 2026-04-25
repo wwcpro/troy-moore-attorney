@@ -115,7 +115,7 @@ export default function Footer() {
           }
           @media (max-width: 600px) {
             .footer-nav-label { white-space: normal; font-size: clamp(1.2rem, 5vw, 1.8rem); }
-            .footer-nav-desc  { white-space: normal; }
+            .footer-nav-desc  { display: none; }
           }
         `}</style>
         <div style={{ display: "flex", flexDirection: "row" }}>
