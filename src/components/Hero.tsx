@@ -146,7 +146,10 @@ export default function Hero({ loaderDone }: { loaderDone: boolean }) {
         <div id="hero-inner" className="mx-auto flex flex-col lg:flex-row items-stretch" style={{ paddingLeft: "5vw", paddingRight: "5vw", minWidth: 0 }}>
           {/* Left: Hero Image */}
           <div id="hero-img-wrap" ref={imageRef} className="lg:w-[48%] relative flex items-end justify-center" style={{ paddingLeft: "2vw", paddingRight: "2vw" }}>
-            <Image src={heroData.heroImage} alt="Troy M. Moore" width={540} height={720} className="w-full h-auto object-cover object-top" priority sizes="(max-width: 1023px) 100vw, 48vw" />
+            {/* Desktop image */}
+            <Image src={heroData.heroImage} alt="Troy M. Moore" width={540} height={720} className="w-full h-auto object-cover object-top hidden lg:block" priority sizes="48vw" />
+            {/* Mobile image */}
+            <Image src="/assets/troy-hero-crop.png" alt="Troy M. Moore" width={1226} height={1485} className="w-full h-full object-cover object-top block lg:hidden" priority sizes="100vw" />
           </div>
 
           {/* Blue bar — mobile only */}
