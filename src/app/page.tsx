@@ -80,48 +80,7 @@ export default function Home() {
       {/* Close button and SidePanel are portaled to document.body to escape
           TransitionManager's pageRef (will-change: transform breaks position: fixed) */}
       {mounted && createPortal(
-        <>
-          {panelItem && (
-            <div
-              style={{
-                position: "fixed",
-                top: "1.5rem",
-                left: "7.5vw",
-                transform: "translateX(-50%)",
-                zIndex: 600,
-                padding: 8,
-                borderRadius: "50%",
-                background: "rgba(255,255,255,0.15)",
-                backdropFilter: "blur(20px)",
-                border: "1px solid rgba(255,255,255,0.3)",
-                boxShadow: "0 8px 32px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.35)",
-              }}
-            >
-              <button
-                onClick={closePanel}
-                aria-label="Close panel"
-                style={{
-                  width: 54,
-                  height: 54,
-                  borderRadius: "50%",
-                  border: "none",
-                  background: "var(--navy)",
-                  color: "#ffffff",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  fontSize: "1rem",
-                  lineHeight: 1,
-                  cursor: "pointer",
-                  boxShadow: "0 4px 20px rgba(11,55,93,0.4)",
-                }}
-              >
-                ✕
-              </button>
-            </div>
-          )}
-          <SidePanel ref={panelRef} item={panelItem} onClose={closePanel} />
-        </>,
+        <SidePanel ref={panelRef} item={panelItem} onClose={closePanel} />,
         document.body
       )}
 
