@@ -60,12 +60,17 @@ function formatDate(iso: string) {
   }).format(new Date(iso));
 }
 
+const WP_HEADERS = {
+  "User-Agent": "Mozilla/5.0 (compatible; TroyMooreLaw/1.0)",
+  "Accept": "application/json",
+};
+
 /* ─── Data fetch ─────────────────────────────────────────────────── */
 async function getPosts(): Promise<WPPost[]> {
   try {
     const res = await fetch(
       "https://troymmoore.com/wp-json/wp/v2/posts?per_page=100&_embed=wp:featuredmedia&_fields=id,slug,title,excerpt,date,categories,_embedded,_links",
-      { next: { revalidate: 3600 } }
+      { next: { revalidate: 3600 }, headers: WP_HEADERS }
     );
     if (!res.ok) return [];
     return res.json();

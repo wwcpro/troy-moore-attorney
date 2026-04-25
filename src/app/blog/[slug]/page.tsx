@@ -9,6 +9,11 @@ import { articleSchema, breadcrumbSchema } from "@/lib/schemas";
 
 export const revalidate = 3600;
 
+const WP_HEADERS = {
+  "User-Agent": "Mozilla/5.0 (compatible; TroyMooreLaw/1.0)",
+  "Accept": "application/json",
+};
+
 /* ─── Types ──────────────────────────────────────────────────────── */
 interface WPPost {
   id: number;
@@ -63,7 +68,7 @@ async function getAllSlugs(): Promise<string[]> {
   try {
     const res = await fetch(
       "https://troymmoore.com/wp-json/wp/v2/posts?per_page=100&_fields=slug",
-      { next: { revalidate: 3600 } }
+      { next: { revalidate: 3600 }, headers: WP_HEADERS }
     );
     if (!res.ok) return [];
     const posts: { slug: string }[] = await res.json();
@@ -77,7 +82,7 @@ async function getPost(slug: string): Promise<WPPost | null> {
   try {
     const res = await fetch(
       `https://troymmoore.com/wp-json/wp/v2/posts?slug=${slug}&_embed=wp:featuredmedia&_fields=id,slug,title,content,excerpt,date,categories,_embedded,_links`,
-      { next: { revalidate: 3600 } }
+      { next: { revalidate: 3600 }, headers: WP_HEADERS }
     );
     if (!res.ok) return null;
     const posts: WPPost[] = await res.json();
