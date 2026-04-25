@@ -1154,7 +1154,9 @@ export default function ProbatePage() {
           {/* ── 1. HERO ──────────────────────────────────────────── */}
           <section
             style={{
-              backgroundColor: "var(--navy)",
+              backgroundImage: "url(/assets/blue-bg2.png)",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
               paddingTop: "calc(72px + clamp(3rem, 5vw, 6rem))",
               paddingBottom: 0,
               position: "relative",
