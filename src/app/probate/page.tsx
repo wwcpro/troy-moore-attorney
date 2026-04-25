@@ -950,7 +950,8 @@ export default function ProbatePage() {
       onComplete: () => {
         setPanelItem(null);
         document.body.style.overflow = "";
-        gsap.set(contentRef.current, { clearProps: "transform" });
+        gsap.set(contentRef.current, { clearProps: "all" });
+        window.dispatchEvent(new Event("panel-closed"));
       },
     });
   }, []);

@@ -8,14 +8,22 @@ import { usePageTransition } from "@/context/TransitionContext";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
-  const [hidden, setHidden] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const navRef = useRef<HTMLElement>(null);
   const lastScrollY = useRef(0);
-  const upScrollAcc = useRef(0);
   const isMobileRef = useRef(false);
+  const mobileOpenRef = useRef(false);
   const logoRef = useRef<HTMLObjectElement>(null);
   const { navigate } = usePageTransition();
+
+  // Keep mobileOpenRef in sync with state
+  const setMobileOpenSync = (val: boolean) => {
+    mobileOpenRef.current = val;
+    setMobileOpen(val);
+    // Always show nav when menu toggles
+    if (navRef.current) navRef.current.style.transform = "translateY(0)";
+  };
 
   useEffect(() => {
     const mq = window.matchMedia("(max-width: 1023px)");
@@ -24,28 +32,37 @@ export default function Navbar() {
     const handler = (e: MediaQueryListEvent) => {
       isMobileRef.current = e.matches;
       setIsMobile(e.matches);
-      if (e.matches) { upScrollAcc.current = 0; setHidden(false); }
+      // Always show nav when switching breakpoints
+      if (navRef.current) navRef.current.style.transform = "translateY(0)";
     };
     mq.addEventListener("change", handler);
     return () => mq.removeEventListener("change", handler);
   }, []);
 
   useEffect(() => {
-    const SHOW_THRESHOLD = 80;
+    const nav = navRef.current;
+    if (!nav) return;
+    let lastY = window.scrollY;
+
     const onScroll = () => {
       const y = window.scrollY;
-      const dy = y - lastScrollY.current;
-      lastScrollY.current = y;
+      const dy = y - lastY;
+      lastY = y;
       setScrolled(y > 50);
-      if (isMobileRef.current) return;
+      // Mobile: always visible
+      if (isMobileRef.current || mobileOpenRef.current) {
+        nav.style.transform = "translateY(0)";
+        return;
+      }
       if (y <= 140) {
-        setHidden(false);
+        nav.style.transform = "translateY(0)";
       } else if (dy > 0) {
-        setHidden(true);
+        nav.style.transform = "translateY(-100%)";
       } else if (dy < 0) {
-        setHidden(false);
+        nav.style.transform = "translateY(0)";
       }
     };
+
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -81,6 +98,13 @@ export default function Navbar() {
     return () => { document.body.style.overflow = ""; };
   }, [mobileOpen]);
 
+  // Expose nav show/hide for external use (panels, etc.)
+  useEffect(() => {
+    const showNav = () => { if (navRef.current) navRef.current.style.transform = "translateY(0)"; };
+    window.addEventListener("panel-closed", showNav);
+    return () => window.removeEventListener("panel-closed", showNav);
+  }, []);
+
   return (
     <>
       <style>{`
@@ -90,6 +114,7 @@ export default function Navbar() {
         }
       `}</style>
       <nav
+        ref={navRef}
         className="navbar fixed top-0 left-0 right-0 z-50 flex items-center justify-between overflow-visible"
         style={{
           height: scrolled ? 56 : 72,
@@ -100,8 +125,6 @@ export default function Navbar() {
           boxShadow: scrolled
             ? "0 2px 16px rgba(11,55,93,0.08)"
             : "0 1px 0 rgba(11,55,93,0.06)",
-          transform: hidden && !mobileOpen && !isMobile ? "translateY(-100%)" : "translateY(0)",
-          transition: "height 0.35s ease, background-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
         }}
       >
         {/* Logo — always visible */}
@@ -197,7 +220,7 @@ export default function Navbar() {
         <button
           type="button"
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
-          onClick={() => setMobileOpen(!mobileOpen)}
+          onClick={() => setMobileOpenSync(!mobileOpen)}
           style={{
             display: "none",
             position: "absolute",
@@ -256,7 +279,7 @@ export default function Navbar() {
                   >
                     <Link
                       href={link.href}
-                      onClick={(e) => { e.preventDefault(); setMobileOpen(false); navigate(link.href); }}
+                      onClick={(e) => { e.preventDefault(); setMobileOpenSync(false); navigate(link.href); }}
                       style={{
                         display: "block",
                         fontFamily: '"kepler-std", serif',
@@ -294,7 +317,7 @@ export default function Navbar() {
                   >
                     <Link
                       href={link.href}
-                      onClick={(e) => { e.preventDefault(); setMobileOpen(false); navigate(link.href); }}
+                      onClick={(e) => { e.preventDefault(); setMobileOpenSync(false); navigate(link.href); }}
                       style={{
                         display: "block",
                         fontFamily: '"avenir-lt-pro", sans-serif',
