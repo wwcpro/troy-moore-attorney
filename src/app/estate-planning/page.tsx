@@ -846,9 +846,14 @@ export default function EstatePlanningPage() {
           {/* ── 1. HERO ──────────────────────────────────────────── */}
           <section
             style={{
-              backgroundImage: "url(/assets/blue-bg2.png)",
-              backgroundSize: "cover",
-              backgroundPosition: "center",
+              background: [
+                "radial-gradient(ellipse at 6% 38%, rgba(22, 98, 185, 0.55) 0%, transparent 42%)",
+                "radial-gradient(ellipse at 22% 80%, rgba(7, 32, 72, 0.6) 0%, transparent 36%)",
+                "radial-gradient(ellipse at 78% 22%, rgba(10, 52, 108, 0.5) 0%, transparent 44%)",
+                "radial-gradient(ellipse at 90% 72%, rgba(4, 14, 36, 0.65) 0%, transparent 38%)",
+                "radial-gradient(ellipse at 50% 50%, rgba(11, 48, 95, 0.25) 0%, transparent 55%)",
+                "linear-gradient(108deg, #1155a8 0%, #0a3c7a 26%, #0b375d 52%, #071d3c 76%, #04101f 100%)",
+              ].join(", "),
               paddingTop: "calc(72px + clamp(5rem, 8vw, 9rem))",
             }}
           >
