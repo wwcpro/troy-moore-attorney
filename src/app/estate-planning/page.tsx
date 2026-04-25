@@ -499,8 +499,9 @@ function HeroForm() {
 
         <button
           type="submit"
-          disabled={submitting || !smsConsent}
+          disabled={submitting}
           className="hero-form-btn"
+          style={{ alignSelf: "flex-start" }}
         >
           {submitting ? "Sending…" : "Get a Consultation"}
           {!submitting && <CircleSVG />}
