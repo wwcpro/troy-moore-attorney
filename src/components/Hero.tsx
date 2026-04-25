@@ -133,8 +133,8 @@ export default function Hero({ loaderDone }: { loaderDone: boolean }) {
         @media (max-width: 1023px) {
           #hero { padding-top: 0 !important; }
           #hero-inner { padding-left: 0 !important; padding-right: 0 !important; }
-          #hero-img-wrap { height: calc(100svh - 72px); min-height: 480px; padding: 0 !important; overflow: hidden; align-items: flex-start; }
-          #hero-img-wrap img { width: 100% !important; max-width: 100% !important; height: 100% !important; object-fit: cover !important; object-position: top center !important; }
+          #hero-img-wrap { height: auto; min-height: 0; padding: 0 !important; overflow: hidden; }
+          #hero-img-wrap img { width: 100% !important; max-width: 85% !important; height: auto !important; margin-top: 95px; }
           #hero-text { padding: 1.5rem; margin-top: 2rem; }
           .stats-columns { flex-direction: column !important; }
           .stats-left { min-width: 100% !important; }
@@ -149,7 +149,7 @@ export default function Hero({ loaderDone }: { loaderDone: boolean }) {
             {/* Desktop image */}
             <Image src={heroData.heroImage} alt="Troy M. Moore" width={540} height={720} className="w-full h-auto object-cover object-top hidden lg:block" priority sizes="48vw" />
             {/* Mobile image */}
-            <Image src="/assets/troy-hero-crop.png" alt="Troy M. Moore" width={1226} height={1485} className="w-full h-full object-cover object-top block lg:hidden" priority sizes="100vw" />
+            <Image src="/assets/troy-hero-crop.png" alt="Troy M. Moore" width={1226} height={1485} className="w-full h-auto block lg:hidden" priority sizes="100vw" />
           </div>
 
           {/* Blue bar — mobile only */}

@@ -107,6 +107,7 @@ export default function TransitionManager({ children }: { children: React.ReactN
       onComplete: () => {
         document.body.style.overflow = "";
         transitioning.current = false;
+        gsap.set(page, { clearProps: "transform" });
       },
     })
       .to(overlay, { x: "-100%", duration: 0.52, ease: "power3.inOut" })
@@ -123,8 +124,8 @@ export default function TransitionManager({ children }: { children: React.ReactN
   return (
     <TransitionContext.Provider value={{ loaderDone, navigate }}>
 
-      {/* Page wrapper — transform here moves fixed children too */}
-      <div ref={pageRef} style={{ width: "100%", willChange: "transform" }}>
+      {/* Page wrapper */}
+      <div ref={pageRef} style={{ width: "100%" }}>
         {children}
       </div>
 

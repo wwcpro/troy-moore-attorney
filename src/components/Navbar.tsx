@@ -10,20 +10,41 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const lastScrollY = useRef(0);
+  const upScrollAcc = useRef(0);
+  const isMobileRef = useRef(false);
   const logoRef = useRef<HTMLObjectElement>(null);
   const { navigate } = usePageTransition();
 
   useEffect(() => {
+    const mq = window.matchMedia("(max-width: 1023px)");
+    isMobileRef.current = mq.matches;
+    setIsMobile(mq.matches);
+    const handler = (e: MediaQueryListEvent) => {
+      isMobileRef.current = e.matches;
+      setIsMobile(e.matches);
+      if (e.matches) { upScrollAcc.current = 0; setHidden(false); }
+    };
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
+
+  useEffect(() => {
+    const SHOW_THRESHOLD = 80;
     const onScroll = () => {
       const y = window.scrollY;
+      const dy = y - lastScrollY.current;
+      lastScrollY.current = y;
       setScrolled(y > 50);
-      if (y > lastScrollY.current && y > 120) {
+      if (isMobileRef.current) return;
+      if (y <= 140) {
+        setHidden(false);
+      } else if (dy > 0) {
         setHidden(true);
-      } else {
+      } else if (dy < 0) {
         setHidden(false);
       }
-      lastScrollY.current = y;
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -55,13 +76,17 @@ export default function Navbar() {
     }
   }, [scrolled]);
 
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [mobileOpen]);
+
   return (
     <>
       <style>{`
         @media (max-width: 1023px) {
           #navbar-logo { transform: scale(0.8); transform-origin: left top; }
           .mobile-hamburger { display: flex !important; }
-          .navbar { transform: translateY(0) !important; }
         }
       `}</style>
       <nav
@@ -75,7 +100,8 @@ export default function Navbar() {
           boxShadow: scrolled
             ? "0 2px 16px rgba(11,55,93,0.08)"
             : "0 1px 0 rgba(11,55,93,0.06)",
-          transform: hidden && !mobileOpen ? "translateY(-100%)" : "translateY(0)",
+          transform: hidden && !mobileOpen && !isMobile ? "translateY(-100%)" : "translateY(0)",
+          transition: "height 0.35s ease, background-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
         }}
       >
         {/* Logo — always visible */}
@@ -218,7 +244,7 @@ export default function Navbar() {
             }}
           >
             {/* Nav links */}
-            <div style={{ flex: 1, padding: "clamp(2rem, 8vw, 3rem) clamp(1.5rem, 8vw, 2.5rem)", display: "flex", flexDirection: "column" }}>
+            <div style={{ flex: 1, padding: "clamp(3.5rem, 12vw, 5rem) clamp(1.5rem, 8vw, 2.5rem) clamp(2rem, 8vw, 3rem)", display: "flex", flexDirection: "column" }}>
               {/* Primary links */}
               <div style={{ display: "flex", flexDirection: "column", gap: "0.25rem", marginBottom: "clamp(1.5rem, 5vw, 2rem)" }}>
                 {navData.leftLinks.map((link, i) => (
