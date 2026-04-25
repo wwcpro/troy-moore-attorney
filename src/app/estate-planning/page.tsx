@@ -739,6 +739,7 @@ export default function EstatePlanningPage() {
         }
         @media (max-width: 960px) {
           .ep-hero-grid { grid-template-columns: 1fr; padding-right: 10vw; }
+          .ep-hero-form { display: none; }
         }
         @media (max-width: 640px) {
           .ep-trust-grid { grid-template-columns: 1fr 1fr; }
@@ -896,8 +897,8 @@ export default function EstatePlanningPage() {
                 </div>
               </div>
 
-              {/* Form — hidden */}
-              {/* <HeroForm /> */}
+              {/* Form */}
+              <HeroForm />
             </div>
           </section>
 

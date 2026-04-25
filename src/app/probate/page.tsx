@@ -1081,6 +1081,7 @@ export default function ProbatePage() {
         }
         @media (max-width: 960px) {
           .probate-hero-grid { grid-template-columns: 1fr; padding-right: 10vw; }
+          .probate-hero-form { display: none; }
         }
 
         /* ── Hero form card inputs ── */
@@ -1207,8 +1208,8 @@ export default function ProbatePage() {
                 </ScrollReveal>
               </div>
 
-              {/* Right: form — hidden */}
-              {/* <HeroForm /> */}
+              {/* Right: form */}
+              <HeroForm />
             </div>
 
             {/* Trust strip */}
