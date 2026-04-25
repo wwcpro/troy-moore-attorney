@@ -921,18 +921,10 @@ const CRED_ICONS = [
 export default function ProbatePage() {
   const [panelItem, setPanelItem] = useState<PanelItem | null>(null);
   const [mounted, setMounted] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    setMounted(true);
-    const mq = window.matchMedia("(max-width: 1023px)");
-    setIsMobile(mq.matches);
-    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
-    mq.addEventListener("change", handler);
-    return () => mq.removeEventListener("change", handler);
-  }, []);
+  useEffect(() => { setMounted(true); }, []);
 
   // After portal mounts, push panel offscreen
   useEffect(() => {
@@ -958,6 +950,7 @@ export default function ProbatePage() {
       onComplete: () => {
         setPanelItem(null);
         document.body.style.overflow = "";
+        gsap.set(contentRef.current, { clearProps: "transform" });
       },
     });
   }, []);
@@ -1142,13 +1135,15 @@ export default function ProbatePage() {
         }
       `}</style>
 
+      {/* Navbar lives outside contentRef so GSAP slide doesn't affect position:fixed */}
+      <Navbar />
+
       {/* ── Main content — slides left when panel opens ─────────── */}
       <div
         ref={contentRef}
         style={{ cursor: panelItem ? "pointer" : "auto" }}
         onClick={panelItem ? closePanel : undefined}
       >
-        <Navbar />
 
         <main>
           {/* ── 1. HERO ──────────────────────────────────────────── */}
@@ -1544,20 +1539,7 @@ export default function ProbatePage() {
       {/* Close button and SidePanel are portaled to document.body to escape
           TransitionManager's pageRef (will-change: transform breaks position: fixed) */}
       {mounted && createPortal(
-        <>
-          {panelItem && (
-            <div style={{ position: "fixed", top: "1.5rem", ...(isMobile ? { left: "auto", right: "3.5vw", transform: "none" } : { left: "7.5vw", transform: "translateX(-50%)" }), zIndex: 600, padding: 8, borderRadius: "50%", background: "rgba(255,255,255,0.15)", backdropFilter: "blur(20px)", border: "1px solid rgba(255,255,255,0.3)", boxShadow: "0 8px 32px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.35)" }}>
-              <button
-                onClick={closePanel}
-                aria-label="Close panel"
-                style={{ width: 54, height: 54, borderRadius: "50%", border: "none", background: "var(--navy)", color: "#ffffff", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1rem", lineHeight: 1, cursor: "pointer", boxShadow: "0 4px 20px rgba(11,55,93,0.4)" }}
-              >
-                ✕
-              </button>
-            </div>
-          )}
-          <SidePanel ref={panelRef} item={panelItem} onClose={closePanel} />
-        </>,
+        <SidePanel ref={panelRef} item={panelItem} onClose={closePanel} />,
         document.body
       )}
 

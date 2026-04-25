@@ -108,6 +108,7 @@ export default function TransitionManager({ children }: { children: React.ReactN
         document.body.style.overflow = "";
         transitioning.current = false;
         gsap.set(page, { clearProps: "transform" });
+        window.scrollTo({ top: 0, behavior: "instant" });
       },
     })
       .to(overlay, { x: "-100%", duration: 0.52, ease: "power3.inOut" })

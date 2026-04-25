@@ -68,6 +68,13 @@ const SidePanel = forwardRef<HTMLDivElement, Props>(({ item, onClose }, ref) => 
         <span className="eyebrow" style={{ color: "var(--gold)", letterSpacing: "0.12em" }}>
           {item?.label}
         </span>
+        <button
+          onClick={onClose}
+          aria-label="Close panel"
+          style={{ width: 40, height: 40, borderRadius: "50%", border: "none", background: "rgba(255,255,255,0.12)", color: "#ffffff", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1rem", cursor: "pointer", flexShrink: 0 }}
+        >
+          ✕
+        </button>
       </div>
 
       {/* Scrollable content — flex: 1 fills remaining height */}
