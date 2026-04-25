@@ -622,7 +622,11 @@ function StatsStrip() {
   }, []);
 
   return (
-    <section style={{ background: "#061e36", borderTop: "1px solid rgba(255,255,255,0.07)" }}>
+    <section style={{
+      background: "var(--navy)",
+      borderTop: "1px solid rgba(255,255,255,0.08)",
+      boxShadow: "0 -8px 40px rgba(11,55,93,0.55), 0 8px 40px rgba(11,55,93,0.55), inset 0 1px 0 rgba(255,255,255,0.07)",
+    }}>
       <div style={{ ...WRAP, paddingTop: "clamp(2rem, 3vw, 3.5rem)", paddingBottom: "clamp(2rem, 3vw, 3.5rem)" }}>
         <div ref={stripRef} className="ep-trust-grid">
           {STATS.map((item, i) => (
