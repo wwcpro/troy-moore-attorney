@@ -1033,7 +1033,7 @@ export default function ProbatePage() {
         .probate-mobile-cta { display: none; }
 
         @media (max-width: 1023px) {
-          .panel-close-btn { left: auto !important; right: -3.5vw !important; transform: none !important; }
+          .panel-close-btn { left: auto !important; right: 3.5vw !important; transform: none !important; }
           .probate-decision-grid { grid-template-columns: 1fr; }
           .probate-trust-grid { grid-template-columns: 1fr 1fr; }
           .probate-cred-grid { grid-template-columns: 1fr 1fr; }
