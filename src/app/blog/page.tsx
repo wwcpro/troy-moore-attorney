@@ -91,6 +91,16 @@ export default async function BlogPage() {
   return (
     <>
       <style>{`
+        .hero-img-overlay {
+          position: absolute; inset: 0;
+          background: linear-gradient(
+            to bottom,
+            rgba(6,30,54,0.55) 0%,
+            rgba(11,55,93,0.42) 40%,
+            rgba(6,30,54,0.75) 100%
+          );
+        }
+
         .blog-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
@@ -255,12 +265,27 @@ export default async function BlogPage() {
         {/* ── HERO ─────────────────────────────────────────────── */}
         <section
           style={{
-            background: "var(--hero-gradient)",
-            paddingTop: "calc(72px + clamp(4rem, 7vw, 8rem))",
-            paddingBottom: "clamp(4rem, 6vw, 6rem)",
+            position: "relative",
+            minHeight: "60vh",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "flex-end",
+            backgroundImage: "url(/assets/hero-blog.png)",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
           }}
         >
-          <div style={WRAP}>
+          <div className="hero-img-overlay" />
+          <div
+            style={{
+              position: "relative",
+              zIndex: 1,
+              paddingLeft: "10vw",
+              paddingRight: "10vw",
+              paddingTop: "calc(72px + clamp(4rem, 7vw, 8rem))",
+              paddingBottom: "clamp(4rem, 6vw, 6rem)",
+            }}
+          >
             <p
               className="eyebrow"
               style={{
@@ -271,23 +296,10 @@ export default async function BlogPage() {
             >
               Law Office of Troy M. Moore, PLLC
             </p>
-            <h1
-              style={{
-                color: "#ffffff",
-                marginBottom: "clamp(1rem, 1.5vw, 1.5rem)",
-                maxWidth: "20ch",
-              }}
-            >
+            <h1 style={{ color: "#ffffff", marginBottom: "clamp(1rem, 1.5vw, 1.5rem)", maxWidth: "20ch" }}>
               Law Blog
             </h1>
-            <div
-              style={{
-                width: 48,
-                height: 2,
-                backgroundColor: "var(--gold)",
-                opacity: 0.8,
-              }}
-            />
+            <div style={{ width: 48, height: 2, backgroundColor: "var(--gold)", opacity: 0.8 }} />
           </div>
         </section>
 
