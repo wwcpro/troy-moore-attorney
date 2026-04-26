@@ -641,10 +641,15 @@ function StatsStrip() {
 
   return (
     <section style={{
-      background: "linear-gradient(180deg, #040e1c 0%, #071828 50%, #040e1c 100%)",
-      borderTop: "1px solid rgba(195,160,91,0.35)",
-      borderBottom: "1px solid rgba(195,160,91,0.35)",
-      boxShadow: "0 -12px 48px rgba(0,0,0,0.4), 0 12px 48px rgba(0,0,0,0.4)",
+      background: [
+        "radial-gradient(ellipse at 94% 38%, rgba(22, 98, 185, 0.55) 0%, transparent 42%)",
+        "radial-gradient(ellipse at 78% 80%, rgba(7, 32, 72, 0.6) 0%, transparent 36%)",
+        "radial-gradient(ellipse at 22% 22%, rgba(10, 52, 108, 0.5) 0%, transparent 44%)",
+        "radial-gradient(ellipse at 8% 72%, rgba(4, 14, 36, 0.65) 0%, transparent 38%)",
+        "radial-gradient(ellipse at 50% 50%, rgba(11, 48, 95, 0.25) 0%, transparent 55%)",
+        "linear-gradient(108deg, #04101f 0%, #071d3c 26%, #0b375d 52%, #0a3c7a 76%, #1155a8 100%)",
+      ].join(", "),
+      borderTop: "1px solid rgba(255,255,255,0.1)",
     }}>
       <div style={{ ...WRAP, paddingTop: "clamp(2.5rem, 4vw, 5rem)", paddingBottom: "clamp(2.5rem, 4vw, 5rem)" }}>
         <div ref={stripRef} className="ep-trust-grid">
@@ -654,7 +659,7 @@ function StatsStrip() {
               <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -55%)", width: "clamp(140px, 18vw, 260px)", height: "clamp(140px, 18vw, 260px)", borderRadius: "50%", background: "radial-gradient(ellipse, rgba(195,160,91,0.13) 0%, transparent 70%)", pointerEvents: "none" }} />
               <p
                 ref={(el) => { numRefs.current[i] = el; }}
-                style={{ fontFamily: "var(--font-heading)", fontWeight: 300, fontStyle: "italic", color: "var(--gold)", fontSize: "clamp(3.2rem, 7vw, 8rem)", lineHeight: 1, letterSpacing: "-0.02em", marginBottom: "0.6rem", position: "relative" }}
+                style={{ fontFamily: "var(--font-heading)", fontWeight: 300, fontStyle: "italic", color: "var(--gold)", fontSize: "clamp(2.2rem, 4.5vw, 5rem)", lineHeight: 1, letterSpacing: "-0.02em", marginBottom: "0.6rem", position: "relative" }}
               >
                 {item.text ?? `0${item.suffix ?? ""}`}
               </p>
@@ -760,10 +765,10 @@ export default function EstatePlanningPage() {
           gap: 0;
         }
         .ep-trust-grid > div + div {
-          border-left: 1px solid rgba(195,160,91,0.2);
+          border-left: 1px solid rgba(255,255,255,0.1);
         }
         @media (max-width: 640px) {
-          .ep-trust-grid > div + div { border-left: none; border-top: 1px solid rgba(195,160,91,0.2); }
+          .ep-trust-grid > div + div { border-left: none; border-top: 1px solid rgba(255,255,255,0.1); }
         }
         .ep-package-grid {
           display: grid;

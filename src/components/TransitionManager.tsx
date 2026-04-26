@@ -11,6 +11,8 @@ export default function TransitionManager({ children }: { children: React.ReactN
   const router = useRouter();
   const prevPath = useRef<string | null>(null);
   const transitioning = useRef(false);
+  const pathnameRef = useRef(pathname);
+  useEffect(() => { pathnameRef.current = pathname; }, [pathname]);
 
   // Initial load — sliding doors
   const coverRef     = useRef<HTMLDivElement>(null);
@@ -29,6 +31,7 @@ export default function TransitionManager({ children }: { children: React.ReactN
   /* ── navigate: cover phase → router.push ─────────────────── */
   const navigate = useCallback((href: string) => {
     if (transitioning.current) return;
+    if (href === pathnameRef.current) return;
     transitioning.current = true;
 
     const page    = pageRef.current;
