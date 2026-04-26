@@ -327,11 +327,11 @@ export default function AboutPage() {
                 Compassion for clients&rsquo; needs and attention to detail.
               </p>
 
-              {/* Stat badges */}
+              {/* Office location badges */}
               <div style={{ display: "flex", gap: "clamp(0.75rem, 1.5vw, 1.5rem)", flexWrap: "wrap", marginBottom: "clamp(2rem, 3vw, 3.5rem)" }}>
                 {[
-                  { value: "3,000+", label: "Clients Served" },
-                  { value: "100+", label: "5-Star Reviews" },
+                  { value: "Northwest Houston", label: "20333 State Hwy 249, Suite 140" },
+                  { value: "The Heights", label: "190 T.C. Jester, Suite 100" },
                 ].map((badge, i) => (
                   <div
                     key={i}
@@ -346,12 +346,18 @@ export default function AboutPage() {
                       borderRadius: 4,
                     }}
                   >
-                    <span style={{ fontFamily: "var(--font-heading)", fontWeight: 300, fontStyle: "italic", fontSize: "clamp(1.4rem, 2.2vw, 2.5rem)", color: "var(--gold)", letterSpacing: "-0.02em", lineHeight: 1 }}>
-                      {badge.value}
-                    </span>
-                    <span style={{ color: "rgba(255,255,255,0.7)", fontSize: "clamp(0.72rem, 0.82vw, 0.9rem)", fontFamily: "var(--font-eyebrow)", textTransform: "uppercase", letterSpacing: "0.14em", lineHeight: 1.3 }}>
-                      {badge.label}
-                    </span>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+                      <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
+                      <circle cx="12" cy="9" r="2.5" />
+                    </svg>
+                    <div>
+                      <span style={{ display: "block", fontFamily: "var(--font-heading)", fontWeight: 300, fontStyle: "italic", fontSize: "clamp(1rem, 1.5vw, 1.6rem)", color: "var(--gold)", letterSpacing: "-0.01em", lineHeight: 1.1 }}>
+                        {badge.value}
+                      </span>
+                      <span style={{ display: "block", color: "rgba(255,255,255,0.65)", fontSize: "clamp(0.65rem, 0.75vw, 0.82rem)", fontFamily: "var(--font-eyebrow)", textTransform: "uppercase", letterSpacing: "0.12em", lineHeight: 1.3, marginTop: "0.2rem" }}>
+                        {badge.label}
+                      </span>
+                    </div>
                   </div>
                 ))}
               </div>
