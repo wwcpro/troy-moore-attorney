@@ -104,7 +104,7 @@ export default function ContactPage() {
             display: "flex",
             flexDirection: "column",
             justifyContent: "flex-end",
-            backgroundImage: "url(/contact.png)",
+            backgroundImage: "url(/contact.webp)",
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}

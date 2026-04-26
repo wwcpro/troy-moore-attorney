@@ -270,7 +270,7 @@ export default async function BlogPage() {
             display: "flex",
             flexDirection: "column",
             justifyContent: "flex-end",
-            backgroundImage: "url(/assets/hero-blog.png)",
+            backgroundImage: "url(/assets/hero-blog.webp)",
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}

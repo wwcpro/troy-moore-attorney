@@ -165,7 +165,7 @@ export default async function VideosPage() {
             display: "flex",
             flexDirection: "column",
             justifyContent: "flex-end",
-            backgroundImage: "url(/assets/hero-videos.png)",
+            backgroundImage: "url(/assets/hero-videos.webp)",
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
