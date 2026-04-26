@@ -248,7 +248,7 @@ export default function Footer() {
       </div>
 
       {/* Copyright bar */}
-      <div style={{ backgroundColor: "#ffffff", paddingLeft: "3vw", paddingRight: "3vw", paddingTop: "1.25rem", paddingBottom: "8rem", borderTop: "1px solid rgba(11,55,93,0.08)" }}>
+      <div style={{ backgroundColor: "#ffffff", paddingLeft: "3vw", paddingRight: "3vw", paddingTop: "1.25rem", paddingBottom: "6rem", borderTop: "1px solid rgba(195,160,91,0.25)" }}>
         <div className="flex flex-col md:flex-row items-center justify-between gap-3" style={{ color: "var(--navy)" }}>
           <p style={{ fontSize: "0.72rem", opacity: 0.5 }}>
             © {new Date().getFullYear()} Law Office of Troy M. Moore. All rights reserved.

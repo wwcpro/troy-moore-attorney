@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import PageCTA from "@/components/PageCTA";
 import ContactHero from "./ContactHero";
 
 export const metadata: Metadata = {
@@ -68,13 +69,19 @@ export default function ContactPage() {
         }
 
         .contact-office-card {
-          border: 1px solid #e5e7eb;
+          border: 1px solid #e8eaed;
+          border-top: 3px solid var(--gold);
           border-radius: 8px;
           padding: clamp(2rem, 3.5vw, 3.5rem);
           background: #fff;
           display: flex;
           flex-direction: column;
           gap: 0;
+          transition: box-shadow 0.3s ease, transform 0.3s ease;
+        }
+        .contact-office-card:hover {
+          box-shadow: 0 16px 48px rgba(11,55,93,0.1);
+          transform: translateY(-3px);
         }
 
         .contact-divider {
@@ -220,6 +227,23 @@ export default function ContactPage() {
             </div>
           </div>
         </section>
+
+        <PageCTA
+          eyebrow="Law Office of Troy M. Moore, PLLC"
+          heading={<>Ready to speak with<br />an attorney?</>}
+          description="Our office is available 24 hours a day, 7 days a week. Contact us today to discuss your probate or estate planning matter — wherever you are in Texas."
+        >
+          <a href="tel:12816090303" className="btn-cta" style={{ textDecoration: "none" }}>
+            Call (281) 609-0303
+            <span className="cta-circle">
+              <svg viewBox="0 0 29 29" fill="none" style={{ width: "1.625em", height: "1.625em" }}>
+                <path className="CircleIcon_circle__vewPw" d="M0.75 14.5a13.75 13.75 0 1 0 27.5 0a13.75 13.75 0 1 0 -27.5 0" />
+                <path className="CircleIcon_circle-overlay__lg7sz" d="M0.75,14.5A13.75,13.75 0 1 1 28.25,14.5A13.75,13.75 0 1 1 0.75,14.5" />
+                <path className="CircleIcon_icon__n80xg" d="M12.5 11L16 14.5L12.5 18" stroke="currentColor" strokeLinecap="round" />
+              </svg>
+            </span>
+          </a>
+        </PageCTA>
 
       </main>
 

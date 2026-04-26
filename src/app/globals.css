@@ -9,9 +9,11 @@
   --font-eyebrow: "avenir-lt-pro", sans-serif;
   --font-body: "poppins", sans-serif;
   --hero-gradient:
-    radial-gradient(ellipse at 82% 58%, rgba(16,72,122,0.65) 0%, transparent 54%),
-    radial-gradient(ellipse at 62% 10%, rgba(12,52,90,0.42) 0%, transparent 44%),
-    linear-gradient(to right, #08233a 0%, #0b3560 52%, #0e3e70 100%);
+    radial-gradient(ellipse at 88% 38%, rgba(16, 80, 155, 0.65) 0%, transparent 46%),
+    radial-gradient(ellipse at 20% 72%, rgba(4, 14, 40, 0.72) 0%, transparent 42%),
+    radial-gradient(ellipse at 62% 8%, rgba(10, 48, 98, 0.45) 0%, transparent 40%),
+    radial-gradient(ellipse at 50% 50%, rgba(8, 32, 70, 0.28) 0%, transparent 60%),
+    linear-gradient(135deg, #030a1a 0%, #061828 28%, #0a2f52 56%, #071d3c 80%, #030c1d 100%);
 }
 
 @theme inline {

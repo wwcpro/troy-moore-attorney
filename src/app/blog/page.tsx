@@ -191,6 +191,62 @@ export default async function BlogPage() {
         .blog-card:hover .blog-card-link {
           gap: 0.65rem;
         }
+
+        /* Featured post card */
+        .blog-featured {
+          display: flex;
+          background: #fff;
+          border-radius: 8px;
+          overflow: hidden;
+          border: 1px solid #e5e7eb;
+          text-decoration: none;
+          margin-bottom: clamp(2rem, 3vw, 3rem);
+          transition: box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+        }
+        .blog-featured:hover {
+          box-shadow: 0 16px 48px rgba(11,55,93,0.14);
+          transform: translateY(-3px);
+          border-color: var(--gold);
+        }
+        .blog-featured-img {
+          width: 52%;
+          flex-shrink: 0;
+          object-fit: cover;
+          display: block;
+          min-height: 340px;
+        }
+        .blog-featured-placeholder {
+          width: 52%;
+          flex-shrink: 0;
+          background: var(--navy);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          min-height: 340px;
+          opacity: 0.85;
+        }
+        .blog-featured-body {
+          padding: clamp(2rem, 3.5vw, 3.5rem);
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+        .blog-featured-title {
+          color: var(--navy);
+          font-family: var(--font-heading);
+          font-size: clamp(1.25rem, 2vw, 2.2rem);
+          font-weight: 300;
+          font-style: italic;
+          line-height: 1.25;
+          margin-bottom: 1rem;
+          transition: color 0.25s ease;
+        }
+        .blog-featured:hover .blog-featured-title { color: var(--gold); }
+        .blog-featured:hover .blog-card-link { gap: 0.65rem; }
+        @media (max-width: 700px) {
+          .blog-featured { flex-direction: column; }
+          .blog-featured-img, .blog-featured-placeholder { width: 100%; min-height: 200px; }
+        }
       `}</style>
 
       <Navbar />
@@ -246,80 +302,94 @@ export default async function BlogPage() {
           <div style={WRAP}>
             {posts.length === 0 ? (
               <p style={{ color: "#6a7a8a" }}>No posts found.</p>
-            ) : (
-              <div className="blog-grid">
-                {posts.map((post) => {
-                  const img = post._embedded?.["wp:featuredmedia"]?.[0];
-                  const category = CATEGORIES[post.categories?.[0]] ?? null;
-                  const excerpt = stripHtml(post.excerpt.rendered);
-                  const href = `/blog/${post.slug}`;
+            ) : (() => {
+              const [featured, ...rest] = posts;
+              const featuredImg = featured._embedded?.["wp:featuredmedia"]?.[0];
+              const featuredCategory = CATEGORIES[featured.categories?.[0]] ?? null;
+              const featuredExcerpt = stripHtml(featured.excerpt.rendered);
 
-                  return (
-                    <a
-                      key={post.id}
-                      href={href}
-                      className="blog-card"
-                    >
-                      {img ? (
-                        /* eslint-disable-next-line @next/next/no-img-element */
-                        <img
-                          src={img.source_url}
-                          alt={img.alt_text || post.title.rendered}
-                          className="blog-card-img"
-                          loading="lazy"
-                        />
-                      ) : (
-                        <div className="blog-card-img-placeholder">
-                          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5">
-                            <rect x="3" y="3" width="18" height="18" rx="2" />
-                            <circle cx="8.5" cy="8.5" r="1.5" />
-                            <path d="M21 15l-5-5L5 21" />
-                          </svg>
-                        </div>
-                      )}
-
-                      <div className="blog-card-body">
-                        <div className="blog-card-meta">
-                          {category && (
-                            <span
-                              className="eyebrow"
-                              style={{
-                                color: "var(--gold)",
-                                fontSize: "clamp(0.55rem, 0.62vw, 0.68rem)",
-                              }}
-                            >
-                              {category}
-                            </span>
-                          )}
-                          <span
-                            style={{
-                              color: "#aab8c4",
-                              fontSize: "0.75rem",
-                              marginLeft: category ? "auto" : 0,
-                            }}
-                          >
-                            {formatDate(post.date)}
+              return (
+                <>
+                  {/* Featured first post */}
+                  <a href={`/blog/${featured.slug}`} className="blog-featured">
+                    {featuredImg ? (
+                      /* eslint-disable-next-line @next/next/no-img-element */
+                      <img src={featuredImg.source_url} alt={featuredImg.alt_text || featured.title.rendered} className="blog-featured-img" loading="eager" />
+                    ) : (
+                      <div className="blog-featured-placeholder">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.25)" strokeWidth="1.5">
+                          <rect x="3" y="3" width="18" height="18" rx="2" /><circle cx="8.5" cy="8.5" r="1.5" /><path d="M21 15l-5-5L5 21" />
+                        </svg>
+                      </div>
+                    )}
+                    <div className="blog-featured-body">
+                      <div className="blog-card-meta" style={{ marginBottom: "0.75rem" }}>
+                        <span className="eyebrow" style={{ color: "var(--gold)", fontSize: "clamp(0.52rem, 0.6vw, 0.66rem)", background: "rgba(195,160,91,0.1)", border: "1px solid rgba(195,160,91,0.25)", padding: "0.25em 0.75em", borderRadius: "2px" }}>
+                          Featured
+                        </span>
+                        {featuredCategory && (
+                          <span className="eyebrow" style={{ color: "var(--gold)", fontSize: "clamp(0.52rem, 0.6vw, 0.66rem)", marginLeft: "0.5rem" }}>
+                            {featuredCategory}
                           </span>
-                        </div>
-
-                        <p className="blog-card-title">
-                          {post.title.rendered}
-                        </p>
-
-                        <p className="blog-card-excerpt">{excerpt}</p>
-
-                        <span className="blog-card-link">
-                          Read Article
-                          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                            <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                          </svg>
+                        )}
+                        <span style={{ color: "#aab8c4", fontSize: "0.75rem", marginLeft: "auto" }}>
+                          {formatDate(featured.date)}
                         </span>
                       </div>
-                    </a>
-                  );
-                })}
-              </div>
-            )}
+                      <p className="blog-featured-title">{featured.title.rendered}</p>
+                      <p style={{ color: "#6a7a8a", fontSize: "clamp(0.85rem, 0.95vw, 1rem)", lineHeight: 1.75, marginBottom: "1.5rem", display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden" }}>
+                        {featuredExcerpt}
+                      </p>
+                      <span className="blog-card-link">
+                        Read Article
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                          <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      </span>
+                    </div>
+                  </a>
+
+                  {/* Remaining posts */}
+                  {rest.length > 0 && (
+                    <div className="blog-grid">
+                      {rest.map((post) => {
+                        const img = post._embedded?.["wp:featuredmedia"]?.[0];
+                        const category = CATEGORIES[post.categories?.[0]] ?? null;
+                        const excerpt = stripHtml(post.excerpt.rendered);
+                        return (
+                          <a key={post.id} href={`/blog/${post.slug}`} className="blog-card">
+                            {img ? (
+                              /* eslint-disable-next-line @next/next/no-img-element */
+                              <img src={img.source_url} alt={img.alt_text || post.title.rendered} className="blog-card-img" loading="lazy" />
+                            ) : (
+                              <div className="blog-card-img-placeholder">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5">
+                                  <rect x="3" y="3" width="18" height="18" rx="2" /><circle cx="8.5" cy="8.5" r="1.5" /><path d="M21 15l-5-5L5 21" />
+                                </svg>
+                              </div>
+                            )}
+                            <div className="blog-card-body">
+                              <div className="blog-card-meta">
+                                {category && <span className="eyebrow" style={{ color: "var(--gold)", fontSize: "clamp(0.55rem, 0.62vw, 0.68rem)" }}>{category}</span>}
+                                <span style={{ color: "#aab8c4", fontSize: "0.75rem", marginLeft: category ? "auto" : 0 }}>{formatDate(post.date)}</span>
+                              </div>
+                              <p className="blog-card-title">{post.title.rendered}</p>
+                              <p className="blog-card-excerpt">{excerpt}</p>
+                              <span className="blog-card-link">
+                                Read Article
+                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                                  <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                </svg>
+                              </span>
+                            </div>
+                          </a>
+                        );
+                      })}
+                    </div>
+                  )}
+                </>
+              );
+            })()}
           </div>
         </section>
       </main>

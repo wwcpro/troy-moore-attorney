@@ -364,7 +364,16 @@ export default function AboutPage() {
           </section>
 
           {/* ── 2. STAT BAR ──────────────────────────────────────── */}
-          <section style={{ background: "var(--navy)" }}>
+          <section style={{
+            background: [
+              "radial-gradient(ellipse at 18% 30%, rgba(14, 62, 115, 0.75) 0%, transparent 46%)",
+              "radial-gradient(ellipse at 82% 70%, rgba(3, 10, 28, 0.85) 0%, transparent 44%)",
+              "radial-gradient(ellipse at 60% 8%, rgba(10, 44, 90, 0.55) 0%, transparent 38%)",
+              "radial-gradient(ellipse at 50% 50%, rgba(11, 55, 93, 0.3) 0%, transparent 60%)",
+              "linear-gradient(135deg, #030c1d 0%, #061828 22%, #0b375d 50%, #071d3c 75%, #030c1d 100%)",
+            ].join(", "),
+            borderTop: "1px solid rgba(195,160,91,0.2)",
+          }}>
             <div style={{ ...WRAP, paddingTop: "clamp(2.5rem, 4vw, 4rem)", paddingBottom: "clamp(2.5rem, 4vw, 4rem)" }}>
               <div className="about-stat-grid">
                 {[
@@ -381,10 +390,10 @@ export default function AboutPage() {
                       borderRight: i < 3 ? "1px solid rgba(255,255,255,0.08)" : "none",
                     }}
                   >
-                    <p style={{ fontFamily: "var(--font-heading)", fontWeight: 300, fontStyle: "italic", color: "#ffffff", fontSize: "clamp(2.5rem, 5vw, 6rem)", lineHeight: 1, letterSpacing: "-0.02em", marginBottom: "0.5rem" }}>
+                    <p style={{ fontFamily: "var(--font-heading)", fontWeight: 300, fontStyle: "italic", color: "var(--gold)", fontSize: "clamp(2.5rem, 5vw, 6rem)", lineHeight: 1, letterSpacing: "-0.02em", marginBottom: "0.5rem" }}>
                       {item.stat}
                     </p>
-                    <p style={{ color: "rgba(255,255,255,0.55)", fontFamily: "var(--font-eyebrow)", fontSize: "clamp(0.62rem, 0.78vw, 0.88rem)", letterSpacing: "0.18em", textTransform: "uppercase", lineHeight: 1.5 }}>
+                    <p style={{ color: "rgba(255,255,255,0.5)", fontFamily: "var(--font-eyebrow)", fontSize: "clamp(0.62rem, 0.78vw, 0.88rem)", letterSpacing: "0.18em", textTransform: "uppercase", lineHeight: 1.5 }}>
                       {item.label}
                     </p>
                   </div>

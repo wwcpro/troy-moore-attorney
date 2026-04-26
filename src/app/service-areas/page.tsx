@@ -60,9 +60,15 @@ export default function ServiceAreasPage() {
         </section>
 
         {/* County summary strip */}
-        <section style={{ background: "var(--gold)", paddingTop: "clamp(1rem, 1.5vw, 1.5rem)", paddingBottom: "clamp(1rem, 1.5vw, 1.5rem)" }}>
-          <div style={{ ...WRAP, display: "flex", flexWrap: "wrap", gap: "clamp(0.5rem, 1.5vw, 1.5rem)", alignItems: "center" }}>
-            <span style={{ fontFamily: "var(--font-eyebrow)", fontSize: "clamp(0.58rem, 0.65vw, 0.72rem)", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--navy)", opacity: 0.7, flexShrink: 0 }}>
+        <section style={{
+          background: "linear-gradient(135deg, #030c1d 0%, #071828 50%, #030c1d 100%)",
+          borderTop: "1px solid rgba(195,160,91,0.18)",
+          borderBottom: "1px solid rgba(195,160,91,0.18)",
+          paddingTop: "clamp(0.9rem, 1.4vw, 1.4rem)",
+          paddingBottom: "clamp(0.9rem, 1.4vw, 1.4rem)",
+        }}>
+          <div style={{ ...WRAP, display: "flex", flexWrap: "wrap", gap: "clamp(0.5rem, 1vw, 1rem)", alignItems: "center" }}>
+            <span style={{ fontFamily: "var(--font-eyebrow)", fontSize: "clamp(0.55rem, 0.62vw, 0.68rem)", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(255,255,255,0.35)", flexShrink: 0 }}>
               Counties served:
             </span>
             {["Harris", "Fort Bend", "Montgomery", "Brazoria", "Galveston", "Chambers", "Waller"].map((county) => (
@@ -70,12 +76,13 @@ export default function ServiceAreasPage() {
                 key={county}
                 style={{
                   fontFamily: "var(--font-eyebrow)",
-                  fontSize: "clamp(0.62rem, 0.7vw, 0.78rem)",
-                  letterSpacing: "0.12em",
+                  fontSize: "clamp(0.58rem, 0.65vw, 0.72rem)",
+                  letterSpacing: "0.14em",
                   textTransform: "uppercase",
-                  color: "var(--navy)",
-                  background: "rgba(11,55,93,0.1)",
-                  padding: "0.3em 0.85em",
+                  color: "var(--gold)",
+                  background: "rgba(195,160,91,0.08)",
+                  border: "1px solid rgba(195,160,91,0.2)",
+                  padding: "0.3em 0.9em",
                   borderRadius: "2px",
                 }}
               >
