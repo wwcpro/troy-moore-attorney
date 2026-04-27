@@ -139,30 +139,36 @@
   },
   {
     "id": 24,
+    "category": "Estate Planning",
+    "question": "How long does estate planning take?",
+    "answer": "<p>Most plans are completed within 4-6 weeks of our initial meeting.</p>"
+  },
+  {
+    "id": 25,
     "category": "Other Practices",
     "question": "What if the deceased had debts in Texas?",
     "answer": "<p>Debts must be settled before distributing assets. However, heirs are NOT responsible for debts unless:</p><ul><li>They co-signed a loan.</li><li>They are spouses in a community property marriage.</li></ul>"
   },
   {
-    "id": 25,
+    "id": 26,
     "category": "Other Practices",
     "question": "What is considered to be a personal injury?",
     "answer": "<p>In Texas, recoverable damages for someone injured by someone else include the following:</p><ul><li>Medical bills from the past</li><li>Medical bills for the future</li><li>Physical impairment in the past</li><li>Physical impairment in the future</li><li>Disfigurement in the past</li><li>Disfigurement in the future</li><li>Mental Anguish from the past</li><li>Mental Anguish for the future</li><li>Lost wages from the past</li><li>Lost wages from the future</li><li>Loss of earning capacity in the past</li><li>Loss of earning capacity in the future</li><li>Punitive damages</li></ul>"
   },
   {
-    "id": 26,
+    "id": 27,
     "category": "Other Practices",
     "question": "How do I talk to a personal injury lawyer?",
     "answer": "<p>First thing, EVERYTHING you talk to your personal injury lawyer about is privileged and confidential. You should concentrate on giving your personal injury lawyer as much information as possible — even if it is bad for your case.</p><p>Personal injury attorneys say, \"It's much easier to explode your own bombs\" — and the old saying is very true.</p><p>Insurance companies will treat you like a criminal from the moment they get you on the phone. Your Texas personal injury lawyer is well versed in dealing with insurance companies on your behalf.</p>"
   },
   {
-    "id": 27,
+    "id": 28,
     "category": "Other Practices",
     "question": "What does a personal injury lawyer do?",
     "answer": "<p>Your personal injury car accident lawyer will work with all effort to get your serious injuries, medical bills, and medical treatment paid for by the other driver who caused the car wreck.</p><p>Texas injury law is constantly changing, and any reliable accident attorney keeps up with those changes. Your personal injury lawyer will file your case, work it up, and take the case to trial if necessary.</p><p>While a lot of cases settle prior to trial, more and more cases are going to trial nowadays because insurance companies are getting worse at paying rightful claims.</p>"
   },
   {
-    "id": 28,
+    "id": 29,
     "category": "Other Practices",
     "question": "What percentage does a personal injury lawyer take?",
     "answer": "<p>There is <strong>NO FEE UNLESS WE WIN</strong> with Texas personal injury attorneys. This arrangement is called a \"contingent fee\" — meaning your personal injury attorney charges nothing unless money is recovered, which can help pay your medical bills.</p><p>The fee is generally 1/3 of the gross recovery if the case settles prior to litigation, or 40% of the gross recovery if the personal injury claim has been filed at the Courthouse.</p><p>The law firm you select to represent you needs to be a quality law firm with a personal injury attorney you feel comfortable with — and a record of successful results.</p>"
