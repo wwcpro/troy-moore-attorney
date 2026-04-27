@@ -133,3 +133,6 @@ Changed: `src/data/testimonials.json`
 
 ## 2026-04-27 | Ticket ee326d70 | Changed homepage headline to "Gary Made a Change !!!!!!"
 Changed: `src/data/hero.json`
+
+## 2026-04-27 | Ticket 671349a0 | Added new Estate Planning FAQ entry about estate planning timeline (id 24) and renumbered subsequent entries.
+Changed: `src/data/faq.json`
