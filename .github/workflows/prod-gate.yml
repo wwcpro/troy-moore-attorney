@@ -1,0 +1,365 @@
+name: PROD Checklist Gate
+
+on:
+  repository_dispatch:
+    types: [vercel-deployment-ready]
+  workflow_dispatch:
+    inputs:
+      preview_url:
+        description: 'Preview URL to check'
+        required: true
+      ticket_id:
+        description: 'Ticket ID'
+        required: false
+        default: ''
+      project_id:
+        description: 'Project ID'
+        required: false
+        default: ''
+      pr_number:
+        description: 'PR number'
+        required: false
+        default: ''
+
+# ── Shared env (resolves from dispatch payload or manual inputs) ──────────────
+env:
+  PREVIEW_URL: ${{ github.event.client_payload.preview_url || inputs.preview_url }}
+  TICKET_ID:   ${{ github.event.client_payload.ticket_id   || inputs.ticket_id   }}
+  PROJECT_ID:  ${{ github.event.client_payload.project_id  || inputs.project_id  }}
+  PR_NUMBER:   ${{ github.event.client_payload.pr_number   || inputs.pr_number   }}
+
+# ── Job definitions ───────────────────────────────────────────────────────────
+jobs:
+
+  # ── Resolve routes + thresholds from .wwc/prod-gate.yml ──────────────────
+  setup:
+    runs-on: ubuntu-latest
+    outputs:
+      preview_url:  ${{ steps.vars.outputs.preview_url }}
+      ticket_id:    ${{ steps.vars.outputs.ticket_id }}
+      project_id:   ${{ steps.vars.outputs.project_id }}
+      pr_number:    ${{ steps.vars.outputs.pr_number }}
+      routes_json:  ${{ steps.vars.outputs.routes_json }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Resolve inputs and routes
+        id: vars
+        run: |
+          python3 - <<'PYEOF'
+          import json, os, sys
+
+          try:
+            import yaml
+            with open('.wwc/prod-gate.yml') as f:
+              cfg = yaml.safe_load(f) or {}
+          except Exception:
+            cfg = {}
+
+          routes = cfg.get('routes', ['/'])
+          if not routes:
+            routes = ['/']
+
+          out = os.environ['GITHUB_OUTPUT']
+          with open(out, 'a') as f:
+            f.write(f"preview_url={os.environ['PREVIEW_URL']}\n")
+            f.write(f"ticket_id={os.environ['TICKET_ID']}\n")
+            f.write(f"project_id={os.environ['PROJECT_ID']}\n")
+            f.write(f"pr_number={os.environ['PR_NUMBER']}\n")
+            f.write(f"routes_json={json.dumps(routes)}\n")
+          print('Routes:', routes)
+          PYEOF
+        env:
+          PREVIEW_URL: ${{ env.PREVIEW_URL }}
+          TICKET_ID:   ${{ env.TICKET_ID }}
+          PROJECT_ID:  ${{ env.PROJECT_ID }}
+          PR_NUMBER:   ${{ env.PR_NUMBER }}
+
+  # ── Lighthouse ────────────────────────────────────────────────────────────
+  lighthouse:
+    needs: setup
+    runs-on: ubuntu-latest
+    outputs:
+      blocking_count: ${{ steps.process.outputs.blocking_count }}
+      warning_count:  ${{ steps.process.outputs.warning_count }}
+      passed:         ${{ steps.process.outputs.passed }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Lighthouse CI
+        run: npm install -g @lhci/cli@0.14.x
+
+      - name: Generate LHCI config
+        run: |
+          python3 - <<'PYEOF'
+          import json, os
+
+          routes = json.loads(os.environ['ROUTES_JSON'])
+          preview = os.environ['PREVIEW_URL'].rstrip('/')
+          urls = [preview + r for r in routes]
+
+          config = {
+            "ci": {
+              "collect": {
+                "url": urls,
+                "numberOfRuns": 1,
+                "settings": {
+                  "chromeFlags": "--no-sandbox --headless --disable-gpu",
+                  "maxWaitForFcp": 30000,
+                  "maxWaitForLoad": 45000
+                }
+              },
+              "upload": {
+                "target": "filesystem",
+                "outputDir": "./lhci-results"
+              }
+            }
+          }
+          with open('.lighthouserc.json', 'w') as f:
+            json.dump(config, f, indent=2)
+          print('LHCI URLs:', urls)
+          PYEOF
+        env:
+          PREVIEW_URL:  ${{ needs.setup.outputs.preview_url }}
+          ROUTES_JSON:  ${{ needs.setup.outputs.routes_json }}
+
+      - name: Run Lighthouse CI
+        run: lhci collect --config=.lighthouserc.json
+        continue-on-error: true
+
+      - name: Process Lighthouse results
+        id: process
+        run: node .github/scripts/process-lighthouse.mjs
+        env:
+          PREVIEW_URL:  ${{ needs.setup.outputs.preview_url }}
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-results
+          path: lighthouse-results.json
+          if-no-files-found: warn
+
+  # ── Accessibility (axe-core / Playwright) ─────────────────────────────────
+  a11y:
+    needs: setup
+    runs-on: ubuntu-latest
+    outputs:
+      blocking_count: ${{ steps.run.outputs.blocking_count }}
+      warning_count:  ${{ steps.run.outputs.warning_count }}
+      passed:         ${{ steps.run.outputs.passed }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: |
+          npm install --save-dev \
+            playwright@latest \
+            @playwright/test@latest \
+            @axe-core/playwright@latest
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Run a11y checks
+        id: run
+        run: node .github/scripts/a11y-check.mjs
+        env:
+          PREVIEW_URL: ${{ needs.setup.outputs.preview_url }}
+          ROUTES_JSON: ${{ needs.setup.outputs.routes_json }}
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: a11y-results
+          path: a11y-results.json
+          if-no-files-found: warn
+
+  # ── Static diff checks ────────────────────────────────────────────────────
+  static:
+    needs: setup
+    runs-on: ubuntu-latest
+    outputs:
+      blocking_count: ${{ steps.run.outputs.blocking_count }}
+      warning_count:  ${{ steps.run.outputs.warning_count }}
+      passed:         ${{ steps.run.outputs.passed }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run static checks
+        id: run
+        run: node .github/scripts/static-check.mjs
+        env:
+          PR_NUMBER:          ${{ needs.setup.outputs.pr_number }}
+          GITHUB_TOKEN:       ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: static-results
+          path: static-results.json
+          if-no-files-found: warn
+
+  # ── Aggregator gate ───────────────────────────────────────────────────────
+  gate:
+    needs: [setup, lighthouse, a11y, static]
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Download all results
+        uses: actions/download-artifact@v4
+        with:
+          merge-multiple: true
+        continue-on-error: true
+
+      - name: Aggregate + post results
+        id: aggregate
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const fs = require('fs');
+            const crypto = require('crypto');
+
+            const previewUrl = '${{ needs.setup.outputs.preview_url }}';
+            const ticketId   = '${{ needs.setup.outputs.ticket_id }}';
+            const projectId  = '${{ needs.setup.outputs.project_id }}';
+            const prNumber   = Number('${{ needs.setup.outputs.pr_number }}') || null;
+
+            // Load per-job results (graceful fallback if artifact missing)
+            function loadJson(path, fallback) {
+              try { return JSON.parse(fs.readFileSync(path, 'utf8')); }
+              catch { return fallback; }
+            }
+
+            const lhResults  = loadJson('lighthouse-results.json', { scores: {}, cwv: {}, findings: [], blocking_count: 0, warning_count: 0, passed: true, error: 'No Lighthouse results' });
+            const a11yResults = loadJson('a11y-results.json',      { violations: [], blocking_count: 0, warning_count: 0, passed: true, error: 'No a11y results' });
+            const staticResults = loadJson('static-results.json',  { findings: [], blocking_count: 0, warning_count: 0, passed: true, error: 'No static results' });
+
+            const totalBlocking = (lhResults.blocking_count || 0) + (a11yResults.blocking_count || 0) + (staticResults.blocking_count || 0);
+            const totalWarning  = (lhResults.warning_count  || 0) + (a11yResults.warning_count  || 0) + (staticResults.warning_count  || 0);
+            const passed = totalBlocking === 0;
+
+            // ── Build PR comment ──────────────────────────────────────────
+            const icon = (ok) => ok ? '✅' : '❌';
+            const warnIcon = (n) => n > 0 ? '⚠️' : '✅';
+
+            let comment = `## PROD Checklist ${passed ? '✅ Passed' : '❌ Failed'}\n\n`;
+            comment += `| Check | Result | Blocking | Warnings |\n`;
+            comment += `|---|---|---|---|\n`;
+            comment += `| 🔦 Lighthouse | ${icon(lhResults.passed)} | ${lhResults.blocking_count} | ${lhResults.warning_count} |\n`;
+            comment += `| ♿ Accessibility | ${icon(a11yResults.passed)} | ${a11yResults.blocking_count} | ${a11yResults.warning_count} |\n`;
+            comment += `| 📋 Static | ${icon(staticResults.passed)} | ${staticResults.blocking_count} | ${staticResults.warning_count} |\n`;
+            comment += `| **Total** | **${icon(passed)}** | **${totalBlocking}** | **${totalWarning}** |\n\n`;
+
+            // Lighthouse scores
+            if (lhResults.scores && Object.keys(lhResults.scores).length > 0) {
+              const s = lhResults.scores;
+              comment += `### Lighthouse Scores\n`;
+              comment += `| Performance | Accessibility | SEO | Best Practices |\n`;
+              comment += `|---|---|---|---|\n`;
+              comment += `| ${s.performance ?? '—'} | ${s.accessibility ?? '—'} | ${s.seo ?? '—'} | ${s.best_practices ?? '—'} |\n\n`;
+            }
+
+            // Blocking issues
+            const allBlockers = [
+              ...(lhResults.findings || []).filter(f => f.severity === 'blocking').map(f => `[Lighthouse] ${f.detail}`),
+              ...(a11yResults.violations || []).filter(v => v.severity === 'blocking').map(v => `[a11y ${v.impact}] ${v.description} (${v.nodes} node${v.nodes !== 1 ? 's' : ''}) — ${v.route}`),
+              ...(staticResults.findings || []).filter(f => f.severity === 'blocking').map(f => `[Static] ${f.file}: ${f.detail}`),
+            ];
+            if (allBlockers.length > 0) {
+              comment += `### ❌ Blocking Issues\n`;
+              allBlockers.forEach(b => { comment += `- ${b}\n`; });
+              comment += '\n';
+            }
+
+            // Warnings
+            const allWarnings = [
+              ...(lhResults.findings || []).filter(f => f.severity === 'warning').map(f => `[Lighthouse] ${f.detail}`),
+              ...(a11yResults.violations || []).filter(v => v.severity === 'warning').map(v => `[a11y ${v.impact}] ${v.description} (${v.nodes} node${v.nodes !== 1 ? 's' : ''}) — ${v.route}`),
+              ...(staticResults.findings || []).filter(f => f.severity === 'warning').map(f => `[Static] ${f.file}: ${f.detail}`),
+            ];
+            if (allWarnings.length > 0) {
+              comment += `### ⚠️ Warnings\n`;
+              allWarnings.slice(0, 10).forEach(w => { comment += `- ${w}\n`; });
+              if (allWarnings.length > 10) comment += `- … and ${allWarnings.length - 10} more\n`;
+              comment += '\n';
+            }
+
+            comment += `<sub>Preview: ${previewUrl} • ${new Date().toISOString()}</sub>`;
+
+            // Post PR comment (if we have a PR number)
+            if (prNumber) {
+              try {
+                await github.rest.issues.createComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: prNumber,
+                  body: comment,
+                });
+                console.log('PR comment posted.');
+              } catch (err) {
+                console.warn('Failed to post PR comment:', err.message);
+              }
+            }
+
+            // ── POST to portal ────────────────────────────────────────────
+            const portalSecret = process.env.PROD_GATE_SECRET;
+            const portalUrl    = process.env.PORTAL_API_URL || 'https://wwc-portal-wwcpro.vercel.app/api/prod-gate-results';
+
+            if (portalSecret && ticketId) {
+              const payload = JSON.stringify({
+                ticket_id:       ticketId,
+                project_id:      projectId,
+                pr_number:       prNumber,
+                preview_url:     previewUrl,
+                results: {
+                  lighthouse: lhResults,
+                  a11y:       a11yResults,
+                  static:     staticResults,
+                },
+                blocking_count: totalBlocking,
+                warning_count:  totalWarning,
+                passed,
+              });
+
+              const sig = crypto.createHmac('sha256', portalSecret).update(payload).digest('hex');
+
+              try {
+                const res = await fetch(portalUrl, {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json',
+                    'X-WWC-Gate-Signature': sig,
+                  },
+                  body: payload,
+                });
+                const body = await res.text();
+                console.log('Portal response:', res.status, body.slice(0, 200));
+              } catch (err) {
+                console.warn('Failed to POST to portal:', err.message);
+              }
+            } else {
+              console.log('Skipping portal POST (no secret or ticket_id).');
+            }
+
+            // Fail the workflow if there are blocking issues
+            if (!passed) {
+              core.setFailed(`PROD gate failed — ${totalBlocking} blocking issue${totalBlocking !== 1 ? 's' : ''}, ${totalWarning} warning${totalWarning !== 1 ? 's' : ''}.`);
+            } else {
+              console.log(`PROD gate passed — ${totalWarning} warning${totalWarning !== 1 ? 's' : ''}.`);
+            }
+        env:
+          PROD_GATE_SECRET: ${{ secrets.PROD_GATE_SECRET }}
+          PORTAL_API_URL:   ${{ secrets.PORTAL_API_URL }}
