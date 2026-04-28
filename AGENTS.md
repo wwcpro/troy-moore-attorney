@@ -91,6 +91,26 @@ To change a stat number, edit the `value` field (integer only). To change the la
 ```
 Edit the string between the tags. Do not change any JSX attributes or surrounding structure.
 
+### Image and Asset Locations
+
+All images and downloadable files live in `public/assets/`. Browser paths use `/assets/filename`.
+
+| Purpose | Naming convention | Examples |
+|---------|------------------|---------|
+| Hero images | `hero-*.webp` | `hero-alt1.webp`, `hero-alt2.webp` |
+| Blog post thumbnails | `post-N.jpg` | `post-1.jpg` … `post-5.jpg` |
+| Attorney / staff photos | `*-profile.webp` | `troy-profile.webp`, `tiffany-profile.webp` |
+| Credential badges | `badge-*.png/.webp` | `badge-htla.png` |
+| Downloadable PDFs / guides | descriptive name | `estate-planning-guide.pdf` |
+
+**To add or replace a file the client has attached to their email**, use the `add_attachment_to_repo` tool with:
+- `attachment_id` — the UUID from the Attachments section of the system prompt
+- `target_path` — `public/assets/<filename>` (use the same filename or a descriptive one)
+
+After writing the file, update the relevant data field or component `src` attribute to reference the new `/assets/<filename>` path.
+
+**You cannot fetch images from URLs.** Only files the client attached to their email can be written to the repo.
+
 ---
 
 ## Pages
@@ -129,6 +149,8 @@ These are the most frequent request types and exactly what to do for each:
 | "Update blog post teaser / card" | Edit `src/data/latest-posts.json` → find matching entry |
 | "Update phone number" | Edit `src/data/navigation.json` and `src/data/footer.json` |
 | "Add a blog post" | Edit `src/data/latest-posts.json` → append new entry |
+| "Replace / update [section] image" (with attachment) | Call `add_attachment_to_repo` with target `public/assets/<filename>`. Then update the `"image"` field in the relevant JSON data file (or `src` attribute in the component) to `/assets/<filename>` |
+| "Add a downloadable guide / PDF / document" (with attachment) | Call `add_attachment_to_repo` with target `public/assets/<filename>.pdf`. Then add an `<a href="/assets/<filename>.pdf" download>` link in the relevant component or update the data file |
 
 ---
 
@@ -140,7 +162,7 @@ Do not attempt these. Use `escalate` with a clear reason:
 - Adding a new navigation menu item that links to a new page
 - Redesigning any section's layout or visual structure
 - Changing fonts, colors, or spacing (design system changes)
-- Uploading or replacing images
+- Finding or sourcing images from the internet or external URLs (only files attached directly to the email can be used)
 - Any change that requires creating a new component file
 - Requests that reference content that genuinely does not exist on the site (use `clarify` first to confirm the client isn't confused about which site/section they mean)
 - Multi-step workflows (e.g., form logic, integrations, contact routing)
@@ -153,7 +175,7 @@ Do not attempt these. Use `escalate` with a clear reason:
 2. **JSON files**: return valid JSON only. Preserve all fields, only change requested values.
 3. **TSX/component files**: you may edit these when the content is hardcoded there (e.g. STATS in Hero.tsx, "Trusted" heading in LatestCarousel.tsx). Make minimal, surgical edits — only change the specific string requested.
 4. **Match voice**: professional, approachable, Texas-rooted, probate-focused.
-5. **Image paths** start with `/assets/` — never change unless specifically asked.
+5. **Image paths** start with `/assets/` — to add or replace a client-attached image, use `add_attachment_to_repo` with target `public/assets/<filename>`, then update the path reference in the relevant data file or component.
 6. **Phone numbers** format: `(281) 609-0303` style.
 7. **If content doesn't exist** on the site, use `clarify` to ask — don't invent it or escalate immediately.
 
@@ -192,5 +214,3 @@ Changed: `src/data/faq.json`
 
 ## 2026-04-28 | Ticket 9a657ad3 | Updated K.W. testimonial: replaced "long lasting trusted ally" with "trusted partner".
 Changed: `src/data/testimonials.json`
-
-
