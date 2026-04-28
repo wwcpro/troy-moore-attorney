@@ -1,0 +1,42 @@
+# WWC PROD Checklist — Law Office of Troy M. Moore
+# Thresholds follow WWC defaults from prod-gate.yml template.
+
+lighthouse:
+  performance:
+    warning:  80
+    blocking: 60
+  accessibility:
+    blocking: 95
+  seo:
+    blocking: 100
+  best_practices:
+    warning:  85
+  core_web_vitals:
+    lcp_ms:
+      blocking: 2500
+    cls:
+      blocking: 0.1
+    tbt_ms:
+      blocking: 200
+
+a11y:
+  critical:
+    blocking: 0
+  serious:
+    blocking: 0
+  moderate:
+    warning: 0
+
+static:
+  allow_console_log: false
+  check_alt_text: true
+
+# Representative routes for this project
+routes:
+  - "/"
+  - "/about"
+  - "/contact"
+  - "/practices"
+  - "/blog"
+  - "/faq"
+
