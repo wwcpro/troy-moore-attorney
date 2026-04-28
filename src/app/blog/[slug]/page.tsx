@@ -8,7 +8,6 @@ import JsonLd from "@/components/JsonLd";
 import { articleSchema, breadcrumbSchema } from "@/lib/schemas";
 
 export const revalidate = 3600;
-export const dynamicParams = false; // only serve slugs pre-built at deploy time
 
 const WP_HEADERS = {
   "User-Agent": "Mozilla/5.0 (compatible; TroyMooreLaw/1.0)",
