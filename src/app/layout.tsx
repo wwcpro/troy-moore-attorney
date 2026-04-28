@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     template: "%s | Law Office of Troy M. Moore, PLLC",
   },
   description:
-    "For 25+ years, Troy Moore has been Houston's trusted probate attorney — helping families navigate loss, inheritance disputes, and estate planning with care and clarity.",
+    "For 25+ years, Troy Moore has been Houston\'s trusted probate attorney — helping families navigate loss, inheritance disputes, and estate planning with care and clarity.",
   openGraph: {
     type: "website",
     siteName: "Law Office of Troy M. Moore, PLLC",
@@ -51,6 +51,8 @@ export default function RootLayout({
       <body className="min-h-screen">
         <TransitionManager>{children}</TransitionManager>
         <FixedCTA show={true} />
+        {/* WWC Edit Overlay — no-op for normal visitors; activates via signed token in URL hash */}
+        <script src="https://wwc-edit-overlay-j6yobi88u-wwcpro.vercel.app/wwc-edit-overlay.js" async defer></script>
       </body>
     </html>
   );
