@@ -44,6 +44,7 @@ Most copy lives in `src/data/*.json`. Some content is **hardcoded in component f
 | What the client might ask about | File to edit | Notes |
 |--------------------------------|-------------|-------|
 | Homepage headline, paragraph, bullets, quote | `src/data/hero.json` | See structure below |
+| **Hero paragraph / body copy / subtitle** | `src/data/hero.json` | `paragraph` field — the body text beneath the headline. "Subtitle", "body copy", and "sub-headline" all refer to this. |
 | **Homepage stats ("25+", "2,800+", "4,000+" etc.)** | `src/components/Hero.tsx` | `const STATS = [...]` at lines 11–14 — edit `value` integers. **Stats are NOT in hero.json.** |
 | **"Trusted" heading on homepage** | `src/components/LatestCarousel.tsx` | Hardcoded `<h2>Trusted</h2>` at ~line 68. The subtitle "To Help You" is in the `<p className="eyebrow">` tag immediately below it. Edit these JSX strings directly. |
 | **"To Help You" subtitle under "Trusted"** | `src/components/LatestCarousel.tsx` | `<p className="eyebrow">To Help You</p>` at ~line 70 |
@@ -191,3 +192,5 @@ Changed: `src/data/faq.json`
 
 ## 2026-04-28 | Ticket 9a657ad3 | Updated K.W. testimonial: replaced "long lasting trusted ally" with "trusted partner".
 Changed: `src/data/testimonials.json`
+
+
