@@ -44,7 +44,9 @@ Most copy lives in `src/data/*.json`. Some content is **hardcoded in component f
 | What the client might ask about | File to edit | Notes |
 |--------------------------------|-------------|-------|
 | Homepage headline, paragraph, bullets, quote | `src/data/hero.json` | See structure below |
-| **Homepage stats ("25+", "2,800+", "4,000+" etc.)** | `src/components/Hero.tsx` | `const STATS = [...]` at top of file — edit `value` numbers |
+| **Homepage stats ("25+", "2,800+", "4,000+" etc.)** | `src/components/Hero.tsx` | `const STATS = [...]` at lines 11–14 — edit `value` integers. **Stats are NOT in hero.json.** |
+| **"Trusted" heading on homepage** | `src/components/LatestCarousel.tsx` | Hardcoded `<h2>Trusted</h2>` at ~line 68. The subtitle "To Help You" is in the `<p className="eyebrow">` tag immediately below it. Edit these JSX strings directly. |
+| **"To Help You" subtitle under "Trusted"** | `src/components/LatestCarousel.tsx` | `<p className="eyebrow">To Help You</p>` at ~line 70 |
 | Testimonials / client reviews | `src/data/testimonials.json` | Array of `{ body, author }` |
 | Navigation links, phone number | `src/data/navigation.json` | |
 | Practice area cards | `src/data/practices.json` | |
@@ -52,7 +54,7 @@ Most copy lives in `src/data/*.json`. Some content is **hardcoded in component f
 | FAQ questions and answers | `src/data/faq.json` | |
 | Footer links, addresses | `src/data/footer.json` | |
 | Service area cities | `src/data/geo-locations.json` | |
-| Blog post teasers | `src/data/latest-posts.json` | |
+| Blog post teasers on homepage | `src/data/latest-posts.json` | These feed the LatestCarousel slide content |
 | Featured article on homepage | `src/data/featured-article.json` | |
 | "Core Practice / Areas" section | `src/data/staying-informed.json` | |
 | Videos | `src/data/videos.json` | |
@@ -69,7 +71,7 @@ Most copy lives in `src/data/*.json`. Some content is **hardcoded in component f
 }
 ```
 
-### Hero.tsx STATS structure (src/components/Hero.tsx, top of file)
+### Hero.tsx STATS structure (src/components/Hero.tsx, lines 11–14)
 ```typescript
 const STATS = [
   { value: 25, suffix: "+", label: "Years of Experience" },
@@ -77,7 +79,16 @@ const STATS = [
   { value: 4000, suffix: "+", label: "Clients Served" },
 ];
 ```
-To change a stat number, edit the `value` field (integer). To change the label text, edit `label`.
+To change a stat number, edit the `value` field (integer only). To change the label text, edit `label`.
+
+### LatestCarousel.tsx hardcoded heading (src/components/LatestCarousel.tsx, ~line 68)
+```tsx
+<h2>Trusted</h2>
+<p className="eyebrow" style={{ color: "var(--navy)", opacity: 0.5, marginTop: "0.5vw" }}>
+  To Help You
+</p>
+```
+Edit the string between the tags. Do not change any JSX attributes or surrounding structure.
 
 ---
 
@@ -97,11 +108,49 @@ To change a stat number, edit the `value` field (integer). To change the label t
 
 ---
 
+## Common Request Playbooks
+
+These are the most frequent request types and exactly what to do for each:
+
+| Request | Action |
+|---------|--------|
+| "Update the homepage headline" | Edit `src/data/hero.json` → `headline` field |
+| "Update the hero paragraph / body copy" | Edit `src/data/hero.json` → `paragraph` field |
+| "Add / change a bullet point in the hero" | Edit `src/data/hero.json` → `bullets` array, `label` or `description` |
+| "Change the stat [N]+ to [M]+" | Read `src/components/Hero.tsx`, find `const STATS`, edit the matching `value` integer |
+| "Update the 'Trusted' heading" | Read `src/components/LatestCarousel.tsx`, find `<h2>Trusted</h2>`, edit the string |
+| "Update the text under 'Trusted'" | Read `src/components/LatestCarousel.tsx`, find `<p className="eyebrow">To Help You</p>`, edit the string |
+| "Add a testimonial" | Edit `src/data/testimonials.json` → append `{ "body": "...", "author": "..." }` to the array |
+| "Update a testimonial" | Edit `src/data/testimonials.json` → find matching `author`, change `body` |
+| "Add a FAQ" | Edit `src/data/faq.json` → append `{ "question": "...", "answer": "..." }` to the array |
+| "Update a FAQ answer" | Edit `src/data/faq.json` → find matching `question`, change `answer` |
+| "Update the hero CTA / button" | Edit `src/data/navigation.json` → find the CTA button entry |
+| "Update blog post teaser / card" | Edit `src/data/latest-posts.json` → find matching entry |
+| "Update phone number" | Edit `src/data/navigation.json` and `src/data/footer.json` |
+| "Add a blog post" | Edit `src/data/latest-posts.json` → append new entry |
+
+---
+
+## Out of Scope — Always Escalate
+
+Do not attempt these. Use `escalate` with a clear reason:
+
+- Adding a new page or new page section (e.g., "add a Services section")
+- Adding a new navigation menu item that links to a new page
+- Redesigning any section's layout or visual structure
+- Changing fonts, colors, or spacing (design system changes)
+- Uploading or replacing images
+- Any change that requires creating a new component file
+- Requests that reference content that genuinely does not exist on the site (use `clarify` first to confirm the client isn't confused about which site/section they mean)
+- Multi-step workflows (e.g., form logic, integrations, contact routing)
+
+---
+
 ## Rules for Making Changes
 
 1. **Check the Content File Map above first** — it tells you exactly which file to edit.
 2. **JSON files**: return valid JSON only. Preserve all fields, only change requested values.
-3. **TSX/component files**: you may edit these when the content is hardcoded there (e.g. STATS in Hero.tsx). Make minimal, surgical edits — only change the specific value requested.
+3. **TSX/component files**: you may edit these when the content is hardcoded there (e.g. STATS in Hero.tsx, "Trusted" heading in LatestCarousel.tsx). Make minimal, surgical edits — only change the specific string requested.
 4. **Match voice**: professional, approachable, Texas-rooted, probate-focused.
 5. **Image paths** start with `/assets/` — never change unless specifically asked.
 6. **Phone numbers** format: `(281) 609-0303` style.
