@@ -64,20 +64,6 @@ function formatDate(iso: string) {
 }
 
 /* ─── Data fetchers ──────────────────────────────────────────────── */
-async function getAllSlugs(): Promise<string[]> {
-  try {
-    const res = await fetch(
-      "https://troymmoore.com/wp-json/wp/v2/posts?per_page=100&_fields=slug",
-      { next: { revalidate: 3600 }, headers: WP_HEADERS }
-    );
-    if (!res.ok) return [];
-    const posts: { slug: string }[] = await res.json();
-    return posts.map((p) => p.slug);
-  } catch {
-    return [];
-  }
-}
-
 async function getPost(slug: string): Promise<WPPost | null> {
   try {
     const res = await fetch(
@@ -103,12 +89,6 @@ async function getRelatedPosts(categoryId: number, excludeId: number): Promise<W
   } catch {
     return [];
   }
-}
-
-/* ─── Static params ──────────────────────────────────────────────── */
-export async function generateStaticParams() {
-  const slugs = await getAllSlugs();
-  return slugs.map((slug) => ({ slug }));
 }
 
 /* ─── Metadata ───────────────────────────────────────────────────── */
