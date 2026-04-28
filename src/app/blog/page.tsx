@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 };
 
 /* ─── Revalidate every hour ──────────────────────────────────────── */
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
 
 /* ─── Types ──────────────────────────────────────────────────────── */
 interface WPPost {
@@ -75,7 +75,7 @@ async function getPosts(): Promise<WPPost[]> {
   try {
     const res = await fetch(
       "https://troymmoore.com/wp-json/wp/v2/posts?per_page=100&_embed=wp:featuredmedia&_fields=id,slug,title,excerpt,date,categories,_embedded,_links",
-      { next: { revalidate: 3600 }, headers: WP_HEADERS }
+      { cache: "no-store" as const, headers: WP_HEADERS }
     );
     if (!res.ok) return [];
     return res.json();
