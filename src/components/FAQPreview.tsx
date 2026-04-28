@@ -3,16 +3,30 @@ import { supabase } from "@/lib/supabase";
 interface FAQPreviewProps {
   category: "Probate" | "Estate Planning" | "Other Practices";
   limit?: number;
+  /**
+   * Optional inline items. When provided, FAQPreview renders these directly
+   * instead of querying Supabase. Used by location pages to show
+   * location-specific FAQs that aren't in the global FAQ database.
+   */
+  items?: { question: string }[];
 }
 
-export default async function FAQPreview({ category, limit = 5 }: FAQPreviewProps) {
-  const { data } = await supabase
-    .from("faq")
-    .select("id, question")
-    .eq("category", category)
-    .order("sort_order")
-    .limit(limit);
-  const items = data ?? [];
+export default async function FAQPreview({ category, limit = 5, items }: FAQPreviewProps) {
+  let displayItems: { id: string | number; question: string }[];
+
+  if (items && items.length > 0) {
+    displayItems = items
+      .slice(0, limit)
+      .map((it, i) => ({ id: `inline-${i}`, question: it.question }));
+  } else {
+    const { data } = await supabase
+      .from("faq")
+      .select("id, question")
+      .eq("category", category)
+      .order("sort_order")
+      .limit(limit);
+    displayItems = data ?? [];
+  }
 
   return (
     <>
@@ -69,7 +83,7 @@ export default async function FAQPreview({ category, limit = 5 }: FAQPreviewProp
       `}</style>
 
       <div>
-        {items.map((item, idx) => (
+        {displayItems.map((item, idx) => (
           <a
             key={item.id}
             href={`/faq`}

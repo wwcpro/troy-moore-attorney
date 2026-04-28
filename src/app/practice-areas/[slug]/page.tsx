@@ -9,7 +9,7 @@ import geoSlugs from "@/data/geo-practice-areas.json";
 import geoLocationsData from "@/data/geo-locations.json";
 import practicesData from "@/data/practices.json";
 import faqData from "@/data/faq.json";
-import { generateGeoTitle, generateGeoDescription, generateGeoContent, type GeoLocation } from "@/lib/geoContent";
+import { generateGeoTitle, generateGeoDescription, generateGeoContent, getHeroIntro, getLocationFaqs, type GeoLocation } from "@/lib/geoContent";
 import JsonLd from "@/components/JsonLd";
 import { breadcrumbSchema, faqSchema, localServiceSchema } from "@/lib/schemas";
 
@@ -179,9 +179,18 @@ export default async function GeoPage({
   const relatedPractices = getRelatedPractices(slug);
 
   const geoLocation = (geoLocationsData as GeoLocation[]).find((l) => l.slug === slug);
-  const pageFaqs = (faqData as { category: string; question: string; answer: string }[])
+
+  const categoryFaqs = (faqData as { category: string; question: string; answer: string }[])
     .filter((f) => f.category === faqCategory)
-    .slice(0, 5);
+    .map(({ question, answer }) => ({ question, answer }));
+
+  const pageFaqs = geoLocation
+    ? getLocationFaqs(geoLocation, categoryFaqs, 5)
+    : categoryFaqs.slice(0, 5);
+
+  const heroIntro = geoLocation
+    ? getHeroIntro(geoLocation)
+    : "The Law Office of Troy M. Moore, PLLC serves Houston and surrounding communities with over 25 years of Texas probate and estate planning experience. Contact us today for a free case review — no obligation required.";
 
   return (
     <>
@@ -439,7 +448,7 @@ export default async function GeoPage({
                 dangerouslySetInnerHTML={{ __html: pageTitle }}
               />
               <p style={{ color: "rgba(255,255,255,0.65)", lineHeight: 1.85, marginBottom: "clamp(1.5rem, 2.5vw, 2.5rem)", fontSize: "clamp(0.92rem, 1vw, 1.1rem)" }}>
-                The Law Office of Troy M. Moore, PLLC serves Houston and surrounding communities with over 25 years of Texas probate and estate planning experience. Contact us today for a free case review — no obligation required.
+                {heroIntro}
               </p>
               <a
                 href="tel:2816090303"
@@ -528,7 +537,7 @@ export default async function GeoPage({
                       View All FAQs →
                     </a>
                   </div>
-                  <FAQPreview category={faqCategory} />
+                  <FAQPreview category={faqCategory} items={pageFaqs} />
                 </div>
               </div>
 

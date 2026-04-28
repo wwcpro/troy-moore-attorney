@@ -1,0 +1,90 @@
+{
+  "Harris County": {
+    "courtName": "Harris County Probate Courts",
+    "courtType": "Statutory probate courts",
+    "courtCount": 4,
+    "courtAddress": "201 Caroline Street, Houston, TX 77002",
+    "courtUrl": "https://probate.harriscountytx.gov/",
+    "courtPhone": "(713) 274-8585",
+    "filingNotes": "Harris County is one of only a handful of Texas counties large enough to have dedicated statutory probate courts — Probate Courts No. 1, 2, 3, and 4 — each presided over by a full-time probate judge. Cases are randomly assigned among the four courts at filing.",
+    "countySeat": "Houston",
+    "estimatedTimeline": "Uncontested independent administrations typically conclude in 4–8 months in Harris County, depending on the docket of the assigned probate court."
+  },
+  "Fort Bend County": {
+    "courtName": "Fort Bend County Court at Law No. 2",
+    "courtType": "Statutory county court at law (probate jurisdiction)",
+    "courtCount": 1,
+    "courtAddress": "301 Jackson Street, Richmond, TX 77469",
+    "courtUrl": "https://www.fortbendcountytx.gov/government/departments/county-courts-at-law/county-court-at-law-2",
+    "courtPhone": "(281) 341-4443",
+    "filingNotes": "Probate matters in Fort Bend County are heard by County Court at Law No. 2 in the Justice Center in Richmond. Filings are made through the Fort Bend County Clerk.",
+    "countySeat": "Richmond",
+    "estimatedTimeline": "Uncontested probate matters in Fort Bend County typically take 3–6 months from filing to closing of administration."
+  },
+  "Galveston County": {
+    "courtName": "Galveston County Probate Court",
+    "courtType": "County court (constitutional, with probate jurisdiction)",
+    "courtCount": 1,
+    "courtAddress": "600 59th Street, Suite 2305, Galveston, TX 77551",
+    "courtUrl": "https://www.galvestoncountytx.gov/our-county/probate-court",
+    "courtPhone": "(409) 766-2251",
+    "filingNotes": "Galveston County has a dedicated probate court at the Galveston County Courthouse. The court hears probate, guardianship, and mental health matters for the entire county, including League City, Friendswood, Texas City, and the Bay Area.",
+    "countySeat": "Galveston",
+    "estimatedTimeline": "Uncontested probate matters in Galveston County typically take 3–6 months."
+  },
+  "Brazoria County": {
+    "courtName": "Brazoria County Court at Law No. 4 and Probate Court",
+    "courtType": "Statutory county court at law (probate jurisdiction)",
+    "courtCount": 1,
+    "courtAddress": "111 East Locust Street, Room 201, Angleton, TX 77515",
+    "courtUrl": "https://www.brazoriacountytx.gov/departments/county-courts-at-law/county-court-at-law-4",
+    "courtPhone": "(979) 864-1622",
+    "filingNotes": "Brazoria County probate matters are heard by County Court at Law No. 4 at the courthouse in Angleton. Filings are made through the Brazoria County Clerk.",
+    "countySeat": "Angleton",
+    "estimatedTimeline": "Uncontested probate matters in Brazoria County typically take 3–6 months."
+  },
+  "Montgomery County": {
+    "courtName": "Montgomery County Probate Court No. 1",
+    "courtType": "Statutory probate court",
+    "courtCount": 1,
+    "courtAddress": "210 West Davis Street, Conroe, TX 77301",
+    "courtUrl": "https://mctx.org/courts/probateindex_clerk/probate/index.php",
+    "courtPhone": "(936) 539-7832",
+    "filingNotes": "Montgomery County has a dedicated statutory probate court — Probate Court No. 1 — that hears all probate, guardianship, and mental health matters for the county. The court is located at the Lee G. Alworth Building in downtown Conroe.",
+    "countySeat": "Conroe",
+    "estimatedTimeline": "Uncontested probate matters in Montgomery County typically take 4–6 months."
+  },
+  "Waller County": {
+    "courtName": "Waller County Court",
+    "courtType": "County court (constitutional, with probate jurisdiction)",
+    "courtCount": 1,
+    "courtAddress": "836 Austin Street, Hempstead, TX 77445",
+    "courtUrl": "https://www.co.waller.tx.us/page/CC.ProbateCourt",
+    "courtPhone": "(979) 826-7711",
+    "filingNotes": "Waller County is a smaller rural county where probate matters are heard by the constitutional county court. Filings are made through the Waller County Clerk in Hempstead.",
+    "countySeat": "Hempstead",
+    "estimatedTimeline": "Uncontested probate matters in Waller County typically take 3–5 months — dockets in smaller counties often move faster than in metropolitan Harris."
+  },
+  "Chambers County": {
+    "courtName": "Chambers County Court",
+    "courtType": "County court (constitutional, with probate jurisdiction)",
+    "courtCount": 1,
+    "courtAddress": "404 Washington Avenue, Anahuac, TX 77514",
+    "courtUrl": "https://www.chamberscountytx.gov/",
+    "courtPhone": "(409) 267-2400",
+    "filingNotes": "Chambers County probate matters are heard by the constitutional county court at the courthouse in Anahuac. The county also operates a branch annex in Mont Belvieu at 10616 Eagle Drive for many county clerk services.",
+    "countySeat": "Anahuac",
+    "estimatedTimeline": "Uncontested probate matters in Chambers County typically take 3–5 months."
+  },
+  "Harris / Fort Bend / Waller County": {
+    "courtName": "Multiple county probate courts",
+    "courtType": "Varies by physical address",
+    "courtCount": 0,
+    "courtAddress": "",
+    "courtUrl": "",
+    "courtPhone": "",
+    "filingNotes": "Some communities — most notably Katy — sit at the intersection of three counties. The county where probate is filed is determined by the deceased's legal residence at the time of death, not by ZIP code or mailing address. Our firm regularly files in all three jurisdictions.",
+    "countySeat": "Varies",
+    "estimatedTimeline": "Timelines vary by the county where probate is opened."
+  }
+}
