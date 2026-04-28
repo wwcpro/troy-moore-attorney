@@ -188,3 +188,6 @@ Changed: `src/data/faq.json`
 
 ## 2026-04-28 | Ticket 174d5e48 | Added new Estate Planning FAQ "Do I need a will if I have a trust?" as id 25, renumbered Other Practices entries to 26-30.
 Changed: `src/data/faq.json`
+
+## 2026-04-28 | Ticket 9a657ad3 | Updated K.W. testimonial: replaced "long lasting trusted ally" with "trusted partner".
+Changed: `src/data/testimonials.json`
