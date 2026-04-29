@@ -2,7 +2,7 @@ name: PROD Checklist Gate
 
 on:
   repository_dispatch:
-    types: [vercel-deployment-ready]
+    types: [vercel-deployment-ready, lighthouse-weekly-audit]
   workflow_dispatch:
     inputs:
       preview_url:
@@ -23,7 +23,7 @@ on:
 
 # ── Shared env (resolves from dispatch payload or manual inputs) ──────────────
 env:
-  PREVIEW_URL: ${{ github.event.client_payload.preview_url || inputs.preview_url }}
+  PREVIEW_URL: ${{ github.event.client_payload.target_url || github.event.client_payload.preview_url || inputs.preview_url }}
   TICKET_ID:   ${{ github.event.client_payload.ticket_id   || inputs.ticket_id   }}
   PROJECT_ID:  ${{ github.event.client_payload.project_id  || inputs.project_id  }}
   PR_NUMBER:   ${{ github.event.client_payload.pr_number   || inputs.pr_number   }}
