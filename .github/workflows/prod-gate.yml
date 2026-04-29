@@ -135,10 +135,12 @@ jobs:
       - name: Process Lighthouse results
         id: process
         run: node .github/scripts/process-lighthouse.mjs
+        continue-on-error: true
         env:
           PREVIEW_URL:  ${{ needs.setup.outputs.preview_url }}
 
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: lighthouse-results
           path: lighthouse-results.json
@@ -170,12 +172,14 @@ jobs:
 
       - name: Run a11y checks
         id: run
+        continue-on-error: true
         run: node .github/scripts/a11y-check.mjs
         env:
           PREVIEW_URL: ${{ needs.setup.outputs.preview_url }}
           ROUTES_JSON: ${{ needs.setup.outputs.routes_json }}
 
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: a11y-results
           path: a11y-results.json
@@ -197,12 +201,14 @@ jobs:
 
       - name: Run static checks
         id: run
+        continue-on-error: true
         run: node .github/scripts/static-check.mjs
         env:
           PR_NUMBER:          ${{ needs.setup.outputs.pr_number }}
           GITHUB_TOKEN:       ${{ secrets.GITHUB_TOKEN }}
 
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: static-results
           path: static-results.json
