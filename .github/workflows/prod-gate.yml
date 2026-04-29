@@ -318,7 +318,7 @@ jobs:
             const portalSecret = process.env.PROD_GATE_SECRET;
             const portalUrl    = process.env.PORTAL_API_URL || 'https://wwc-portal-wwcpro.vercel.app/api/prod-gate-results';
 
-            if (portalSecret && ticketId) {
+            if (portalSecret && (ticketId || projectId)) {
               const payload = JSON.stringify({
                 ticket_id:       ticketId,
                 project_id:      projectId,
@@ -351,7 +351,7 @@ jobs:
                 console.warn('Failed to POST to portal:', err.message);
               }
             } else {
-              console.log('Skipping portal POST (no secret or ticket_id).');
+              console.log('Skipping portal POST (no secret or project_id).');
             }
 
             // Fail the workflow if there are blocking issues
