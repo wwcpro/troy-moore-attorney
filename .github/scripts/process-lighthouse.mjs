@@ -36,8 +36,8 @@ if (!existsSync(LHCI_DIR)) {
   process.exit(0);
 }
 
-// Each URL run produces one lhr-*.json
-const files = readdirSync(LHCI_DIR).filter(f => f.endsWith('.json') && f.startsWith('lhr-'));
+// LHCI filesystem upload produces files named *.report.json
+const files = readdirSync(LHCI_DIR).filter(f => f.endsWith('.report.json'));
 
 if (files.length === 0) {
   console.warn('[process-lighthouse] No LHR files found');
